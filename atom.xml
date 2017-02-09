@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-09T15:44:40.000Z</updated>
+  <updated>2017-02-09T15:48:44.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/02/09/Blog%E7%BE%8E%E5%8C%96%E3%80%81%E5%86%99%E4%BD%9C%E3%80%81%E9%83%A8%E7%BD%B2/"/>
     <id>http://yoursite.com/2017/02/09/Blog美化、写作、部署/</id>
     <published>2017-02-09T02:47:53.000Z</published>
-    <updated>2017-02-09T15:44:40.000Z</updated>
+    <updated>2017-02-09T15:48:44.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>前言：Blog搭建完成，既然是专属博客，也就是自己的一方世界，大家肯定都想让Blog有自己的个人色彩，而不必像诸如CSDN一样各种条条框框~</p>
@@ -39,7 +39,7 @@
 <li>站点根目录下的_config.yml<br>主要用于Hexo站点的配置，我们称之为<code>站点配置文件</code></li>
 <li>主题目录的_config.yml，<br>主要用于主题相关的配置，称之为<code>主题配置文件</code></li>
 </ul>
-<!-- more info -->
+<a id="more"></a>
 <h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><h3 id="Hexo-Theme"><a href="#Hexo-Theme" class="headerlink" title="Hexo Theme"></a><a href="https://hexo.io/themes/" target="_blank" rel="external">Hexo Theme</a></h3><p><img src="http://static.zybuluo.com/LeoPoldCrossing/chy99uv8c2g1frc7he5efmc7/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-09%2012.54.24.png" alt="屏幕快照 2017-02-09 12.54.24.png-639.2kB"></p>
 <h3 id="选择主题，安装"><a href="#选择主题，安装" class="headerlink" title="选择主题，安装"></a>选择主题，安装</h3><p>Hexo 安装主题的方式非常简单，只需要将主题文件copy至站点没有理由的 themes 目录下，以Next主题举例：</p>
 <ul>
@@ -122,12 +122,11 @@
 <h2 id="clean-命令"><a href="#clean-命令" class="headerlink" title="clean 命令"></a>clean 命令</h2><h3 id="功能-4"><a href="#功能-4" class="headerlink" title="功能"></a>功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 清除缓存文件(db.json)和已生成的静态文件(public)</div><div class="line">$ hexo clean</div></pre></td></tr></table></figure>
 <p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令</p>
 <h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><h2 id="标签和分类的正确打开姿势"><a href="#标签和分类的正确打开姿势" class="headerlink" title="标签和分类的正确打开姿势"></a>标签和分类的正确打开姿势</h2><ul>
-<li>修改tags和categories目录下的index.md文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: 标签</div><div class="line">date: 2017-02-09 22:53:01</div><div class="line">type: &quot;tags&quot;</div><div class="line">---</div></pre></td></tr></table></figure>
+<li><p>修改tags和categories目录下的index.md文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: 标签</div><div class="line">date: 2017-02-09 22:53:01</div><div class="line">type: &quot;tags&quot;</div><div class="line">---</div><div class="line"></div><div class="line">---</div><div class="line">title: 分类</div><div class="line">date: 2017-02-09 22:53:11</div><div class="line">type: &quot;categories&quot;</div><div class="line">---</div></pre></td></tr></table></figure>
 </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: 分类</div><div class="line">date: 2017-02-09 22:53:11</div><div class="line">type: &quot;categories&quot;</div><div class="line">---</div></pre></td></tr></table></figure>
-<ul>
-<li>MarkDown 编辑文章添加标签和分类<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: Hexo + GitHub Pages 搭建专属博客</div><div class="line">date: 2017-02-08</div><div class="line">tag:</div><div class="line">    - Hexo</div><div class="line">categories:</div><div class="line">    - 教程</div><div class="line">---</div></pre></td></tr></table></figure>
+<li><p>MarkDown 编辑文章添加标签和分类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: Hexo + GitHub Pages 搭建专属博客</div><div class="line">date: 2017-02-08</div><div class="line">tag:</div><div class="line">    - Hexo</div><div class="line">categories:</div><div class="line">    - 教程</div><div class="line">---</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><blockquote>
@@ -144,7 +143,16 @@
 &lt;blockquote&gt;
 &lt;p&gt;内容摘要&lt;/p&gt;
 &lt;ol&gt;
-
+&lt;li&gt;利用Hexo Theme美化Blog    &lt;/li&gt;
+&lt;li&gt;Hexo命令功能介绍及使用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;Blog美化&quot;&gt;&lt;a href=&quot;#Blog美化&quot; class=&quot;headerlink&quot; title=&quot;Blog美化&quot;&gt;&lt;/a&gt;Blog美化&lt;/h1&gt;&lt;p&gt;在开始美化之前，先来了解一下下_config.yml文件，在Hexo中有两份主要的配置文件，名称都为_config.yml。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;站点根目录下的_config.yml&lt;br&gt;主要用于Hexo站点的配置，我们称之为&lt;code&gt;站点配置文件&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;主题目录的_config.yml，&lt;br&gt;主要用于主题相关的配置，称之为&lt;code&gt;主题配置文件&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-30T05:16:02.000Z</updated>
+  <updated>2017-04-05T10:21:38.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,50 +16,93 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Welcome to Beijing！</title>
-    <link href="http://yoursite.com/2017/03/30/Welcome-to-Beijing%EF%BC%81/"/>
-    <id>http://yoursite.com/2017/03/30/Welcome-to-Beijing！/</id>
-    <published>2017-03-30T04:07:48.000Z</published>
-    <updated>2017-03-30T05:16:02.000Z</updated>
+    <title>依赖注入框架 -- Dagger2 进阶</title>
+    <link href="http://yoursite.com/2017/04/05/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A1%86%E6%9E%B6-Dagger2-%E8%BF%9B%E9%98%B6/"/>
+    <id>http://yoursite.com/2017/04/05/依赖注入框架-Dagger2-进阶/</id>
+    <published>2017-04-05T03:25:48.000Z</published>
+    <updated>2017-04-05T10:21:38.000Z</updated>
     
-    <content type="html"><![CDATA[<p>首先，欢迎来北京吸霾！不废话，直奔主题。</p>
-<h1 id="时间安排"><a href="#时间安排" class="headerlink" title="时间安排"></a>时间安排</h1><p>鉴于各位4月1日比较辛苦，所以4月2日选择古北水镇，10点集合，可以睡个懒觉。4月3日 天漠，柳沟，永宁古城 ，早7点30集合。4月4日，戒指~戒指~戒指，西单逛逛逛，买买买！</p>
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Dagger2 基础分析了 @Inject，@Component，@Module，@Provides 是如何构成 dagger2 整个依赖注入框架的。</p>
+<p>主线已经完成，dagger2 中剩下的 @Qualifier（限定符）， @Singleton（单例），@Scope（作用域）是对整个依赖注入框架细节上完善，提供更完善的功能。</p>
 <a id="more"></a>
-<p><img src="http://static.zybuluo.com/LeoPoldCrossing/1cc7ep2a4pr9rx0t6ke5rv31/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-03-30%2012.55.06.png" alt="屏幕快照 2017-03-30 12.55.06.png-210.9kB"></p>
-<h1 id="住宿"><a href="#住宿" class="headerlink" title="住宿"></a>住宿</h1><p><strong>北京幸福城酒店</strong><br>一定要幸福~哈哈<br><strong>地址</strong><br>北京市东城区东直门外大街察慈小区一幢<br><strong>入住</strong><br>入住时间04-01，退房时间04-04<br><strong>酒店截图</strong><br><img src="http://static.zybuluo.com/LeoPoldCrossing/vbus57ly3nfuh7v6wgaof0u3/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-03-30%2011.29.01.png" alt="屏幕快照 2017-03-30 11.29.01.png-348.8kB"><br><img src="http://static.zybuluo.com/LeoPoldCrossing/4pcr41j6a56ux7hwhuj6qt9v/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-03-30%2011.29.51.png" alt="屏幕快照 2017-03-30 11.29.51.png-296.9kB"></p>
-<h1 id="天气"><a href="#天气" class="headerlink" title="天气"></a>天气</h1><p>未来一周天气预报，看不懂不要告诉我，我会嘲笑你！！！哈哈</p>
-<p><img src="http://static.zybuluo.com/LeoPoldCrossing/js5bpls1scafjyow5wpwt6vl/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-03-30%2011.32.34.png" alt="屏幕快照 2017-03-30 11.32.34.png-117.9kB"></p>
-<h1 id="游玩详情"><a href="#游玩详情" class="headerlink" title="游玩详情"></a>游玩详情</h1><h2 id="Day1-古北水镇"><a href="#Day1-古北水镇" class="headerlink" title="Day1 古北水镇"></a>Day1 古北水镇</h2><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MzE0MTYwMQ==&amp;mid=2651740138&amp;idx=5&amp;sn=4bb0d138ce0458096ca6b8e471dafc0c&amp;chksm=bd6171e48a16f8f24c3b598c726911d9575cfb4852a55f51ba3ffdda4260bf1e703ee037b3f0&amp;mpshare=1&amp;scene=1&amp;srcid=0330BgR9bElmOeZLbQzEfAEU&amp;key=606f6e65d5dedf6f6eb8bd8c8c9b007fdfa6fa0e84a8562f53b14c13d16fb2159093d025ee4b7864ea216ae6f2e8d731b30cb18e4905fc460b82a9da838916af34251818ebecd96bdf87caa5d58fb152&amp;ascene=0&amp;uin=MjA0NTMzNDM1&amp;devicetype=iMac%20MacBookPro11,5%20OSX%20OSX%2010.12%20build%2816A323%29&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=oZjFDbDGhytuEhMeDe4%2bsIAWH3erApNATSvVnHOuPpg=" target="_blank" rel="external">点击有惊喜</a></p>
-<p>行程安排（供参考）<br>10：00<br>　　　　地铁2号线东直门站C口出，东方银座门口集合(找潮尚队旗）</p>
-<p>12：00<br>　　　　到达古北水镇，民风淳朴，自由结伴解决午餐午餐<br>　　　　古北口古镇，欣赏江南水乡，小桥流水（进去自由活动）<br>　　　　景区里有很多免费表演，皮影戏，舞狮子，京剧等等可免费观看<br>　　　　景区里有各种展馆，如染坊，酒坊，镖局，均可免费参观</p>
-<p>13：30<br>　　　　自由结伴去爬司马台长城，就在景区里面 门票自理</p>
-<p>18：00<br>　　　　夜景开始亮灯夜幕降临，当古朴、典雅、北方民国时期的古镇闪现在星空之下。<br>　　　　泛光夜景超凡脱俗，堪称国内首屈一指的美景。</p>
-<p>19：30<br>　　　　集合返京 请大家准时</p>
-<p>22：00<br>　　　　结束行程，东直门解散，各回各家。
-　　　　</p>
-<h2 id="Day2-天漠"><a href="#Day2-天漠" class="headerlink" title="Day2 天漠"></a>Day2 天漠</h2><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MzE0MTYwMQ==&amp;mid=2651740111&amp;idx=3&amp;sn=397bd19ad71fb6deddd369993a8d1c35&amp;chksm=bd6171c18a16f8d74b33f53ac226e4842e1b5627305583b19d0beda5b7d9cc35dc74686ca8f9&amp;mpshare=1&amp;scene=1&amp;srcid=0330IjBblBpY4udqDmao4j04&amp;key=ed43990176ad5f45e1fa08663614c0825b3f13b6ab76837378f469320cebbf90fd0dfd6a502449c9c6da68686cb7e9273bf05b8cd495a250ab408a1c8d4843deabb0f32608a63d9829a39b045c20271b&amp;ascene=0&amp;uin=MjA0NTMzNDM1&amp;devicetype=iMac%20MacBookPro11,5%20OSX%20OSX%2010.12%20build%2816A323%29&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=oZjFDbDGhytuEhMeDe4%2bsIAWH3erApNATSvVnHOuPpg=" target="_blank" rel="external">点击有惊喜</a></p>
-<p>行程安排（供参考）</p>
-<p>07：30<br>　　　　东直门集合，人齐后出发，请大家准时。<br>09：30<br>　　　　怀来【龙门飞甲拍摄地】天漠，徒步沙漠，拍片 看官厅水库的风车群。。<br>12：00<br>　　　　离开天漠，前往柳沟村。<br>13：30<br>　　　　柳沟豆腐宴，饭后村里闲逛。<br>15：00<br>　　　　前往永宁古城，<br>16：00<br>　　　　集合返程。<br>18：30<br>　　　　回到东直门。</p>
-<h1 id="装备"><a href="#装备" class="headerlink" title="装备"></a>装备</h1><p>服装：休闲活动，休闲即可，第二天最好是防风的！万一来了沙尘暴呢。。。</p>
-<p>装备：墨镜、太阳镜，帽子</p>
-<p>生活：防晒霜</p>
-<p>药品：创可贴、消炎药，晕车药，胃药等。</p>
-<p>设备：照相机，摄像机，数码伴侣，手机，以上电器的充电器。</p>
-<p>食品：一路走一路吃</p>
-<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>中午饭没吃，写了这个，略显仓促。为了迁就我，你们跑来北京吸雾霾，甚是惶恐！ 拖了社会主义后腿，我向毛爷爷，习大大表示忏悔！哈哈~吃饭去了，祝各位北京之行愉快，你们懂得！</p>
+<h1 id="Qualifier"><a href="#Qualifier" class="headerlink" title="@Qualifier"></a>@Qualifier</h1><p>Dagger2 基础中分析到 @Component 是一个注入器，起着桥梁的作用。被依赖类的实例有两种创建方式：</p>
+<ul>
+<li>@Inject 标注构造函数创建</li>
+<li>@Module 中工厂模式创建</li>
+</ul>
+<p>这两种方式是有优先级之分的，Component会首先从Module中查找实例，找不到才会去查找Inject方式创建的实例。<br>问题随之而来，在同一种实例创建方式中，可能有多个方法创建类示例，注入器应该选择哪个？ @Qualifier 的作用就是用来决定 Component 做选择的。</p>
+<p>我们使用 @Qualifier 来定义自己的注解，然后通过自定义注解去标注依赖的方法和依赖需求方，这样 Dagger2 就知道为谁提供依赖了。</p>
+<h1 id="Component-组织方式"><a href="#Component-组织方式" class="headerlink" title="Component 组织方式"></a>Component 组织方式</h1><p>@Scope， @Singleton 有些坑，结合Component讲解，个人认为会更要效果。</p>
+<h2 id="如何划分Component"><a href="#如何划分Component" class="headerlink" title="如何划分Component"></a>如何划分Component</h2><p>如果一个 app 只有一个Component，脑补一下吧，简直是世界末日。这个Component会很难维护，变化率极高，很庞大，职责不明确。所以我们要将Component进行划分</p>
+<ul>
+<li>要有一个全局的Component，定义为 ApplicationComponent，负责管理整个 app 的全局类示例（整个app都要用到的类的实例，比如applicationContext，这些类都是单例的）</li>
+<li>每一个页面对应一个Component，比如一个Activity或者Fragment页面定义一个Component，当然这个不是必须的，某些页面依赖的类是一样的，可以共用一个Component。</li>
+</ul>
+<h2 id="Singleton仅起标注作用"><a href="#Singleton仅起标注作用" class="headerlink" title="@Singleton仅起标注作用"></a>@Singleton仅起标注作用</h2><p>前面提到 ApplicationComponent 负责管理整个app用到的全局类示例，如何才能创建单例？ </p>
+<ul>
+<li>Module 中定义创建全局类实例 </li>
+<li>ApplicationComponent 管理Module </li>
+<li>保证ApplicationComponent只有一个实例（在app的Application中实例化）<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppComponent <span class="title">getAppComponent</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (appComponent == <span class="keyword">null</span>) &#123;</div><div class="line">        appComponent = DaggerAppComponent.builder()</div><div class="line">                .appModule(<span class="keyword">new</span> AppModule(instance))</div><div class="line">                .httpModule(<span class="keyword">new</span> HttpModule())</div><div class="line">                .build();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> appComponent;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Dagger2 中真正创建单例的方法是上面的不走，全局类实例的生命周期就和Application一致了。疑问又来了，@Singleton 岂不是多余的？ 答案当然是NO！！！ @Singleton有以下作用：</p>
+<ul>
+<li>更好的管理 ApplicationComponent 和 Module 之间的关系，保证 ApplicationComponent 和 Module是匹配的。若两者的作用域不一样，则在编译时报错。</li>
+<li>提高代码可读性，让猿们清晰的看到 Module中创建的类实例是单例。</li>
+</ul>
+<h2 id="组织Component"><a href="#组织Component" class="headerlink" title="组织Component"></a>组织Component</h2><p>我们划分好Component之后，全局类实例也已经创建了单例模式，如果其他的Component想要把全局的类实例注入到目标类中，怎么办？ 我们需要组织Component之间的关系。 具体的组织方式有以下2种：</p>
+<ul>
+<li>依赖方式<br>一个Component是依赖于一个或多个Component，使用<code>dependencies</code>属性来添加依赖的Component</li>
+<li>包含方式<br>一个 Component 包含一个或多个Component，被包含的Component还可以继续包含其他的Component。 使用 @Subcomponent 注解组织Component </li>
+</ul>
+<h2 id="Scope的真正用处"><a href="#Scope的真正用处" class="headerlink" title="@Scope的真正用处"></a>@Scope的真正用处</h2><p>@Scope的真正用处是用于组织Component</p>
+<ul>
+<li>为了更好的管理Component，不管是依赖还是包含，都有必要用自定义的Scope标注，使用不同的自定义Scope来提现Component之间的组织方式。编译器会检查有依赖关系或包含关系的Component，如果没有自定义Scope标注，会报错。</li>
+<li>更好的管理Component与Module之间的匹配关系，编译器会检查Component管理的Modules，若发现标注Component的自定义Scope注解与Modules中的标注创建类示例方法的注解不一样，报错。</li>
+<li>可读性提高，比如用Singleton标注全局类，这样我们可以立刻明白这类是全局单例类。</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>关于 Dagger2 的的一些概念，就介绍到这里了。啰里啰嗦的说了好多，我们来总结一下 Dagger2 到底有些什么好处呢，应该如何使用。</p>
+<h2 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h2><ul>
+<li><p>提高开发效率，不做油漆工<br>Dagger2 把 new 对象和注入的工作给做了，我们只需要将精力集中在关建业务上。<br>省去了单例的写法，也不用再操心单例线程安全的问题。</p>
+</li>
+<li><p>更方便的管理类实例<br>每个app中的ApplicationComponent管理整个app的全局类实例，他们的生命周期和app的生命周期一样。<br>每个页面的Component管理自己页面所以来的类实例。<br>Component,Module让整个类实例结构变得很清晰。</p>
+</li>
+<li><p>解耦<br>正常情况下，new 关键字到处都有，一旦类的构造函数发生变化，咱们哭死的心都有。。。设计模式中提倡<strong>把容易变化的部分封装起来</strong>。<br>Dagger2 通过 @Inject 注解 和 @Module 来创建实例<br>@Inject构造函数变化时，我们不用做任何修改<br>@Module 管理的实例，我们也只需要修改Module，比如HttpModule。</p>
+</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li>依赖注入的流程</li>
+</ul>
+<blockquote>
+<ol>
+<li>查找Module中是否存在创建该类实例的方法 </li>
+<li>存在创建类实例的方法，查看该方法是否需要参数<br> 2.1 需要，则从步骤1开始，初始化每个参数<br> 2.2 不需要，直接初始化类实例，一次依赖注入完成</li>
+<li>若不存在创建类方法，则查找Inject注解的构造函数，查看是否需要参数<br> 3.1 需要，从步骤1开始一次初始化每个参数<br> 3.2 不需要，初始化该实例，一次依赖注入完成</li>
+</ol>
+</blockquote>
+<ul>
+<li>使用注意事项<ul>
+<li>一个app必须有一个Component来管理整个app的全局类实例</li>
+<li>多个页面可以共享一个Component</li>
+<li>最好使用自定义Scope，增强代码阅读性，及早的暴露问题（编译时检查）。</li>
+</ul>
+</li>
+</ul>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;首先，欢迎来北京吸霾！不废话，直奔主题。&lt;/p&gt;
-&lt;h1 id=&quot;时间安排&quot;&gt;&lt;a href=&quot;#时间安排&quot; class=&quot;headerlink&quot; title=&quot;时间安排&quot;&gt;&lt;/a&gt;时间安排&lt;/h1&gt;&lt;p&gt;鉴于各位4月1日比较辛苦，所以4月2日选择古北水镇，10点集合，可以睡个懒觉。4月3日 天漠，柳沟，永宁古城 ，早7点30集合。4月4日，戒指~戒指~戒指，西单逛逛逛，买买买！&lt;/p&gt;
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;Dagger2 基础分析了 @Inject，@Component，@Module，@Provides 是如何构成 dagger2 整个依赖注入框架的。&lt;/p&gt;
+&lt;p&gt;主线已经完成，dagger2 中剩下的 @Qualifier（限定符）， @Singleton（单例），@Scope（作用域）是对整个依赖注入框架细节上完善，提供更完善的功能。&lt;/p&gt;
     
     </summary>
     
-      <category term="忏悔" scheme="http://yoursite.com/categories/%E5%BF%8F%E6%82%94/"/>
+      <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="Dagger2" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/Dagger2/"/>
     
     
-      <category term="诗和远方" scheme="http://yoursite.com/tags/%E8%AF%97%E5%92%8C%E8%BF%9C%E6%96%B9/"/>
+      <category term="依赖注入" scheme="http://yoursite.com/tags/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   

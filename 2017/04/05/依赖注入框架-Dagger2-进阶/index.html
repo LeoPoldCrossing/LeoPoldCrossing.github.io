@@ -111,28 +111,19 @@
 
 
 
-<meta name="description" content="前言dagger2 是解决Android或着Java中依赖注入的一个类库（DI类库）。最近看了一些开源的项目都在使用dagger2，而且有很多对其是甚是推崇，我也蠢蠢欲动。。。在学习dagger2的过程中，我遇到了一下的困惑：
-
-dagger2 中的Inject，Component，Module，Provides等等都是什么鬼？有什么作用
-dagger2 到底有什么魔力，让大家都推崇备至
-如何在项">
+<meta name="description" content="前言Dagger2 基础分析了 @Inject，@Component，@Module，@Provides 是如何构成 dagger2 整个依赖注入框架的。
+主线已经完成，dagger2 中剩下的 @Qualifier（限定符）， @Singleton（单例），@Scope（作用域）是对整个依赖注入框架细节上完善，提供更完善的功能。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="依赖注入框架 -- Dagger2 基础">
-<meta property="og:url" content="http://yoursite.com/2017/03/30/依赖注入框架-Dagger2-基础/index.html">
+<meta property="og:title" content="依赖注入框架 -- Dagger2 进阶">
+<meta property="og:url" content="http://yoursite.com/2017/04/05/依赖注入框架-Dagger2-进阶/index.html">
 <meta property="og:site_name" content="Leo's Blog">
-<meta property="og:description" content="前言dagger2 是解决Android或着Java中依赖注入的一个类库（DI类库）。最近看了一些开源的项目都在使用dagger2，而且有很多对其是甚是推崇，我也蠢蠢欲动。。。在学习dagger2的过程中，我遇到了一下的困惑：
-
-dagger2 中的Inject，Component，Module，Provides等等都是什么鬼？有什么作用
-dagger2 到底有什么魔力，让大家都推崇备至
-如何在项">
-<meta property="og:updated_time" content="2017-03-30T04:50:05.000Z">
+<meta property="og:description" content="前言Dagger2 基础分析了 @Inject，@Component，@Module，@Provides 是如何构成 dagger2 整个依赖注入框架的。
+主线已经完成，dagger2 中剩下的 @Qualifier（限定符）， @Singleton（单例），@Scope（作用域）是对整个依赖注入框架细节上完善，提供更完善的功能。">
+<meta property="og:updated_time" content="2017-04-05T10:21:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="依赖注入框架 -- Dagger2 基础">
-<meta name="twitter:description" content="前言dagger2 是解决Android或着Java中依赖注入的一个类库（DI类库）。最近看了一些开源的项目都在使用dagger2，而且有很多对其是甚是推崇，我也蠢蠢欲动。。。在学习dagger2的过程中，我遇到了一下的困惑：
-
-dagger2 中的Inject，Component，Module，Provides等等都是什么鬼？有什么作用
-dagger2 到底有什么魔力，让大家都推崇备至
-如何在项">
+<meta name="twitter:title" content="依赖注入框架 -- Dagger2 进阶">
+<meta name="twitter:description" content="前言Dagger2 基础分析了 @Inject，@Component，@Module，@Provides 是如何构成 dagger2 整个依赖注入框架的。
+主线已经完成，dagger2 中剩下的 @Qualifier（限定符）， @Singleton（单例），@Scope（作用域）是对整个依赖注入框架细节上完善，提供更完善的功能。">
 
 
 
@@ -160,13 +151,13 @@ dagger2 到底有什么魔力，让大家都推崇备至
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/30/依赖注入框架-Dagger2-基础/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/05/依赖注入框架-Dagger2-进阶/"/>
 
 
 
 
 
-  <title> 依赖注入框架 -- Dagger2 基础 | Leo's Blog </title>
+  <title> 依赖注入框架 -- Dagger2 进阶 | Leo's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +284,7 @@ dagger2 到底有什么魔力，让大家都推崇备至
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/依赖注入框架-Dagger2-基础/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/05/依赖注入框架-Dagger2-进阶/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Leo">
@@ -317,7 +308,7 @@ dagger2 到底有什么魔力，让大家都推崇备至
             
             
               
-                依赖注入框架 -- Dagger2 基础
+                依赖注入框架 -- Dagger2 进阶
               
             
           </h1>
@@ -332,8 +323,8 @@ dagger2 到底有什么魔力，让大家都推崇备至
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T11:25:48+08:00">
-                2017-03-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-05T11:25:48+08:00">
+                2017-04-05
               </time>
             
 
@@ -401,59 +392,71 @@ dagger2 到底有什么魔力，让大家都推崇备至
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>dagger2 是解决Android或着Java中依赖注入的一个类库（DI类库）。最近看了一些开源的项目都在使用dagger2，而且有很多对其是甚是推崇，我也蠢蠢欲动。。。在学习dagger2的过程中，我遇到了一下的困惑：</p>
-<ul>
-<li>dagger2 中的Inject，Component，Module，Provides等等都是什么鬼？有什么作用</li>
-<li>dagger2 到底有什么魔力，让大家都推崇备至</li>
-<li>如何在项目中更好的使用dagger2 ?</li>
-</ul>
-<p>在具体的学习过程中，看了好多的博客，有时候感觉挺简单，就那么回事吧，但是真正使用的时候，一脸懵逼了。Component应该怎么用？Module应该放些神马？Scope怎么起到作用域控制？。。。一瞬间怀疑人生。本文将自己对dagger2的理解与大家分享一下，希望能对大家有所帮助。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Dagger2 基础分析了 @Inject，@Component，@Module，@Provides 是如何构成 dagger2 整个依赖注入框架的。</p>
+<p>主线已经完成，dagger2 中剩下的 @Qualifier（限定符）， @Singleton（单例），@Scope（作用域）是对整个依赖注入框架细节上完善，提供更完善的功能。</p>
 <a id="more"></a>
-<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>Inject，Component，Module，Provides他们是什么？ 怎么去理解？各自有什么作用？主要讲解抽象的概念，代码的剖析，后期实践中再说~ 下面请看黑板</p>
-<h1 id="小科普"><a href="#小科普" class="headerlink" title="小科普"></a>小科普</h1><ul>
-<li><p><a href="http://codethink.me/2015/08/01/dependency-injection-theory/" target="_blank" rel="external">依赖注入（Dependency Injection 简称DI)</a></p>
-</li>
-<li><p><a href="http://baike.baidu.com/item/Java%20%E6%B3%A8%E8%A7%A3?fr=aladdin" target="_blank" rel="external">注解（Annotation）</a></p>
-</li>
-</ul>
-<p>Dagger2 就是通过注解实现依赖注入的一种技术手段。</p>
-<h1 id="进入正题"><a href="#进入正题" class="headerlink" title="进入正题"></a>进入正题</h1><p>Dagger2 注入框架最重要的就是注解的使用，那么我们先来逐个分析这些东东。</p>
-<h2 id="Inject注解"><a href="#Inject注解" class="headerlink" title="@Inject注解"></a>@Inject注解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">    <span class="meta">@Inject</span></div><div class="line">    B b;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</div><div class="line">    <span class="meta">@Inject</span></div><div class="line">    B()&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>@Inject 注解用来标注目标类依赖的实例以以及被依赖类的构造函数。这样，目标类中依赖的实例与被依赖类的构造函数之间有了一种的联系，茫茫大海中，如何找到相互关联的两个 @Inject注解？</p>
-<h2 id="Component-注解"><a href="#Component-注解" class="headerlink" title="@Component 注解"></a>@Component 注解</h2><p>@Component 是连接目标类依赖的实例和被依赖类构造方法的桥梁，@Component标注的类是接口或者抽象类。既然说它是桥梁，我们来分析一下，它是如何工作的。</p>
+<h1 id="Qualifier"><a href="#Qualifier" class="headerlink" title="@Qualifier"></a>@Qualifier</h1><p>Dagger2 基础中分析到 @Component 是一个注入器，起着桥梁的作用。被依赖类的实例有两种创建方式：</p>
 <ul>
-<li>Component类持有目标类的实例。</li>
-<li>Component查找目标类中用@Inject注解标注的属性，然后查找该属性对应的用@Inject标注的构造函数。</li>
-<li>初始化该属性的实例，并进行赋值。</li>
+<li>@Inject 标注构造函数创建</li>
+<li>@Module 中工厂模式创建</li>
 </ul>
-<p>Component 就像是一个注入器，将目标类依赖的实例注入到目标类中。</p>
+<p>这两种方式是有优先级之分的，Component会首先从Module中查找实例，找不到才会去查找Inject方式创建的实例。<br>问题随之而来，在同一种实例创建方式中，可能有多个方法创建类示例，注入器应该选择哪个？ @Qualifier 的作用就是用来决定 Component 做选择的。</p>
+<p>我们使用 @Qualifier 来定义自己的注解，然后通过自定义注解去标注依赖的方法和依赖需求方，这样 Dagger2 就知道为谁提供依赖了。</p>
+<h1 id="Component-组织方式"><a href="#Component-组织方式" class="headerlink" title="Component 组织方式"></a>Component 组织方式</h1><p>@Scope， @Singleton 有些坑，结合Component讲解，个人认为会更要效果。</p>
+<h2 id="如何划分Component"><a href="#如何划分Component" class="headerlink" title="如何划分Component"></a>如何划分Component</h2><p>如果一个 app 只有一个Component，脑补一下吧，简直是世界末日。这个Component会很难维护，变化率极高，很庞大，职责不明确。所以我们要将Component进行划分</p>
+<ul>
+<li>要有一个全局的Component，定义为 ApplicationComponent，负责管理整个 app 的全局类示例（整个app都要用到的类的实例，比如applicationContext，这些类都是单例的）</li>
+<li>每一个页面对应一个Component，比如一个Activity或者Fragment页面定义一个Component，当然这个不是必须的，某些页面依赖的类是一样的，可以共用一个Component。</li>
+</ul>
+<h2 id="Singleton仅起标注作用"><a href="#Singleton仅起标注作用" class="headerlink" title="@Singleton仅起标注作用"></a>@Singleton仅起标注作用</h2><p>前面提到 ApplicationComponent 负责管理整个app用到的全局类示例，如何才能创建单例？ </p>
+<ul>
+<li>Module 中定义创建全局类实例 </li>
+<li>ApplicationComponent 管理Module </li>
+<li>保证ApplicationComponent只有一个实例（在app的Application中实例化）<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppComponent <span class="title">getAppComponent</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (appComponent == <span class="keyword">null</span>) &#123;</div><div class="line">        appComponent = DaggerAppComponent.builder()</div><div class="line">                .appModule(<span class="keyword">new</span> AppModule(instance))</div><div class="line">                .httpModule(<span class="keyword">new</span> HttpModule())</div><div class="line">                .build();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> appComponent;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Dagger2 中真正创建单例的方法是上面的不走，全局类实例的生命周期就和Application一致了。疑问又来了，@Singleton 岂不是多余的？ 答案当然是NO！！！ @Singleton有以下作用：</p>
+<ul>
+<li>更好的管理 ApplicationComponent 和 Module 之间的关系，保证 ApplicationComponent 和 Module是匹配的。若两者的作用域不一样，则在编译时报错。</li>
+<li>提高代码可读性，让猿们清晰的看到 Module中创建的类实例是单例。</li>
+</ul>
+<h2 id="组织Component"><a href="#组织Component" class="headerlink" title="组织Component"></a>组织Component</h2><p>我们划分好Component之后，全局类实例也已经创建了单例模式，如果其他的Component想要把全局的类实例注入到目标类中，怎么办？ 我们需要组织Component之间的关系。 具体的组织方式有以下2种：</p>
+<ul>
+<li>依赖方式<br>一个Component是依赖于一个或多个Component，使用<code>dependencies</code>属性来添加依赖的Component</li>
+<li>包含方式<br>一个 Component 包含一个或多个Component，被包含的Component还可以继续包含其他的Component。 使用 @Subcomponent 注解组织Component </li>
+</ul>
+<h2 id="Scope的真正用处"><a href="#Scope的真正用处" class="headerlink" title="@Scope的真正用处"></a>@Scope的真正用处</h2><p>@Scope的真正用处是用于组织Component</p>
+<ul>
+<li>为了更好的管理Component，不管是依赖还是包含，都有必要用自定义的Scope标注，使用不同的自定义Scope来提现Component之间的组织方式。编译器会检查有依赖关系或包含关系的Component，如果没有自定义Scope标注，会报错。</li>
+<li>更好的管理Component与Module之间的匹配关系，编译器会检查Component管理的Modules，若发现标注Component的自定义Scope注解与Modules中的标注创建类示例方法的注解不一样，报错。</li>
+<li>可读性提高，比如用Singleton标注全局类，这样我们可以立刻明白这类是全局单例类。</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>关于 Dagger2 的的一些概念，就介绍到这里了。啰里啰嗦的说了好多，我们来总结一下 Dagger2 到底有些什么好处呢，应该如何使用。</p>
+<h2 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h2><ul>
+<li><p>提高开发效率，不做油漆工<br>Dagger2 把 new 对象和注入的工作给做了，我们只需要将精力集中在关建业务上。<br>省去了单例的写法，也不用再操心单例线程安全的问题。</p>
+</li>
+<li><p>更方便的管理类实例<br>每个app中的ApplicationComponent管理整个app的全局类实例，他们的生命周期和app的生命周期一样。<br>每个页面的Component管理自己页面所以来的类实例。<br>Component,Module让整个类实例结构变得很清晰。</p>
+</li>
+<li><p>解耦<br>正常情况下，new 关键字到处都有，一旦类的构造函数发生变化，咱们哭死的心都有。。。设计模式中提倡<strong>把容易变化的部分封装起来</strong>。<br>Dagger2 通过 @Inject 注解 和 @Module 来创建实例<br>@Inject构造函数变化时，我们不用做任何修改<br>@Module 管理的实例，我们也只需要修改Module，比如HttpModule。</p>
+</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li>依赖注入的流程</li>
+</ul>
 <blockquote>
-<p>Tip：Dagger依赖注入的流程</p>
 <ol>
-<li>@Inject 标注目标类中的依赖类</li>
-<li>@Inject 标注被依赖类的构造函数</li>
-<li>若依赖类还有依赖类，重复 step1 step2</li>
-<li>调用 Component 的 injectXXX(Object) 方法开始依赖注入。（injectXXX 方法名称是官方推荐。）</li>
+<li>查找Module中是否存在创建该类实例的方法 </li>
+<li>存在创建类实例的方法，查看该方法是否需要参数<br> 2.1 需要，则从步骤1开始，初始化每个参数<br> 2.2 不需要，直接初始化类实例，一次依赖注入完成</li>
+<li>若不存在创建类方法，则查找Inject注解的构造函数，查看是否需要参数<br> 3.1 需要，从步骤1开始一次初始化每个参数<br> 3.2 不需要，初始化该实例，一次依赖注入完成</li>
 </ol>
 </blockquote>
-<h2 id="Module-注解"><a href="#Module-注解" class="headerlink" title="@Module 注解"></a>@Module 注解</h2><p>新坑来啦！！！项目中会使用很多的第三方类库，对于这些类库的依赖，我们没有办法去修改，不能将@Inject加入到这些类中。这可如何是好。。。</p>
-<p>@Module 应运而生，我们可以将第三方类库封装入Module中，来对第三方库进行封装，当然@Module的功能不止封装第三方库，它的应用场景主要有以下三个：</p>
 <ul>
-<li>接口（Interface）是没有构造方法的</li>
-<li>第三方库提供的类，构造方法不能被注解</li>
-<li>有些类需要灵活选择初始化配置，而不是使用单一的构造方法</li>
+<li>使用注意事项<ul>
+<li>一个app必须有一个Component来管理整个app的全局类实例</li>
+<li>多个页面可以共享一个Component</li>
+<li>最好使用自定义Scope，增强代码阅读性，及早的暴露问题（编译时检查）。</li>
 </ul>
-<p>Module 其实是一个简单工厂模式，Module里面的方法基本都是创建类示例的方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Module</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivityModule</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Activity mActivity;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ActivityModule</span><span class="params">(Activity activity)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mActivity = activity;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Provides</span></div><div class="line">    <span class="meta">@ActivityScope</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Activity <span class="title">provideActivity</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mActivity;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Module 和 Component 又是如何关联起来呢？ </p>
-<h2 id="Component的新任务"><a href="#Component的新任务" class="headerlink" title="Component的新任务"></a>Component的新任务</h2><p>Component 是注入器，它一段连接目标类，另一端链接被依赖类。之前说到Module类是一个提供类实例的类，所以Component的新职责就是将Module提供的被依赖类示例注入到目标类中。（Component中的modules属性可以把Module加入Component，modules可以加入多个Module）。</p>
-<p>引入新问题，Modules 中创建的各种类实例如何注入到目标类中，如何与目标类中@Inject标注的依赖产生关联。</p>
-<h2 id="Provides注解"><a href="#Provides注解" class="headerlink" title="@Provides注解"></a>@Provides注解</h2><p>Module 中创建类实例方法用Provides进行标注，Component 在搜索到目标类中用 @Inject 标注的属性后，Component就会去 Module 中去查找用 Provides 标注的对应的创建类实例方法，实现依赖注入。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Inject，Component，Module，Provides 是dagger2中最基础最核心的知识点。</p>
-<ul>
-<li>@Inject 用来标注目标类的依赖和被依赖类的构造函数</li>
-<li>@Component 是一个桥梁，一端是目标类，一端是目标类所依赖的实例。负责依赖注入，同时管理 Module。</li>
-<li>Module 和 Provides  Module是一个简单工厂模式，主要包含创建类示例的方法，这些方法用Provides来标注。</li>
+</li>
 </ul>
 
       
@@ -491,8 +494,8 @@ dagger2 到底有什么魔力，让大家都推崇备至
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/28/依赖注入/" rel="next" title="依赖注入">
-                <i class="fa fa-chevron-left"></i> 依赖注入
+              <a href="/2017/03/30/依赖注入框架-Dagger2-基础/" rel="next" title="依赖注入框架 -- Dagger2 基础">
+                <i class="fa fa-chevron-left"></i> 依赖注入框架 -- Dagger2 基础
               </a>
             
           </div>
@@ -500,10 +503,6 @@ dagger2 到底有什么魔力，让大家都推崇备至
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/05/依赖注入框架-Dagger2-进阶/" rel="prev" title="依赖注入框架 -- Dagger2 进阶">
-                依赖注入框架 -- Dagger2 进阶 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -646,7 +645,7 @@ dagger2 到底有什么魔力，让大家都推崇备至
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">2.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小科普"><span class="nav-number">3.</span> <span class="nav-text">小科普</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进入正题"><span class="nav-number">4.</span> <span class="nav-text">进入正题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inject注解"><span class="nav-number">4.1.</span> <span class="nav-text">@Inject注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Component-注解"><span class="nav-number">4.2.</span> <span class="nav-text">@Component 注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Module-注解"><span class="nav-number">4.3.</span> <span class="nav-text">@Module 注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Component的新任务"><span class="nav-number">4.4.</span> <span class="nav-text">Component的新任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Provides注解"><span class="nav-number">4.5.</span> <span class="nav-text">@Provides注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Qualifier"><span class="nav-number">2.</span> <span class="nav-text">@Qualifier</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Component-组织方式"><span class="nav-number">3.</span> <span class="nav-text">Component 组织方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何划分Component"><span class="nav-number">3.1.</span> <span class="nav-text">如何划分Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Singleton仅起标注作用"><span class="nav-number">3.2.</span> <span class="nav-text">@Singleton仅起标注作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组织Component"><span class="nav-number">3.3.</span> <span class="nav-text">组织Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scope的真正用处"><span class="nav-number">3.4.</span> <span class="nav-text">@Scope的真正用处</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#好处"><span class="nav-number">4.1.</span> <span class="nav-text">好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">4.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-10T06:21:23.000Z</updated>
+  <updated>2017-04-10T06:46:20.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,402 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Git教程（二） -- 带你起飞</title>
+    <title>Git教程（六） -- 标签管理</title>
+    <link href="http://yoursite.com/2017/04/10/Git-%E6%95%99%E7%A8%8B-%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86/"/>
+    <id>http://yoursite.com/2017/04/10/Git-教程-标签管理/</id>
+    <published>2017-04-10T08:29:48.000Z</published>
+    <updated>2017-04-10T06:46:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>在发布一个版本时，我们通常在版本库中打一个标签，这样，就确定了打标签时刻的版本，方便我们随时取出该版本。</p>
+</blockquote>
+<hr>
+<a id="more"></a>
+<h1 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h1><ul>
+<li><p>默认标签 打在 HEAD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git branch</div><div class="line">  dev</div><div class="line">* master</div><div class="line"></div><div class="line">$ git checkout master</div><div class="line">Already on &apos;master&apos;</div><div class="line"></div><div class="line">$ git tag v5.9.0 // 创建标签</div></pre></td></tr></table></figure>
+</li>
+<li><p>对指定commit打tag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag v5.8.0 732a5c</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建说明标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag -a v5.7.0 -m &quot;version 5.7.0&quot; 514dcd</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="查看标签列表"><a href="#查看标签列表" class="headerlink" title="查看标签列表"></a>查看标签列表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git tag</div><div class="line">v5.7.0</div><div class="line">v5.8.0</div><div class="line">v5.9.0</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="查看标签信息"><a href="#查看标签信息" class="headerlink" title="查看标签信息"></a>查看标签信息</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ git show v5.7.0</div><div class="line">tag v5.7.0</div><div class="line">Tagger: yonggangwang &lt;yonggangwang@rxhui.com&gt;</div><div class="line">Date:   Tue Dec 20 16:03:47 2016 +0800</div><div class="line"></div><div class="line">version 5.7.0</div><div class="line"></div><div class="line">commit 514dcd9693b65d1232872b0152229f3f32db5876</div><div class="line">Merge: 2d45171 561c7aa</div><div class="line">Author: yonggangwang &lt;yonggangwang@rxhui.com&gt;</div><div class="line">Date:   Tue Dec 20 11:44:09 2016 +0800</div><div class="line"></div><div class="line">    merge from issue01</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="推送标签至远程"><a href="#推送标签至远程" class="headerlink" title="推送标签至远程"></a>推送标签至远程</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git push origin v5.7.0</div><div class="line">/opt/gitlab-8.13.3-0/apps/gitlab/gitlab-shell/lib/gitlab_shell.rb:146: warning: Insecure world writable dir /opt/gitlab-8.13.3-0/nodejs/bin in PATH, mode 040777</div><div class="line">Counting objects: 1, done.</div><div class="line">Writing objects: 100% (1/1), 162 bytes | 0 bytes/s, done.</div><div class="line">Total 1 (delta 0), reused 0 (delta 0)</div><div class="line">To git@gitlab.jinhui365.cn:android/android-pay.git</div><div class="line"> * [new tag]         v5.7.0 -&gt; v5.7.0</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h1><ul>
+<li><p>删除本地标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git tag -d v5.8.0</div><div class="line">Deleted tag &apos;v5.8.0&apos; (was 732a5c7)</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除远程标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 先本地删除</div><div class="line">$ git tag -d v5.8.0</div><div class="line">Deleted tag &apos;v5.8.0&apos; (was 732a5c7)</div><div class="line"></div><div class="line"># 删除远程tag</div><div class="line">$ git push origin :refs/tags/v5.9.0</div><div class="line">/opt/gitlab-8.13.3-0/apps/gitlab/gitlab-shell/lib/gitlab_shell.rb:146: warning: Insecure world writable dir /opt/gitlab-8.13.3-0/nodejs/bin in PATH, mode 040777</div><div class="line">To git@gitlab.jinhui365.cn:android/android-pay.git</div><div class="line"> - [deleted]         v5.9.0</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="获取tag代码"><a href="#获取tag代码" class="headerlink" title="获取tag代码"></a>获取tag代码</h1><ul>
+<li><p>查看tag列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git tag</div><div class="line">v5.7.0</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取tag代码</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ git checkout v5.7.0</div><div class="line">Note: checking out &apos;v5.7.0&apos;.</div><div class="line"></div><div class="line">You are in &apos;detached HEAD&apos; state. You can look around, make experimental</div><div class="line">changes and commit them, and you can discard any commits you make in this</div><div class="line">state without impacting any branches by performing another checkout.</div><div class="line"></div><div class="line">If you want to create a new branch to retain commits you create, you may</div><div class="line">do so (now or later) by using -b with the checkout command again. Example:</div><div class="line"></div><div class="line">  git checkout -b &lt;new-branch-name&gt;</div><div class="line"></div><div class="line">HEAD is now at 514dcd9... merge from issue01</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git branch</div><div class="line">* (HEAD detached at v5.7.0)</div><div class="line">  dev</div><div class="line">  master</div></pre></td></tr></table></figure>
+<p>Log 提示 当前处于 “detached HEAD”状态，每一个tag只是一个快照，如果想要编辑我们就需要把tag对应的代码拉取到一个分支上。</p>
+<ul>
+<li>拉取tag代码分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b tag5.7.0 v5.7.0</div><div class="line">Switched to a new branch &apos;tag5.7.0&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git branch</div><div class="line">  dev</div><div class="line">  master</div><div class="line">* tag5.7.0</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在发布一个版本时，我们通常在版本库中打一个标签，这样，就确定了打标签时刻的版本，方便我们随时取出该版本。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+      <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git教程（五） -- 多人协作</title>
+    <link href="http://yoursite.com/2017/04/10/Git%E6%95%99%E7%A8%8B-%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C/"/>
+    <id>http://yoursite.com/2017/04/10/Git教程-多人协作/</id>
+    <published>2017-04-10T06:29:48.000Z</published>
+    <updated>2017-04-10T06:44:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="分支管理原则"><a href="#分支管理原则" class="headerlink" title="分支管理原则"></a>分支管理原则</h1><ul>
+<li>master分支应该是非常稳定的，也就是仅仅用来发布新版本，不进行开发</li>
+<li>dev 分支是我们的开发分支，该分支不稳定，相当于之前的主干代码。当发布版本是，将dev分支合并到master分支</li>
+<li>每个小伙伴建立自己的分支，开发时在自己的分支上进行开发，开发完成后合并到dev分支</li>
+</ul>
+<blockquote>
+<p>Tip : 合并分支时，使用 –no-ff模式，便于查看log</p>
+</blockquote>
+<hr>
+<a id="more"></a>
+<h1 id="查看远程库信息"><a href="#查看远程库信息" class="headerlink" title="查看远程库信息"></a>查看远程库信息</h1><p>使用git clone 操作后，Git自动把本地master分支和远程的master分支对应起来，远程库的默认名称为origin。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 查看远程库信息</div><div class="line">$ git remote</div><div class="line">origin</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 查看远程库的详细信息</div><div class="line">$ git remote -v</div><div class="line">origin	git@gitlab.jinhui365.cn:android/android-pay.git (fetch)</div><div class="line">origin	git@gitlab.jinhui365.cn:android/android-pay.git (push)</div></pre></td></tr></table></figure>
+<p>上面显示了可以抓取和推送的origin地址，如果没有push权限，就看不到push地址。</p>
+<hr>
+<h1 id="推送分支"><a href="#推送分支" class="headerlink" title="推送分支"></a>推送分支</h1><p>推送分支，就是把该分支上的所有本地 commit 推送到远程仓库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 需要指定仓库和分支名称</div><div class="line">$ git push origin master   </div><div class="line">$ git push origin dev</div></pre></td></tr></table></figure></p>
+<p>我们需要将哪些分支推送到远程呢？ </p>
+<ul>
+<li>master分支是主分支，我们需要时刻与远程同步。</li>
+<li>dev是开发分支，团队的成员都要在dev上进行开发，所以也需要同步</li>
+<li>bug分支只用于本地修复bug，合并后删除，不需要推送</li>
+</ul>
+<blockquote>
+<p>总结： 当多人在同一分支上进行开发时，就需要推送至远程库。</p>
+</blockquote>
+<hr>
+<h1 id="抓取分支"><a href="#抓取分支" class="headerlink" title="抓取分支"></a>抓取分支</h1><ul>
+<li><p>从远程仓库克隆<br>这是一个比较简单的操作，例如想要克隆刚刚创建的resposity</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone &lt;仓库地址&gt;</div><div class="line">$ git clone git@gitlab.jinhui365.cn:android/android-pay.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>从远程数据库pull </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git pull &lt;repository&gt; &lt;branch&gt;</div><div class="line">$ git pull origin master</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="多人合作流程"><a href="#多人合作流程" class="headerlink" title="多人合作流程"></a>多人合作流程</h1><p>哦了，我创建了仓库和分支，现在你要来开发新功能</p>
+<ul>
+<li><p>先将分支clone下来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ git clone git@gitlab.jinhui365.cn:android/android-pay.git</div><div class="line">Cloning into &apos;android-pay&apos;...</div><div class="line">/opt/gitlab-8.13.3-0/apps/gitlab/gitlab-shell/lib/gitlab_shell.rb:146: warning: Insecure world writable dir /opt/gitlab-8.13.3-0/nodejs/bin in PATH, mode 040777</div><div class="line">remote: Counting objects: 2424, done.</div><div class="line">remote: Compressing objects: 100% (2175/2175), done.</div><div class="line">remote: Total 2424 (delta 228), reused 2407 (delta 217)</div><div class="line">Receiving objects: 100% (2424/2424), 15.31 MiB | 6.66 MiB/s, done.</div><div class="line">Resolving deltas: 100% (228/228), done.</div><div class="line">Checking connectivity... done.</div></pre></td></tr></table></figure>
+</li>
+<li><p>默认情况下，clone以后我们只能看到master分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git branch</div><div class="line">* master</div></pre></td></tr></table></figure>
+</li>
+<li><p>我们约定了开发需要dev分支，你就需要创建远程origin的dev分支到本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b dev origin/dev （本地和远程名称最好一样）</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后噼里啪啦一通修改,提交，推送，爽的不行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ git add .</div><div class="line"></div><div class="line">$ git commit -m &quot;manager&quot;</div><div class="line">[dev e94b7d5] manager</div><div class="line"></div><div class="line">$ git push origin dev</div><div class="line">/opt/gitlab-8.13.3-0/apps/gitlab/gitlab-shell/lib/gitlab_shell.rb:146: warning: Insecure world writable dir /opt/gitlab-8.13.3-0/nodejs/bin in PATH, mode 040777</div><div class="line">Counting objects: 7, done.</div><div class="line">Delta compression using up to 8 threads.</div><div class="line">Compressing objects: 100% (7/7), done.</div><div class="line">Writing objects: 100% (7/7), 711 bytes | 0 bytes/s, done.</div><div class="line">Total 7 (delta 4), reused 1 (delta 0)</div><div class="line">remote: </div><div class="line">remote: Create merge request for dev:</div><div class="line">remote:   http://gitlab.jinhui365.cn:81/android/android-pay/merge_requests/new?merge_request%5Bsource_branch%5D=dev</div><div class="line">remote: </div><div class="line">To git@gitlab.jinhui365.cn:android/android-pay.git</div><div class="line">   514dcd9..e94b7d5  dev -&gt; dev</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>上面是你笑<br>—————-华丽的分割线—————-<br>下面是我哭</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git push origin dev</div><div class="line">/opt/gitlab-8.13.3-0/apps/gitlab/gitlab-shell/lib/gitlab_shell.rb:146: warning: Insecure world writable dir /opt/gitlab-8.13.3-0/nodejs/bin in PATH, mode 040777</div><div class="line">To git@gitlab.jinhui365.cn:android/android-pay.git</div><div class="line"> ! [rejected]        dev -&gt; dev (fetch first)</div><div class="line">error: failed to push some refs to &apos;git@gitlab.jinhui365.cn:android/android-pay.git&apos;</div><div class="line">... </div><div class="line">hint: (e.g., &apos;git pull ...&apos;) before pushing again.</div><div class="line">hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.</div></pre></td></tr></table></figure>
+<p>你是爽了，我懵逼了。。。你的最新提交，我本地没有。。。根据提示我去 git pull 一下</p>
+<ul>
+<li>git pull <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ git pull </div><div class="line">/opt/gitlab-8.13.3-0/apps/gitlab/gitlab-shell/lib/gitlab_shell.rb:146: warning: Insecure world writable dir /opt/gitlab-8.13.3-0/nodejs/bin in PATH, mode 040777</div><div class="line">remote: Counting objects: 7, done.</div><div class="line">remote: Compressing objects: 100% (7/7), done.</div><div class="line">remote: Total 7 (delta 4), reused 0 (delta 0)</div><div class="line">Unpacking objects: 100% (7/7), done.</div><div class="line">From gitlab.jinhui365.cn:android/android-pay</div><div class="line">   514dcd9..e94b7d5  dev        -&gt; origin/dev</div><div class="line">There is no tracking information for the current branch.</div><div class="line">Please specify which branch you want to merge with.</div><div class="line">See git-pull(1) for details.</div><div class="line"></div><div class="line">    git pull &lt;remote&gt; &lt;branch&gt;</div><div class="line"></div><div class="line">If you wish to set tracking information for this branch you can do so with:</div><div class="line"></div><div class="line">    git branch --set-upstream-to=origin/&lt;branch&gt; dev</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>git pull 失败了，There is no tracking information for the current branch. 你害人不浅。。。还好git 有提示</p>
+<ul>
+<li><p>我需要指定本地dev分支 与远程 origin/dev分支的链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git branch --set-upstream-to=origin/dev</div><div class="line">Branch dev set up to track remote branch dev from origin.</div></pre></td></tr></table></figure>
+</li>
+<li><p>再pull， success ，但是有冲突</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git pull </div><div class="line">/opt/gitlab-8.13.3-0/apps/gitlab/gitlab-shell/lib/gitlab_shell.rb:146: warning: Insecure world writable dir /opt/gitlab-8.13.3-0/nodejs/bin in PATH, mode 040777</div><div class="line">Auto-merging markets.txt</div><div class="line">CONFLICT (content): Merge conflict in markets.txt</div><div class="line">Automatic merge failed; fix conflicts and then commit the result.</div></pre></td></tr></table></figure>
+</li>
+<li><p>解决冲突，提交，push</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># 终于成功了，log我不想贴。。。请自己造</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>总结：<br>    1.可以先push尝试推送自己的修改<br>    2.推送失败，是因为远程分支有新的commit<br>    3.git pull，如果有冲突，则解决，在本地提交<br>    4.推送至远程<br>    如果“There is no tracking information for the current branch.”出现，使用$ git branch –set-upstream-to=origin/dev创建本地分支和远程分支的链接关系。</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;分支管理原则&quot;&gt;&lt;a href=&quot;#分支管理原则&quot; class=&quot;headerlink&quot; title=&quot;分支管理原则&quot;&gt;&lt;/a&gt;分支管理原则&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;master分支应该是非常稳定的，也就是仅仅用来发布新版本，不进行开发&lt;/li&gt;
+&lt;li&gt;dev 分支是我们的开发分支，该分支不稳定，相当于之前的主干代码。当发布版本是，将dev分支合并到master分支&lt;/li&gt;
+&lt;li&gt;每个小伙伴建立自己的分支，开发时在自己的分支上进行开发，开发完成后合并到dev分支&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tip : 合并分支时，使用 –no-ff模式，便于查看log&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+      <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git教程（四） -- 分支管理</title>
+    <link href="http://yoursite.com/2017/04/09/Git-%E6%95%99%E7%A8%8B-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/"/>
+    <id>http://yoursite.com/2017/04/09/Git-教程-分支管理/</id>
+    <published>2017-04-09T08:29:48.000Z</published>
+    <updated>2017-04-10T06:44:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="创建和删除分支"><a href="#创建和删除分支" class="headerlink" title="创建和删除分支"></a>创建和删除分支</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 创建分支</div><div class="line">$ git branch dev</div><div class="line">$ git checkout dev</div><div class="line">或 </div><div class="line">$ git checkout -b dev</div><div class="line">Switched to branch &apos;dev&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 查看分支列表，* 为当前所在分支</div><div class="line">$ git branch</div><div class="line">* dev</div><div class="line">  master</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 删除已合并分支</div><div class="line">$ git branch -d &lt;branch name&gt;</div><div class="line">// 强行删除</div><div class="line">$ git branch -D &lt;branch name&gt;</div></pre></td></tr></table></figure>
+<hr>
+<a id="more"></a>
+<h1 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h1><p>查看状态,将所做修改提交<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">On branch dev</div><div class="line">Changes not staged for commit:</div><div class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</div><div class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</div><div class="line"></div><div class="line">	modified:   markets.txt</div><div class="line"></div><div class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;git branch test&quot;</div><div class="line">[dev c8898aa] git branch test</div><div class="line"> 1 file changed, 2 insertions(+), 1 deletion(-)</div></pre></td></tr></table></figure>
+<p>切换回master分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git checkout master</div><div class="line">Switched to branch &apos;master&apos;</div><div class="line">Your branch is up-to-date with &apos;origin/master&apos;.</div></pre></td></tr></table></figure></p>
+<p>dev分支的修改么有了，我们将它合并过来~<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git merge dev</div><div class="line">Updating 732a5c7..c8898aa</div><div class="line">Fast-forward</div><div class="line"> markets.txt | 3 ++-</div><div class="line"> 1 file changed, 2 insertions(+), 1 deletion(-)</div></pre></td></tr></table></figure></p>
+<p>dev的修改回来了，无用的分支当然要删除喽！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git branch -d dev</div><div class="line">Deleted branch dev (was c8898aa).</div><div class="line"></div><div class="line">$ git branch</div><div class="line">* master</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Tip：<br>master分支：主分支，git默认创建。指向主分支最新提交<br>dev分支： 自己创建的分支。指向dev分支最新提交<br>HEAD : HEAD指向的当前所在的分支。</p>
+</blockquote>
+<p>结合前面的示例，我们对Git创建分支，切换分支，合并分支的流程做一个总结：</p>
+<blockquote>
+<p>HEAD 指向 master<br>    创建dev分支： 创建指针dev ,指向master相同的commit<br>    切换至dev分支： HEAD 指向 dev<br>    修改dev分支代码：dev 指向最新commit ，master 指向不变，HEAD跟随dev<br>    切换至master： HEAD 指向master的commit<br>    合并dev至master：master指向dev的最新commit，HEAD跟随master</p>
+</blockquote>
+<hr>
+<h1 id="冲突解决"><a href="#冲突解决" class="headerlink" title="冲突解决"></a>冲突解决</h1><p>熟悉svn的童鞋们，都晓得，在不同的分支修改了同一位置的代码，在合并是会有conflict，Git亦是如此。。。骚年，勇敢面对！</p>
+<p>来吧，给合并制造点麻烦。。。生命在于折腾吗~</p>
+<ul>
+<li><p>创建新分支，修改提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b conflictTest</div><div class="line">Switched to a new branch &apos;conflictTest&apos;</div><div class="line"></div><div class="line">$ git add markets.txt</div><div class="line"></div><div class="line">$ git commit -m &quot;conflict branch commit&quot;</div><div class="line">[conflictTest 0b22857] conflict branch commit</div><div class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</div></pre></td></tr></table></figure>
+</li>
+<li><p>切换至master,修改同一位置，提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git add .</div><div class="line"></div><div class="line">$ git commit -m &quot;conflict master&quot;</div><div class="line">[master cfadfe0] conflict master</div><div class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</div><div class="line">bogon:android-pay-git LeoPoldCrossing$</div></pre></td></tr></table></figure>
+</li>
+<li><p>尝试合并 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git merge conflictTest</div><div class="line">Auto-merging markets.txt</div><div class="line">CONFLICT (content): Merge conflict in markets.txt</div><div class="line">Automatic merge failed; fix conflicts and then commit the result.</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>请允许我做一个悲伤的表情，嘿嘿！ 查看一下状态吧。。。。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Your branch is ahead of &apos;origin/master&apos; by 2 commits.</div><div class="line">  (use &quot;git push&quot; to publish your local commits)</div><div class="line">You have unmerged paths.</div><div class="line">  (fix conflicts and run &quot;git commit&quot;)</div><div class="line"></div><div class="line">Unmerged paths:</div><div class="line">  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)</div><div class="line"></div><div class="line">	both modified:   markets.txt</div><div class="line"></div><div class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>冲突解决<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD   // 当前分支</div><div class="line">git#Git冲突master分支</div><div class="line">=======         </div><div class="line">git#Git冲突分支</div><div class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; conflictTest // 冲突分支</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>保留需要的内容，我是把它们全干掉了，再次提交<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git add markets.txt</div><div class="line">$ git commit -m &quot;resolve conflict&quot;</div><div class="line">[master 65df01a] resolve conflict</div></pre></td></tr></table></figure></p>
+<ul>
+<li>查看分支合并情况<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git log --graph --pretty=oneline --abbrev-commit</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$  git log --graph --pretty=oneline --abbrev-commit</div><div class="line">*   65df01a resolve conflict</div><div class="line">|\  </div><div class="line">| * 0b22857 conflict branch commit</div><div class="line">* | cfadfe0 conflict master</div><div class="line">|/  </div><div class="line">* c8898aa git branch test</div><div class="line">* 732a5c7 android-pay first commit</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="分支合并模式"><a href="#分支合并模式" class="headerlink" title="分支合并模式"></a>分支合并模式</h1><p>回顾一下merge 后， git 给出的提示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git merge dev</div><div class="line">Updating 732a5c7..c8898aa</div><div class="line">Fast-forward</div><div class="line"> markets.txt | 3 ++-</div><div class="line"> 1 file changed, 2 insertions(+), 1 deletion(-)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Fast-forward：”快进模式”，直接将master指向dev的最新commit，合并速度非常快，在合并分支时，Git会尝试采用这种模式，在删除分支后，会丢掉分支信息。 </p>
+<p>–no-ff模式：不用快进模式，该模式在merge时生成一个新的commit，用git log 命令，可以查看分支历史信息。</p>
+</blockquote>
+<ul>
+<li><p>理论讲完，操练起来~先创建个分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b dev</div><div class="line">Switched to a new branch &apos;dev&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改文件，提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git commit -m &quot;--no-ff branch&quot;</div><div class="line">[dev 6907c87] --no-ff branch</div><div class="line"> 1 file changed, 1 insertion(+)</div></pre></td></tr></table></figure>
+</li>
+<li><p>切换至master ,合并dev 至 master</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git merge --no-ff -m &quot;merge form no-ff branch&quot; dev</div><div class="line"># 因为本次合并会创建一个新的commit ，所以需要 -m 参数</div><div class="line">Merge made by the &apos;recursive&apos; strategy.</div><div class="line"> markets.txt | 1 +</div><div class="line"> 1 file changed, 1 insertion(+)</div></pre></td></tr></table></figure>
+</li>
+<li><p>合并成功后，查看信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ git log --graph --pretty=oneline --abbrev-commit</div><div class="line">*   2d45171 merge form no-ff branch</div><div class="line">|\  </div><div class="line">| * 6907c87 --no-ff branch</div><div class="line">|/  </div><div class="line">*   65df01a resolve conflict</div><div class="line">|\  </div><div class="line">| * 0b22857 conflict branch commit</div><div class="line">* | cfadfe0 conflict master</div><div class="line">|/  </div><div class="line">* c8898aa git branch test</div><div class="line">* 732a5c7 android-pay first commit</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以看到，有冲突和no-ff模式都可以在master分支查看到历史，而fast-forward模式历史信息丢失。</p>
+<hr>
+<h1 id="Bug-分支"><a href="#Bug-分支" class="headerlink" title="Bug 分支"></a>Bug 分支</h1><blockquote>
+<p>Bug 使我们职业生涯的忠实伙伴，形影不离~呵呵！不写bug的程序猿不是一只好猿。。。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git stash      // 储存工作现场</div><div class="line">// 恢复工作现场 </div><div class="line">$ git stash apply </div><div class="line">$ git stash drop </div><div class="line">$ git satsh apply stash@&#123;0&#125; </div><div class="line">$ git satsh drop stash@&#123;0&#125;</div><div class="line">// 恢复，并删除 stash </div><div class="line">$ git stash pop</div></pre></td></tr></table></figure>
+<p>Git的分支非常强大，通常bug都通过一个新的临时分支来修复。修复以后，合并分支，然后将临时分支删除。实践出真知，动起来~ </p>
+<blockquote>
+<p>场景： 我们在dev分支，进行开发，此时QA向你抛出一个major级别的bug，你想要创建一个新的分支来issue-01，来修复它。但是dev上的开发工作进行到一半，不能提交。</p>
+</blockquote>
+<ul>
+<li><p>储存工作现场 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git stash</div><div class="line">Saved working directory and index state WIP on dev: 6907c87 --no-ff branch</div><div class="line">HEAD is now at 6907c87 --no-ff branch</div></pre></td></tr></table></figure>
+</li>
+<li><p>此时查看工作区，是清爽的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">On branch dev</div><div class="line">nothing to commit, working directory clean</div></pre></td></tr></table></figure>
+</li>
+<li><p>切换至需要修复bug的分支，在其基础上创建临时分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git checkout master</div><div class="line">Switched to branch &apos;master&apos;</div><div class="line">Your branch is ahead of &apos;origin/master&apos; by 6 commits.</div><div class="line">  (use &quot;git push&quot; to publish your local commits)</div><div class="line">  </div><div class="line">$ git checkout -b &quot;issue-01&quot;</div><div class="line">Switched to a new branch &apos;issue-01&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改bug 提交，合并分支到master </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ git add .</div><div class="line"></div><div class="line">$ git commit -m &quot;issue 01 bug fix&quot;</div><div class="line">[issue-01 561c7aa] issue 01 bug fix</div><div class="line"> 1 file changed, 1 insertion(+), 2 deletions(-)</div><div class="line"> </div><div class="line">$ git checkout master</div><div class="line">Switched to branch &apos;master&apos;</div><div class="line">Your branch is ahead of &apos;origin/master&apos; by 6 commits.</div><div class="line">  (use &quot;git push&quot; to publish your local commits)</div><div class="line"></div><div class="line">$ git merge --no-ff -m &quot;merge from issue01&quot; issue-01</div><div class="line">Merge made by the &apos;recursive&apos; strategy.</div><div class="line"> markets.txt | 3 +--</div><div class="line"> 1 file changed, 1 insertion(+), 2 deletions(-)</div></pre></td></tr></table></figure>
+</li>
+<li><p>恢复工作现场<br>bug 修改了，继续开发喽~ 切换至dev </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git checkout dev</div><div class="line">Switched to branch &apos;dev&apos;</div><div class="line">$ git status</div><div class="line">On branch dev</div><div class="line">nothing to commit, working directory clean</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>说好的工作现场呢，我擦！老子的心血。。。。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 查看stash列表</div><div class="line">$ git stash list</div><div class="line">stash@&#123;0&#125;: WIP on dev: 6907c87 --no-ff branch</div><div class="line">stash@&#123;1&#125;: WIP on dev: 6907c87 --no-ff branch</div></pre></td></tr></table></figure></p>
+<p>Git把它存了起来，我们来恢复一下</p>
+<p>git stash apply：恢复工作现场，但是不删除stash<br>git stash drop： 删除stash<br>git stash pop ： 恢复现场，并删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ git stash apply </div><div class="line">On branch dev</div><div class="line">Changes not staged for commit:</div><div class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</div><div class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</div><div class="line"></div><div class="line">	modified:   markets.txt</div><div class="line"></div><div class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</div><div class="line"></div><div class="line">$ git stash list</div><div class="line">stash@&#123;0&#125;: WIP on dev: 6907c87 --no-ff branch</div><div class="line">stash@&#123;1&#125;: WIP on dev: 6907c87 --no-ff branch</div><div class="line"></div><div class="line">$ git stash drop</div><div class="line">Dropped refs/stash@&#123;0&#125; (870d69928a8cf47a9a7b95a2ab942fa29bf55492)</div><div class="line"></div><div class="line">$ git stash list</div><div class="line">stash@&#123;0&#125;: WIP on dev: 6907c87 --no-ff branch</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git stash pop</div><div class="line">On branch dev</div><div class="line">nothing to commit, working directory clean</div><div class="line">Dropped refs/stash@&#123;0&#125; (32cdecc162f77a2074349a8ca59aa3a066c1486b)</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;创建和删除分支&quot;&gt;&lt;a href=&quot;#创建和删除分支&quot; class=&quot;headerlink&quot; title=&quot;创建和删除分支&quot;&gt;&lt;/a&gt;创建和删除分支&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;// 创建分支&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git branch dev&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git checkout dev&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;或 &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git checkout -b dev&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Switched to branch &amp;apos;dev&amp;apos;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;// 查看分支列表，* 为当前所在分支&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git branch&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;* dev&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  master&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;// 删除已合并分支&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git branch -d &amp;lt;branch name&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;// 强行删除&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ git branch -D &amp;lt;branch name&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+      <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git教程（三） -- 远程仓库</title>
+    <link href="http://yoursite.com/2017/04/09/Git%E6%95%99%E7%A8%8B-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"/>
+    <id>http://yoursite.com/2017/04/09/Git教程-远程仓库/</id>
+    <published>2017-04-09T07:52:48.000Z</published>
+    <updated>2017-04-10T06:43:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>相信聪明伶俐的猿类们，通过之前的学习已经掌握了如何玩Git本地仓库，现在咱们一起学习Git的必杀技–远程仓库。</p>
+<p>远程库，看名字就知道是存在服务器端的仓库了。每个用户从这个”服务器”的仓库，克隆一份到自己的电脑上。可以把各自的提交推送到服务器，也可以从服务器仓库拉取别人的提交。</p>
+<p>要想和女朋友过家家，你首先要有个女朋友。。。。要玩远程库，首先你得有个远程库，可以使用GitHub 或者 Gitlab。</p>
+</blockquote>
+<hr>
+<a id="more"></a>
+<h1 id="SSH-设置"><a href="#SSH-设置" class="headerlink" title="SSH 设置"></a>SSH 设置</h1><p>Git本地仓库和远程仓库之间的传输协议主要使用ssh协议，所以我们需要设置ssh </p>
+<ul>
+<li><p>创建SSH key。在用户目录下，看看有没有.ssh目录。若果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可以直接跳过。如果没有，打开shell，创建SSH key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</div><div class="line">然后不要着急敲回车，起个文件名</div><div class="line"></div><div class="line">$ cat ~/.ssh/&lt;ssh file name&gt;.pub</div><div class="line">查看公钥的内容，复制备用。</div></pre></td></tr></table></figure>
+</li>
+<li><p>登录GitHub或者Gitlab ,找到“Setting – ssh key”，两个平台可能有那么一点不一样，但是一定难不倒机智的你。。。下图是Github的add ssh key 示例图</p>
+</li>
+</ul>
+<p>![屏幕快照 2016-10-02 16.11.15.png-156.3kB][1]</p>
+<hr>
+<h1 id="多ssh的管理"><a href="#多ssh的管理" class="headerlink" title="多ssh的管理"></a>多ssh的管理</h1><blockquote>
+<p>当有多个git账号的时候，比如一个自己玩的github，再来一个gitlab，公司内部的git。在~/.ssh下新建一个config文件配置一下就可以了</p>
+</blockquote>
+<ul>
+<li>生成SSH key <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</div><div class="line">file name 设置为 id_rsa_github</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Enter file in which to save the key (/Users/LeoPoldCrossing/.ssh/id_rsa): id_rsa_github</div><div class="line">Enter passphrase (empty for no passphrase): </div><div class="line">Enter same passphrase again: </div><div class="line">Your identification has been saved in id_rsa_github.</div><div class="line">Your public key has been saved in id_rsa_github.pub.</div></pre></td></tr></table></figure>
+<p>第二个ssh key，filename 设置为 id_rsa_gitlab </p>
+<ul>
+<li>添加私钥</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh-add ~/.ssh/id_rsa_github</div><div class="line">$ ssh-add ~/.ssh/id_rsa_gitlab</div></pre></td></tr></table></figure>
+<ul>
+<li><p>创建并修改config文件 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># gitlab</div><div class="line">    Host gitlab.jinhui365.cn</div><div class="line">    HostName gitlab.jinhui365.cn // 公司git网址 </div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/id_rsa_gitlab</div><div class="line">    User gitlab username</div><div class="line"></div><div class="line"># github</div><div class="line">Host github.com</div><div class="line">    HostName github.com</div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/id_rsa_github</div><div class="line">    User github username</div></pre></td></tr></table></figure>
+</li>
+<li><p>github 和 gitlab 上添加公钥，不会就去撞豆腐</p>
+</li>
+<li><p>验证链接是否成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@gitlab.jinhui365.cn</div><div class="line">Welcome to GitLab, XXX!</div><div class="line"></div><div class="line">$ ssh -T git@github.com</div><div class="line">Hi LeoPoldCrossing! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>Tip: 如果之前设置了全局用户名和邮箱的话，建议unset一下，然后在不同的仓库下设置局部的用户名和邮箱</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">unset</div><div class="line">git config --global --unset user.name &quot;yourname&quot;</div><div class="line">git config --global --unset user.email &quot;youremail&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">局部 用户名 和 邮箱</div><div class="line">git config user.name &quot;yourname&quot;  </div><div class="line">git config user.email &quot;youremail&quot;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="远程仓库关联-推送"><a href="#远程仓库关联-推送" class="headerlink" title="远程仓库关联,推送"></a>远程仓库关联,推送</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 关联远程仓库</div><div class="line">$ git remote add origin  “仓库地址”</div><div class="line">// 第一次推送本地仓库到远程</div><div class="line">$ git push -u origin master </div><div class="line">// 每次修改后推送本地仓库到远程</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
+<ul>
+<li><p>创建远程仓库<br>  这个很简单，就不演示了~ Github 或者 Gitlab 上找 New Reposity。得到类似下面的地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git@github.com:LeoPoldCrossing/AndroidCacheDemo.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>关联远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// origin是远程数据库名称，关联远程仓库</div><div class="line">$ git remote add origin git@github.com:LeoPoldCrossing/AndroidCacheDemo.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>推送内容至远程库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 第一次推送分支的所有内容</div><div class="line">$ git push -u origin master</div><div class="line">// 之后可以简化为</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
+</li>
+<li><p>push之前查看代码修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 查看所有修改</div><div class="line">git diff origin/分支名...HEAD</div><div class="line">// 查看某一个文件的修改</div><div class="line">git diff origin/分支名...HEAD &lt;file&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="克隆，拉取"><a href="#克隆，拉取" class="headerlink" title="克隆，拉取"></a>克隆，拉取</h1><ul>
+<li><p>从远程仓库克隆<br>这是一个比较简单的操作，例如想要克隆刚刚创建的resposity</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone &lt;仓库地址&gt;</div><div class="line">$ git clone git@github.com:LeoPoldCrossing/AndroidCacheDemo.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>从远程数据库pull </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git pull &lt;repository&gt; &lt;branch&gt;</div><div class="line">$ git pull origin master</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;相信聪明伶俐的猿类们，通过之前的学习已经掌握了如何玩Git本地仓库，现在咱们一起学习Git的必杀技–远程仓库。&lt;/p&gt;
+&lt;p&gt;远程库，看名字就知道是存在服务器端的仓库了。每个用户从这个”服务器”的仓库，克隆一份到自己的电脑上。可以把各自的提交推送到服务器，也可以从服务器仓库拉取别人的提交。&lt;/p&gt;
+&lt;p&gt;要想和女朋友过家家，你首先要有个女朋友。。。。要玩远程库，首先你得有个远程库，可以使用GitHub 或者 Gitlab。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+      <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git教程（二） -- 基础操作</title>
     <link href="http://yoursite.com/2017/04/09/Git%E6%95%99%E7%A8%8B-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/"/>
     <id>http://yoursite.com/2017/04/09/Git教程-基础操作/</id>
     <published>2017-04-09T05:52:48.000Z</published>
-    <updated>2017-04-10T06:21:23.000Z</updated>
+    <updated>2017-04-10T06:43:28.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git init</div></pre></td></tr></table></figure>
 <ul>
@@ -165,10 +556,10 @@
   
   <entry>
     <title>Git教程（一） -- 安装配置</title>
-    <link href="http://yoursite.com/2017/04/09/Git%E6%95%99%E7%A8%8B-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"/>
-    <id>http://yoursite.com/2017/04/09/Git教程-安装配置/</id>
-    <published>2017-04-09T05:52:48.000Z</published>
-    <updated>2017-04-10T06:06:28.000Z</updated>
+    <link href="http://yoursite.com/2017/04/08/Git%E6%95%99%E7%A8%8B-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2017/04/08/Git教程-安装配置/</id>
+    <published>2017-04-08T05:52:48.000Z</published>
+    <updated>2017-04-10T06:43:08.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>一直想好好的维护一个博客，看到别人利用GitHub Pages与Hexo搭建的个人博客，甚是眼红， 再看看自己的笔记和博客，货比货得扔！好吧，自己也折腾一个，才发现Git自己还没有玩的太溜，已哭晕。。。</p>
@@ -282,104 +673,6 @@
     
       &lt;blockquote&gt;
 &lt;p&gt;一直想好好的维护一个博客，看到别人利用GitHub Pages与Hexo搭建的个人博客，甚是眼红， 再看看自己的笔记和博客，货比货得扔！好吧，自己也折腾一个，才发现Git自己还没有玩的太溜，已哭晕。。。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-    
-    </summary>
-    
-      <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    
-      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git教程（三） -- 远程仓库</title>
-    <link href="http://yoursite.com/2017/04/09/Git%E6%95%99%E7%A8%8B-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"/>
-    <id>http://yoursite.com/2017/04/09/Git教程-远程仓库/</id>
-    <published>2017-04-09T05:52:48.000Z</published>
-    <updated>2017-04-10T06:24:41.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>相信聪明伶俐的猿类们，通过之前的学习已经掌握了如何玩Git本地仓库，现在咱们一起学习Git的必杀技–远程仓库。</p>
-<p>远程库，看名字就知道是存在服务器端的仓库了。每个用户从这个”服务器”的仓库，克隆一份到自己的电脑上。可以把各自的提交推送到服务器，也可以从服务器仓库拉取别人的提交。</p>
-<p>要想和女朋友过家家，你首先要有个女朋友。。。。要玩远程库，首先你得有个远程库，可以使用GitHub 或者 Gitlab。</p>
-</blockquote>
-<hr>
-<a id="more"></a>
-<h1 id="SSH-设置"><a href="#SSH-设置" class="headerlink" title="SSH 设置"></a>SSH 设置</h1><p>Git本地仓库和远程仓库之间的传输协议主要使用ssh协议，所以我们需要设置ssh </p>
-<ul>
-<li><p>创建SSH key。在用户目录下，看看有没有.ssh目录。若果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可以直接跳过。如果没有，打开shell，创建SSH key：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</div><div class="line">然后不要着急敲回车，起个文件名</div><div class="line"></div><div class="line">$ cat ~/.ssh/&lt;ssh file name&gt;.pub</div><div class="line">查看公钥的内容，复制备用。</div></pre></td></tr></table></figure>
-</li>
-<li><p>登录GitHub或者Gitlab ,找到“Setting – ssh key”，两个平台可能有那么一点不一样，但是一定难不倒机智的你。。。下图是Github的add ssh key 示例图</p>
-</li>
-</ul>
-<p>![屏幕快照 2016-10-02 16.11.15.png-156.3kB][1]</p>
-<hr>
-<h1 id="多ssh的管理"><a href="#多ssh的管理" class="headerlink" title="多ssh的管理"></a>多ssh的管理</h1><blockquote>
-<p>当有多个git账号的时候，比如一个自己玩的github，再来一个gitlab，公司内部的git。在~/.ssh下新建一个config文件配置一下就可以了</p>
-</blockquote>
-<ul>
-<li>生成SSH key <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</div><div class="line">file name 设置为 id_rsa_github</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Enter file in which to save the key (/Users/LeoPoldCrossing/.ssh/id_rsa): id_rsa_github</div><div class="line">Enter passphrase (empty for no passphrase): </div><div class="line">Enter same passphrase again: </div><div class="line">Your identification has been saved in id_rsa_github.</div><div class="line">Your public key has been saved in id_rsa_github.pub.</div></pre></td></tr></table></figure>
-<p>第二个ssh key，filename 设置为 id_rsa_gitlab </p>
-<ul>
-<li>添加私钥</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh-add ~/.ssh/id_rsa_github</div><div class="line">$ ssh-add ~/.ssh/id_rsa_gitlab</div></pre></td></tr></table></figure>
-<ul>
-<li><p>创建并修改config文件 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># gitlab</div><div class="line">    Host gitlab.jinhui365.cn</div><div class="line">    HostName gitlab.jinhui365.cn // 公司git网址 </div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/id_rsa_gitlab</div><div class="line">    User gitlab username</div><div class="line"></div><div class="line"># github</div><div class="line">Host github.com</div><div class="line">    HostName github.com</div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/id_rsa_github</div><div class="line">    User github username</div></pre></td></tr></table></figure>
-</li>
-<li><p>github 和 gitlab 上添加公钥，不会就去撞豆腐</p>
-</li>
-<li><p>验证链接是否成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@gitlab.jinhui365.cn</div><div class="line">Welcome to GitLab, XXX!</div><div class="line"></div><div class="line">$ ssh -T git@github.com</div><div class="line">Hi LeoPoldCrossing! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>Tip: 如果之前设置了全局用户名和邮箱的话，建议unset一下，然后在不同的仓库下设置局部的用户名和邮箱</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">unset</div><div class="line">git config --global --unset user.name &quot;yourname&quot;</div><div class="line">git config --global --unset user.email &quot;youremail&quot;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">局部 用户名 和 邮箱</div><div class="line">git config user.name &quot;yourname&quot;  </div><div class="line">git config user.email &quot;youremail&quot;</div></pre></td></tr></table></figure>
-<hr>
-<h1 id="远程仓库关联-推送"><a href="#远程仓库关联-推送" class="headerlink" title="远程仓库关联,推送"></a>远程仓库关联,推送</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 关联远程仓库</div><div class="line">$ git remote add origin  “仓库地址”</div><div class="line">// 第一次推送本地仓库到远程</div><div class="line">$ git push -u origin master </div><div class="line">// 每次修改后推送本地仓库到远程</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
-<ul>
-<li><p>创建远程仓库<br>  这个很简单，就不演示了~ Github 或者 Gitlab 上找 New Reposity。得到类似下面的地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git@github.com:LeoPoldCrossing/AndroidCacheDemo.git</div></pre></td></tr></table></figure>
-</li>
-<li><p>关联远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// origin是远程数据库名称，关联远程仓库</div><div class="line">$ git remote add origin git@github.com:LeoPoldCrossing/AndroidCacheDemo.git</div></pre></td></tr></table></figure>
-</li>
-<li><p>推送内容至远程库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 第一次推送分支的所有内容</div><div class="line">$ git push -u origin master</div><div class="line">// 之后可以简化为</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
-</li>
-<li><p>push之前查看代码修改</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 查看所有修改</div><div class="line">git diff origin/分支名...HEAD</div><div class="line">// 查看某一个文件的修改</div><div class="line">git diff origin/分支名...HEAD &lt;file&gt;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h1 id="克隆，拉取"><a href="#克隆，拉取" class="headerlink" title="克隆，拉取"></a>克隆，拉取</h1><ul>
-<li><p>从远程仓库克隆<br>这是一个比较简单的操作，例如想要克隆刚刚创建的resposity</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone &lt;仓库地址&gt;</div><div class="line">$ git clone git@github.com:LeoPoldCrossing/AndroidCacheDemo.git</div></pre></td></tr></table></figure>
-</li>
-<li><p>从远程数据库pull </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git pull &lt;repository&gt; &lt;branch&gt;</div><div class="line">$ git pull origin master</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;相信聪明伶俐的猿类们，通过之前的学习已经掌握了如何玩Git本地仓库，现在咱们一起学习Git的必杀技–远程仓库。&lt;/p&gt;
-&lt;p&gt;远程库，看名字就知道是存在服务器端的仓库了。每个用户从这个”服务器”的仓库，克隆一份到自己的电脑上。可以把各自的提交推送到服务器，也可以从服务器仓库拉取别人的提交。&lt;/p&gt;
-&lt;p&gt;要想和女朋友过家家，你首先要有个女朋友。。。。要玩远程库，首先你得有个远程库，可以使用GitHub 或者 Gitlab。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr&gt;
     

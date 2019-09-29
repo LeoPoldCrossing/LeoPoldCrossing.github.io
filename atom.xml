@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-09-29T09:59:34.820Z</updated>
+  <updated>2019-09-29T10:41:58.903Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,22 +16,18 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>Flutter 开发环境搭建</title>
     <link href="http://yoursite.com/2019/09/29/Flutter-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     <id>http://yoursite.com/2019/09/29/Flutter-开发环境搭建/</id>
-    <published>2019-09-29T09:59:34.820Z</published>
-    <updated>2019-09-29T09:59:34.820Z</updated>
+    <published>2019-09-29T02:47:53.000Z</published>
+    <updated>2019-09-29T10:41:58.903Z</updated>
     
-    <content type="html"><![CDATA[<p>title: Flutter 开发环境搭建<br>date: 2019-09-29 10:47:53<br>tags: </p>
-<ul>
-<li>Flutter<br>categories:</li>
-<li>技术分享</li>
-</ul>
-<hr>
+    <content type="html"><![CDATA[<hr>
 <blockquote>
 <p>前言：因为笔者使用的是MAC，所以我这里只介绍MAC系统的开发环境搭建，Windows及Linux系统请移步 <a href="https://flutter.dev/docs/get-started/install" target="_blank" rel="external">Flutter 开发环境搭建</a></p>
 </blockquote>
 <hr>
+<a id="more"></a>
 <p>基于 Flutter 1.9.1 版本（<a href="https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_v1.9.1+hotfix.2-stable.zip" target="_blank" rel="external">下载</a>） </p>
 <h1 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h1><ol>
 <li>操作系统： macOS（64-bit）</li>
@@ -129,16 +125,18 @@
     
     <summary type="html">
     
-      &lt;p&gt;title: Flutter 开发环境搭建&lt;br&gt;date: 2019-09-29 10:47:53&lt;br&gt;tags: &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Flutter&lt;br&gt;categories:&lt;/li&gt;
-&lt;li&gt;技术分享&lt;/li&gt;
-&lt;/ul&gt;
+      &lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;前言：因为笔者使用的是MAC，所以我这里只介绍MAC系统的开发环境搭建，Windows及Linux系统请移步 &lt;a href=&quot;https://flutter.dev/docs/get-started/install&quot;&gt;Flutter 开发环境搭建&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr&gt;
-&lt;blockquot
     
     </summary>
     
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="Flutter" scheme="http://yoursite.com/tags/Flutter/"/>
     
   </entry>
   
@@ -385,7 +383,7 @@
     <link href="http://yoursite.com/2017/07/01/%E5%BE%AE%E4%BF%A1Tinker%E9%9B%86%E6%88%90/"/>
     <id>http://yoursite.com/2017/07/01/微信Tinker集成/</id>
     <published>2017-07-01T02:47:53.000Z</published>
-    <updated>2018-04-21T03:49:13.414Z</updated>
+    <updated>2018-04-21T03:49:13.415Z</updated>
     
     <content type="html"><![CDATA[<hr>
 <blockquote>
@@ -452,7 +450,7 @@
     <link href="http://yoursite.com/2017/06/20/Android%E8%AE%BE%E5%A4%87%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/"/>
     <id>http://yoursite.com/2017/06/20/Android设备获取唯一标识/</id>
     <published>2017-06-20T02:47:53.000Z</published>
-    <updated>2018-04-21T04:03:43.952Z</updated>
+    <updated>2018-04-21T04:03:43.953Z</updated>
     
     <content type="html"><![CDATA[<p>Android设备有很多的”标识”号，比如常见的IMEI，SerizalNumber，UUID等概念。既然这样，那我们就把这些概念拉出来溜溜，对这些标识做一个总结，看看Android为毛整这么多标识。</p>
 <a id="more"></a>

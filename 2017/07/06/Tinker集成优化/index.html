@@ -1,0 +1,783 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=sans-serif:300,300italic,400,400italic,700,700italic|sans-serif:300,300italic,400,400italic,700,700italic|sans-serif:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="hotfix," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1. 兼容多渠道包，使用zip comment方式生成渠道包（完成）多渠道打包 packer-ng-plugin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tinker集成优化">
+<meta property="og:url" content="http://yoursite.com/2017/07/06/Tinker集成优化/index.html">
+<meta property="og:site_name" content="Leo's Blog">
+<meta property="og:description" content="1. 兼容多渠道包，使用zip comment方式生成渠道包（完成）多渠道打包 packer-ng-plugin">
+<meta property="og:updated_time" content="2018-04-21T03:50:46.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tinker集成优化">
+<meta name="twitter:description" content="1. 兼容多渠道包，使用zip comment方式生成渠道包（完成）多渠道打包 packer-ng-plugin">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/06/Tinker集成优化/"/>
+
+
+
+
+
+  <title> Tinker集成优化 | Leo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Leo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/06/Tinker集成优化/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Leo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Leo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Leo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Tinker集成优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-06T10:47:53+08:00">
+                2017-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-兼容多渠道包，使用zip-comment方式生成渠道包（完成）"><a href="#1-兼容多渠道包，使用zip-comment方式生成渠道包（完成）" class="headerlink" title="1. 兼容多渠道包，使用zip comment方式生成渠道包（完成）"></a>1. 兼容多渠道包，使用zip comment方式生成渠道包（完成）</h3><p><a href="https://github.com/LeoPoldCrossing/packer-ng-plugin" target="_blank" rel="external">多渠道打包 packer-ng-plugin</a></p>
+<a id="more"></a>
+<ul>
+<li><p>1.1 引入</p>
+<ul>
+<li><p>根目录build.gradle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    ......</div><div class="line">    dependencies&#123;</div><div class="line">    // add packer-ng</div><div class="line">        classpath &apos;com.mcxiaoke.gradle:packer-ng:1.0.8&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改android模块的 build.gradle </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;packer&apos; </div><div class="line">dependencies &#123;</div><div class="line">    compile &apos;com.mcxiaoke.gradle:packer-helper:1.0.8&apos;</div><div class="line">&#125; </div><div class="line">android &#123;</div><div class="line">...</div><div class="line">signingConfigs &#123;</div><div class="line">    release &#123;</div><div class="line">            // 满足下面两个条件时需要此配置</div><div class="line">            // 1. Gradle版本 &gt;= 2.14.1</div><div class="line">            // 2. Android Gradle Plugin 版本 &gt;= 2.2.0</div><div class="line">            // 作用是只使用旧版签名，禁用V2版签名模式</div><div class="line">            v2SigningEnabled false </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>1.2 打包流程</p>
+<ul>
+<li>指定market属性 ： 两种方式<ul>
+<li>打包时命令行使用 -Pmarket = yourMarketPath</li>
+<li>在gradle.properties 里加入 market=yourMarketFilePath<br>market文件是渠道名列表文件，路径为相对路径 一般放在项目根目录 </li>
+</ul>
+</li>
+<li><p>market 格式 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">lianxiang#联想乐商店 // #前面为渠道号，后面为注释</div></pre></td></tr></table></figure>
+</li>
+<li><p>打包命令：market.txt 在项目根目录</p>
+<ul>
+<li><p>普通打包 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew -Pmarket=markets.txt clean apkRelease</div></pre></td></tr></table></figure>
+</li>
+<li><p>指定productFlavors 打包<br>如果项目中有多个productFlavors，默认使用第一个flavor生成的apk文件作为打包工具的输入参数，也可以指定flavor生成渠道包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 指定 使用名称为demo 的flavor 打包</div><div class="line">./gradlew -Pmarket=markets.txt clean apkDemoRelease</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>1.3 插件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">packer &#123;</div><div class="line">    // 是否检查signingConfig ，默认false</div><div class="line">    checkSigningConfig = true</div><div class="line">    // 是否检查gradle配置中的zipAlignEnabled，默认false </div><div class="line">    checkZipAlign = true</div><div class="line">    // 输出的apk文件名称</div><div class="line">    archiveNameFormat = &apos;$&#123;appPkg&#125;-$&#123;flavorName&#125;-$&#123;buildType&#125;-v$&#123;versionName&#125;-$&#123;versionCode&#125;&apos;</div><div class="line">    // 输出目录</div><div class="line">    archiveOutput = file(new File(project.buildDir.path, &quot;archives&quot;))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">apk 文件 名称配置：</div><div class="line"></div><div class="line">projectName - 项目名字</div><div class="line">appName - App模块名字</div><div class="line">appPkg - applicationId (App包名packageName)</div><div class="line">buildType - buildType (release/debug/beta等)</div><div class="line">flavorName - flavorName (对应渠道打包中的渠道名字)</div><div class="line">versionName - versionName (显示用的版本号)</div><div class="line">versionCode - versionCode (内部版本号)</div><div class="line">buildTime - buildTime (编译构建日期时间)</div><div class="line">fileMD5 - fileMD5 (最终APK文件的MD5哈希值) (v1.0.5新增)</div><div class="line">fileSHA1 - fileSHA1 (最终APK文件的SHA1哈希值) (v1.0.5新增)</div></pre></td></tr></table></figure>
+<h3 id="2-资源文件未做修改，patch文件过大（完成）"><a href="#2-资源文件未做修改，patch文件过大（完成）" class="headerlink" title="2. 资源文件未做修改，patch文件过大（完成）"></a>2. 资源文件未做修改，patch文件过大（完成）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// 1. 关闭aapt对png优化</div><div class="line">android&#123;</div><div class="line">    ...</div><div class="line">    aaptOptions &#123;</div><div class="line">        cruncherEnabled false</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// 2. 确认png文件没有修改的情况下 忽略png的修改</div><div class="line">tinkerPatch&#123;</div><div class="line">    ...</div><div class="line">    res&#123;</div><div class="line">        ...</div><div class="line">        ignoreChange = [&quot;*.png&quot;]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-TinkerPatch-补丁管理后台集成（完成）"><a href="#3-TinkerPatch-补丁管理后台集成（完成）" class="headerlink" title="3. TinkerPatch 补丁管理后台集成（完成）"></a>3. TinkerPatch 补丁管理后台集成（完成）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">gradle接入</div><div class="line">// tinker server</div><div class="line">compile(&quot;com.tencent.tinker:tinker-server-android:0.3.2&quot;)</div><div class="line">// 配置appkey  appVersion</div><div class="line">android&#123;</div><div class="line">    ...</div><div class="line">    // 微信Tinker 后台的appkey</div><div class="line">    buildConfigField &quot;String&quot;, &quot;APP_KEY&quot;, &quot;\&quot;68cfdc1fa61a19df\&quot;&quot;</div><div class="line">    buildConfigField &quot;String&quot;, &quot;APP_VERSION&quot;, &quot;\&quot;$&#123;versionName&#125;\&quot;&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 初始化TinkerPatch SDK</div><div class="line">TinkerServerManager.installTinkerServer(</div><div class="line">                getApplication(),Tinker.with(getApplication()), 1,BuildConfig.APP_KEY, BuildConfig.APP_VERSION, channel);</div><div class="line">// 检查是否有新补丁,默认1小时检查一次</div><div class="line">    TinkerServerManager.checkTinkerUpdate(false);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 注册service </div><div class="line">&lt;service</div><div class="line">    android:name=&quot;com.tencent.tinker.app.service.TinkerServerResultService&quot;</div><div class="line">    android:exported=&quot;false&quot;</div><div class="line">    /&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div></pre></td><td class="code"><pre><div class="line">// TinkerServerManager 及 Callback的封装</div><div class="line">public class TinkerServerManager &#123;</div><div class="line"></div><div class="line">    private static final String TAG = &quot;Tinker.ServerManager&quot;;</div><div class="line">    private static final String CONDITION_CHANNEL = &quot;channel&quot;;</div><div class="line"></div><div class="line">    static TinkerServerClient sTinkerServerClient;</div><div class="line">    static String channel;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 初始化 TinkerServer 实例</div><div class="line">     * @param context context</div><div class="line">     * @param tinker &#123;@link Tinker&#125; 实例</div><div class="line">     * @param hours  访问服务器的时间间隔, 单位为小时, 应为 &gt;= 0</div><div class="line">     * @param appKey 从Tinkerpatch中得到的appKey</div><div class="line">     * @param appVersion 在Tinkerpatch中填写的appVersion</div><div class="line">     * @param channel 发布的渠道名称，由于GooglePlay渠道的政策限制，我们会停止所有channel中含有google关键字的动态下发功能。</div><div class="line">     */</div><div class="line">    public static void installTinkerServer(Context context, Tinker tinker,</div><div class="line">                                           int hours, String appKey, String appVersion, String channel) &#123;</div><div class="line">        final boolean debug = Debugger.getInstance(context).isDebug();</div><div class="line">        TinkerLog.w(TAG, String.format(&quot;installTinkerServer, debug value: %s appVersion: %s, channel: %s&quot;,</div><div class="line">            String.valueOf(debug), appVersion, channel)</div><div class="line">        );</div><div class="line">        sTinkerServerClient = TinkerServerClient.init(</div><div class="line">            context,</div><div class="line">            tinker,</div><div class="line">            appKey,</div><div class="line">            appVersion,</div><div class="line">            debug,</div><div class="line">            new TinkerServerPatchRequestCallback()</div><div class="line">        );</div><div class="line">        // add channel condition</div><div class="line">        sTinkerServerClient.updateTinkerCondition(CONDITION_CHANNEL, channel);</div><div class="line">        sTinkerServerClient.setCheckIntervalByHours(hours);</div><div class="line">        TinkerServerManager.channel = channel;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 检查服务器是否有补丁更新</div><div class="line">     * @param immediately 是否立刻检查,忽略时间间隔限制</div><div class="line">     */</div><div class="line">    public static void checkTinkerUpdate(final boolean immediately) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;checkTinkerUpdate, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        Tinker tinker = sTinkerServerClient.getTinker();</div><div class="line">        //only check at the main process</div><div class="line">        if (tinker.isMainProcess()) &#123;</div><div class="line">            Looper.getMainLooper().myQueue().addIdleHandler(new MessageQueue.IdleHandler() &#123;</div><div class="line">                @Override</div><div class="line">                public boolean queueIdle() &#123;</div><div class="line">                    sTinkerServerClient.checkTinkerUpdate(immediately);</div><div class="line">                    return false;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 向服务器请求在线参数信息</div><div class="line">     * @param configRequestCallback</div><div class="line">     * @param immediately            是否立刻请求,忽略时间间隔限制</div><div class="line">     */</div><div class="line">    public static void getDynamicConfig(final ConfigRequestCallback configRequestCallback, final boolean immediately) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;checkTinkerUpdate, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        Tinker tinker = sTinkerServerClient.getTinker();</div><div class="line">        //only check at the main process</div><div class="line">        if (tinker.isMainProcess()) &#123;</div><div class="line">            Looper.getMainLooper().myQueue().addIdleHandler(new MessageQueue.IdleHandler() &#123;</div><div class="line">                @Override</div><div class="line">                public boolean queueIdle() &#123;</div><div class="line">                    sTinkerServerClient.getDynamicConfig(configRequestCallback, immediately);</div><div class="line">                    return false;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 设置在线参数的时间间隔</div><div class="line">     * @param hours 大于等于0的整数</div><div class="line">     */</div><div class="line">    public static void setGetConfigIntervalByHours(int hours) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;setGetConfigIntervalByHours, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        sTinkerServerClient.setGetConfigIntervalByHours(hours);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 将在线参数返回的 json 转化为 Hashmap</div><div class="line">     * @param jsonString</div><div class="line">     * @return</div><div class="line">     * @throws JSONException</div><div class="line">     */</div><div class="line">    public static HashMap&lt;String, String&gt; jsonToMap(String jsonString) throws JSONException &#123;</div><div class="line">        HashMap&lt;String, String&gt; map = new HashMap&lt;&gt;();</div><div class="line">        JSONObject jObject = new JSONObject(jsonString);</div><div class="line">        Iterator&lt;String&gt; keys = jObject.keys();</div><div class="line"></div><div class="line">        while (keys.hasNext()) &#123;</div><div class="line">            String key = keys.next();</div><div class="line">            String value = jObject.getString(key);</div><div class="line">            map.put(key, value);</div><div class="line">        &#125;</div><div class="line">        return map;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * 设置条件下发的属性</div><div class="line">     * @param key</div><div class="line">     * @param value</div><div class="line">     */</div><div class="line">    public static void updateTinkerCondition(String key, String value) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;updateTinkerCondition, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        sTinkerServerClient.updateTinkerCondition(key, value);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 上报补丁合成情况</div><div class="line">     * @param patchResult</div><div class="line">     */</div><div class="line">    public static void reportTinkerPatchFail(PatchResult patchResult) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchFail, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (patchResult == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchFail, patchResult == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if (patchResult.isSuccess) &#123;</div><div class="line">            TinkerLog.i(TAG, &quot;reportTinkerPatchFail, patch success, just return&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        String patchMd5 = (patchResult.patchVersion != null)</div><div class="line">            ? patchResult.patchVersion : SharePatchFileUtil.getMD5(new File(patchResult.rawPatchFilePath));</div><div class="line"></div><div class="line">        if (!patchMd5.equals(sTinkerServerClient.getCurrentPatchMd5())) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchFail, md5 not equal, patchMd5:%s, currentPatchMd5:%s&quot;,</div><div class="line">                patchMd5, sTinkerServerClient.getCurrentPatchMd5()</div><div class="line">            );</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        sTinkerServerClient.reportPatchFail(</div><div class="line">            sTinkerServerClient.getCurrentPatchVersion(),</div><div class="line">            DefaultPatchRequestCallback.ERROR_PATCH_FAIL</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 上报补丁合成情况</div><div class="line">     * @param patchMd5</div><div class="line">     */</div><div class="line">    public static void reportTinkerPatchListenerFail(int returnCode, String patchMd5) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchListenerFail, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (returnCode == ShareConstants.ERROR_PATCH_OK) &#123;</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (patchMd5 == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchListenerFail, patchMd5 == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (!patchMd5.equals(sTinkerServerClient.getCurrentPatchMd5())) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchListenerFail, md5 not equal, patchMd5:%s, currentPatchMd5:%s&quot;,</div><div class="line">                patchMd5, sTinkerServerClient.getCurrentPatchMd5()</div><div class="line">            );</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        sTinkerServerClient.reportPatchFail(</div><div class="line">            sTinkerServerClient.getCurrentPatchVersion(),</div><div class="line">            DefaultPatchRequestCallback.ERROR_LISTENER_CHECK_FAIL</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * 上报补丁加载情况</div><div class="line">     */</div><div class="line">    public static void reportTinkerLoadFail() &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchFail, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        sTinkerServerClient.reportPatchFail(</div><div class="line">            sTinkerServerClient.getCurrentPatchVersion(),</div><div class="line">            DefaultPatchRequestCallback.ERROR_LOAD_FAIL</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static boolean isGooglePlayChannel() &#123;</div><div class="line">        return channel.contains(&quot;google&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static boolean is360Channel()&#123;</div><div class="line">        return channel.contains(&quot;360&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line">public class TinkerServerPatchRequestCallback extends DefaultPatchRequestCallback &#123;</div><div class="line">    private static final String TAG = &quot;Tinker.TinkerServerDefaultRequestCallback&quot;;</div><div class="line"></div><div class="line">    public static final String TINKER_RETRY_PATCH     = &quot;tinker_retry_patch&quot;;</div><div class="line">    public static final int    TINKER_MAX_RETRY_COUNT = 3;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public boolean beforePatchRequest() &#123;</div><div class="line">        boolean result = super.beforePatchRequest();</div><div class="line">        if (result) &#123;</div><div class="line">            TinkerServerClient client = TinkerServerClient.get();</div><div class="line">            Tinker tinker = client.getTinker();</div><div class="line">            Context context = client.getContext();</div><div class="line"></div><div class="line">            if (!tinker.isMainProcess()) &#123;</div><div class="line">                TinkerLog.e(TAG, &quot;beforePatchRequest, only request on the main process&quot;);</div><div class="line">                return false;</div><div class="line">            &#125;</div><div class="line">            if (TinkerServerManager.isGooglePlayChannel()) &#123;</div><div class="line">                TinkerLog.e(TAG, &quot;beforePatchRequest, google play channel, return false&quot;);</div><div class="line">                return false;</div><div class="line">            &#125;</div><div class="line">            if (TinkerServerManager.is360Channel()) &#123;</div><div class="line">                TinkerLog.e(TAG, &quot;beforePatchRequest, 360 channel, return false&quot;);</div><div class="line">                return false;</div><div class="line">            &#125;</div><div class="line">            // main process must be the newly version</div><div class="line">            // check whether it is pending work</div><div class="line">            String currentPatchMd5 = client.getCurrentPatchMd5();</div><div class="line">            TinkerLoadResult tinkerLoadResult = tinker.getTinkerLoadResultIfPresent();</div><div class="line"></div><div class="line">            if (tinkerLoadResult.currentVersion == null || !currentPatchMd5.equals(tinkerLoadResult.currentVersion)) &#123;</div><div class="line">                Integer version = client.getCurrentPatchVersion();</div><div class="line">                if (version &gt; 0) &#123;</div><div class="line">                    File patchFile = ServerUtils.getServerFile(</div><div class="line">                        context, client.getAppVersion(), String.valueOf(version)</div><div class="line">                    );</div><div class="line">                    if (patchFile.exists() &amp;&amp; patchFile.isFile() &amp;&amp; handlePatchFile(context, version, patchFile)) &#123;</div><div class="line">                        return false;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private boolean handlePatchFile(Context context, Integer version, File patchFile) &#123;</div><div class="line">        SharedPreferences sp = context.getSharedPreferences(</div><div class="line">            TinkerServerClient.SHARE_SERVER_PREFERENCE_CONFIG, Context.MODE_PRIVATE</div><div class="line">        );</div><div class="line">        int current = sp.getInt(TINKER_RETRY_PATCH, 0);</div><div class="line">        if (current &gt;= TINKER_MAX_RETRY_COUNT) &#123;</div><div class="line">            SharePatchFileUtil.safeDeleteFile(patchFile);</div><div class="line">            sp.edit().putInt(TINKER_RETRY_PATCH, 0).commit();</div><div class="line">            TinkerLog.w(TAG,</div><div class="line">                &quot;beforePatchRequest, retry patch install more than %d times, version: %d, patch:%s&quot;,</div><div class="line">                current, version, patchFile.getPath()</div><div class="line">            );</div><div class="line">        &#125; else &#123;</div><div class="line">            TinkerLog.w(TAG, &quot;beforePatchRequest, have pending patch to install, version: %d, patch:%s&quot;,</div><div class="line">                version, patchFile.getPath()</div><div class="line">            );</div><div class="line"></div><div class="line">            sp.edit().putInt(TINKER_RETRY_PATCH, ++current).commit();</div><div class="line">            TinkerInstaller.onReceiveUpgradePatch(context, patchFile.getAbsolutePath());</div><div class="line">            return true;</div><div class="line">        &#125;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onPatchRollback() &#123;</div><div class="line">        TinkerLog.w(TAG, &quot;onPatchRollback&quot;);</div><div class="line">        TinkerServerClient client = TinkerServerClient.get();</div><div class="line"></div><div class="line">        if (!client.getTinker().isTinkerLoaded()) &#123;</div><div class="line">            TinkerLog.w(TAG, &quot;onPatchRollback, tinker is not loaded, just return&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if (TinkerServerUtils.isBackground()) &#123;</div><div class="line">            TinkerLog.i(TAG, &quot;onPatchRollback, it is in background, just clean patch and kill all process&quot;);</div><div class="line">            rollbackPatchDirectly();</div><div class="line">        &#125; else &#123;</div><div class="line">            //we can wait process at background, such as onAppBackground</div><div class="line">            //or we can restart when the screen off</div><div class="line">            TinkerLog.i(TAG, &quot;tinker wait screen to clean patch and kill all process&quot;);</div><div class="line">            new TinkerServerUtils.ScreenState(client.getContext(), new TinkerServerUtils.IOnScreenOff() &#123;</div><div class="line">                @Override</div><div class="line">                public void onScreenOff() &#123;</div><div class="line">                    rollbackPatchDirectly();</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onPatchDownloadFail(Exception e, Integer newVersion, Integer currentVersion) &#123;</div><div class="line">        super.onPatchDownloadFail(e, newVersion, currentVersion);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onPatchSyncFail(Exception e) &#123;</div><div class="line">        super.onPatchSyncFail(e);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public boolean onPatchUpgrade(File file, Integer newVersion, Integer currentVersion) &#123;</div><div class="line">        boolean result = super.onPatchUpgrade(file, newVersion, currentVersion);</div><div class="line">        if (result) &#123;</div><div class="line">            TinkerServerClient client = TinkerServerClient.get();</div><div class="line">            Context context = client.getContext();</div><div class="line">            SharedPreferences sp = context.getSharedPreferences(</div><div class="line">                TinkerServerClient.SHARE_SERVER_PREFERENCE_CONFIG, Context.MODE_PRIVATE</div><div class="line">            );</div><div class="line">            sp.edit().putInt(TINKER_RETRY_PATCH, 0).commit();</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="4-合成进程可能被中断，补丁合成的重试"><a href="#4-合成进程可能被中断，补丁合成的重试" class="headerlink" title="4. 合成进程可能被中断，补丁合成的重试"></a>4. 合成进程可能被中断，补丁合成的重试</h3><p>重试三次 TinkerServePatchRequestCallBack  – handlePatchFile </p>
+<h3 id="5-补丁后程序无法启动的处理（完成）"><a href="#5-补丁后程序无法启动的处理（完成）" class="headerlink" title="5. 补丁后程序无法启动的处理（完成）"></a>5. 补丁后程序无法启动的处理（完成）</h3><p>停用Tinker 及 清理补丁</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Tinker.with(context).setTinkerDisable();</div><div class="line">Tinker.with(context).cleanPatch();</div></pre></td></tr></table></figure>
+<h3 id="6-Tinker-默认的-DefaultTinkerResultService-会在加载patch成功之后立刻杀掉进程-应该在程序进入后台或者手机锁屏后杀掉进程，使补丁生效！-（完成）"><a href="#6-Tinker-默认的-DefaultTinkerResultService-会在加载patch成功之后立刻杀掉进程-应该在程序进入后台或者手机锁屏后杀掉进程，使补丁生效！-（完成）" class="headerlink" title="6. Tinker 默认的 DefaultTinkerResultService 会在加载patch成功之后立刻杀掉进程,应该在程序进入后台或者手机锁屏后杀掉进程，使补丁生效！ （完成）"></a>6. Tinker 默认的 DefaultTinkerResultService 会在加载patch成功之后立刻杀掉进程,应该在程序进入后台或者手机锁屏后杀掉进程，使补丁生效！ （完成）</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hotfix/" rel="tag"># hotfix</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/01/微信Tinker集成/" rel="next" title="微信Tinker集成">
+                <i class="fa fa-chevron-left"></i> 微信Tinker集成
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/24/Charles-使用/" rel="prev" title="Charles">
+                Charles <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Leo" />
+          <p class="site-author-name" itemprop="name">Leo</p>
+          <p class="site-description motion-element" itemprop="description">To the very best of times</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/LeoPoldCrossing" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/LeopoldCrossing" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-兼容多渠道包，使用zip-comment方式生成渠道包（完成）"><span class="nav-number">1.</span> <span class="nav-text">1. 兼容多渠道包，使用zip comment方式生成渠道包（完成）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-资源文件未做修改，patch文件过大（完成）"><span class="nav-number">2.</span> <span class="nav-text">2. 资源文件未做修改，patch文件过大（完成）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-TinkerPatch-补丁管理后台集成（完成）"><span class="nav-number">3.</span> <span class="nav-text">3. TinkerPatch 补丁管理后台集成（完成）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-合成进程可能被中断，补丁合成的重试"><span class="nav-number">4.</span> <span class="nav-text">4. 合成进程可能被中断，补丁合成的重试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-补丁后程序无法启动的处理（完成）"><span class="nav-number">5.</span> <span class="nav-text">5. 补丁后程序无法启动的处理（完成）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Tinker-默认的-DefaultTinkerResultService-会在加载patch成功之后立刻杀掉进程-应该在程序进入后台或者手机锁屏后杀掉进程，使补丁生效！-（完成）"><span class="nav-number">6.</span> <span class="nav-text">6. Tinker 默认的 DefaultTinkerResultService 会在加载patch成功之后立刻杀掉进程,应该在程序进入后台或者手机锁屏后杀掉进程，使补丁生效！ （完成）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,886 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=sans-serif:300,300italic,400,400italic,700,700italic|sans-serif:300,300italic,400,400italic,700,700italic|sans-serif:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Charles," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="简介Charles 是在 Mac 下常用的网络抓包工具，在开发过程中与服务端调式接口的必备利器。
+Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Charles">
+<meta property="og:url" content="http://yoursite.com/2017/12/24/Charles-使用/index.html">
+<meta property="og:site_name" content="Leo's Blog">
+<meta property="og:description" content="简介Charles 是在 Mac 下常用的网络抓包工具，在开发过程中与服务端调式接口的必备利器。
+Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/7h28sl69on8kjs0e4xjx3xw6/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2015.07.44.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/j5anx0bbtp81ogfqszduirpj/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2015.58.26.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/pglejtggtjzhhv7cvdz0l00a/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2016.38.30.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/b8l4bthgoa2dmmfazvbqid4w/Screenshot_20171219-233621.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/z8z8ai8n8zgd85016avblch8/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2023.46.08.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/hp6vkrj2tvtyt3davlpzhm0j/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2000.07.04.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/4vxgfo6h4sk04rmfgf6g10lk/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2010.55.51.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/zyw1f2iw73wakq8zzm72uyiw/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2010.58.52.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/t00oq6fe2rwfzx9tt09w8bby/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2011.31.59.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/kswy57che5fdqxxwuezhcmkw/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2017.35.08.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/6hla9bnkmceysqzecc5bv1hx/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2017.38.24.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/bko05h0pzaku284q70uwmzbc/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2017.50.47.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/lsi4wqns55hsptvvnmar5xkh/Screenshot_20171220-180049.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/l7l81tr2bndxc18rvdxlfbwl/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2018.33.43.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/9yxcjoe8mg8t68554guyws3s/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2018.30.40.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/h2tlpqlndvsr9tz8us5f20nc/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.11.32.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/hkrskh42xanol6sqzojor4vw/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.25.17.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/i0dqxnhbtvgq1orhbi0d5ijy/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.26.02.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/ngv2hykvo2kgy4qjioy1qa7w/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.36.39.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/dww2ftmok5zpvmjra3h1pbqe/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2010.42.20.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/fpl08jrgpcm0521ymshs25vr/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2011.19.45.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/x0gknnzx6ahj3zd7z6fozgep/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2011.49.15.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/6bdxsk7jxspy5xqh4kyjfic8/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2011.58.19.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/zpdtca1y2jlc5a2zugnz92g1/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2012.52.00.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/imftchjxq9ns85ys8y76slly/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2012.49.37.png">
+<meta property="og:image" content="http://static.zybuluo.com/LeoPoldCrossing/mdzvctziv826pbf88ytzqsza/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2013.02.25.png">
+<meta property="og:updated_time" content="2017-12-25T05:52:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Charles">
+<meta name="twitter:description" content="简介Charles 是在 Mac 下常用的网络抓包工具，在开发过程中与服务端调式接口的必备利器。
+Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。">
+<meta name="twitter:image" content="http://static.zybuluo.com/LeoPoldCrossing/7h28sl69on8kjs0e4xjx3xw6/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2015.07.44.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/24/Charles-使用/"/>
+
+
+
+
+
+  <title> Charles | Leo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Leo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/24/Charles-使用/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Leo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Leo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Leo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Charles
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-24T10:47:53+08:00">
+                2017-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="https://www.charlesproxy.com/" target="_blank" rel="external">Charles</a> 是在 Mac 下常用的网络抓包工具，在开发过程中与服务端调式接口的必备利器。</p>
+<p>Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。<br>除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。</p>
+<a id="more"></a>
+<p>Charles 主要的功能包括：</p>
+<ul>
+<li>截取 Http 和 Https 网络封包。</li>
+<li>支持重发网络请求，方便后端调试。</li>
+<li>支持修改网络请求参数。</li>
+<li>支持网络请求的截获并动态修改。</li>
+<li>支持模拟慢速网络。</li>
+</ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="https://www.charlesproxy.com/download/" target="_blank" rel="external">下载地址</a></h2><h1 id="破解"><a href="#破解" class="headerlink" title="破解"></a>破解</h1><p>Charles 是一个收费软件，在天朝，看到收费两个字，呵呵之~</p>
+<h2 id="破解jar生成"><a href="#破解jar生成" class="headerlink" title="破解jar生成"></a>破解jar生成</h2><p><a href="https://www.zzzmode.com/mytools/charles/" target="_blank" rel="external"><strong>点我，点我</strong></a></p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/7h28sl69on8kjs0e4xjx3xw6/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2015.07.44.png" alt="屏幕快照 2017-12-19 15.07.44.png-91.4kB"></p>
+<h2 id="替换jar包"><a href="#替换jar包" class="headerlink" title="替换jar包"></a>替换jar包</h2><p>macOS: /Applications/Charles.app/Contents/Java/charles.jar</p>
+<p>Windows: C:\Program Files\Charles\lib\charles.jar</p>
+<h1 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h1><h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><p><img src="http://static.zybuluo.com/LeoPoldCrossing/j5anx0bbtp81ogfqszduirpj/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2015.58.26.png" alt="屏幕快照 2017-12-19 15.58.26.png-368.3kB"></p>
+<p>选择菜单中的 “Proxy” -&gt; “macOS Proxy” 将 charles 设置为系统代理（需要授权），然后我们就可以在Charles界面看到网络请求。Windows系统类似</p>
+<h2 id="iOS-Device"><a href="#iOS-Device" class="headerlink" title="iOS Device"></a>iOS Device</h2><p>iOS 设备我们需要手动的设置 Http 代理</p>
+<p>设置 -&gt; 无线 -&gt; 已连接WIFI -&gt; 配置代理 -&gt; 手动 </p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/pglejtggtjzhhv7cvdz0l00a/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2016.38.30.png" alt="屏幕快照 2017-12-19 16.38.30.png-153.7kB"></p>
+<p>服务器地址为 运行charles的电脑 ip 地址，端口默认为 8888 </p>
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><ul>
+<li>配置手机 wifi 网络代理</li>
+</ul>
+<p>设置 -&gt; 无线网络 -&gt; WIFI -&gt; 长按 -&gt; 修改网络 -&gt; 显示高级选项 -&gt; 代理 -&gt; 手动 </p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/b8l4bthgoa2dmmfazvbqid4w/Screenshot_20171219-233621.png" alt="Screenshot_20171219-233621.png-73.1kB"></p>
+<blockquote>
+<p>部分手机被隐藏，可以通过语音助手唤起 “”proxy””</p>
+</blockquote>
+<ul>
+<li>硬编码 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HttpHost httpproxy = new HttpHost(&quot;192.168.0.101&quot;, 8888, &quot;http&quot;);</div><div class="line">httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,httpproxy);</div></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HttpUrlConnection conn = url.openConnection(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(&quot;192.168.0.101&quot;, 8888)));</div></pre></td></tr></table></figure>
+<h1 id="Charles-使用"><a href="#Charles-使用" class="headerlink" title="Charles 使用"></a>Charles 使用</h1><p><img src="http://static.zybuluo.com/LeoPoldCrossing/z8z8ai8n8zgd85016avblch8/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2023.46.08.png" alt="屏幕快照 2017-12-19 23.46.08.png-435.8kB"></p>
+<h2 id="视图介绍"><a href="#视图介绍" class="headerlink" title="视图介绍"></a>视图介绍</h2><ul>
+<li><p>Structure ： 视图将网络请求按访问的域名分类。</p>
+</li>
+<li><p>Sequence ： 视图将网络请求按访问的时间排序。</p>
+</li>
+</ul>
+<h2 id="过滤请求"><a href="#过滤请求" class="headerlink" title="过滤请求"></a>过滤请求</h2><ul>
+<li><p>Sequence 视图，在 Filter 栏中输入关键字<br>用于临时过滤的场景</p>
+</li>
+<li><p>Recording Setting -&gt; include<br>用于固定过滤，比如过滤 jinhui365.com<br><img src="http://static.zybuluo.com/LeoPoldCrossing/hp6vkrj2tvtyt3davlpzhm0j/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2000.07.04.png" alt="屏幕快照 2017-12-20 00.07.04.png-404.1kB"></p>
+</li>
+<li><p>Focus 过滤</p>
+</li>
+</ul>
+<ol>
+<li>Structure 视图 : 网络请求右击，选择”Focus”，仅展示过滤的请求，其他请求放入 “Other Hosts” 目录。</li>
+<li>Sequence 视图 : 网络请求右击，选择”Focus”，并且勾选Filter栏右侧checkbox，仅展示过滤的请求</li>
+</ol>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/4vxgfo6h4sk04rmfgf6g10lk/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2010.55.51.png" alt="屏幕快照 2017-12-20 10.55.51.png-62.1kB">    <img src="http://static.zybuluo.com/LeoPoldCrossing/zyw1f2iw73wakq8zzm72uyiw/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2010.58.52.png" alt="屏幕快照 2017-12-20 10.58.52.png-146.4kB"></p>
+<h2 id="Https请求"><a href="#Https请求" class="headerlink" title="Https请求"></a>Https请求</h2><p>成功的抓到了网络请求，却发现有很多的红✘✘，强迫症郁闷了。。。<br><img src="http://static.zybuluo.com/LeoPoldCrossing/t00oq6fe2rwfzx9tt09w8bby/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2011.31.59.png" alt="屏幕快照 2017-12-20 11.31.59.png-186.6kB"></p>
+<p>查看发现，出现红✘的请求全部是 https 协议，想要分析该请求，需要安装 Charles 的 CA 证书。</p>
+<ul>
+<li>Mac 证书安装</li>
+</ul>
+<ol>
+<li>安装证书<br>“Help” -&gt; “SSL Proxying” -&gt; “Install Charles Root Certificate”<br><img src="http://static.zybuluo.com/LeoPoldCrossing/kswy57che5fdqxxwuezhcmkw/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2017.35.08.png" alt="屏幕快照 2017-12-20 17.35.08.png-239kB"></li>
+<li>证书配置<br>step完成后，在弹出的钥匙串对话框中，双击 charles 证书，将其设置为始终信任<br><img src="http://static.zybuluo.com/LeoPoldCrossing/6hla9bnkmceysqzecc5bv1hx/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2017.38.24.png" alt="屏幕快照 2017-12-20 17.38.24.png-231.8kB"></li>
+</ol>
+<ul>
+<li>移动设备证书安装</li>
+</ul>
+<ol>
+<li>移动设备设置 Http 代理<br><img src="http://static.zybuluo.com/LeoPoldCrossing/bko05h0pzaku284q70uwmzbc/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2017.50.47.png" alt="屏幕快照 2017-12-20 17.50.47.png-27.4kB"></li>
+<li>手机浏览器访问 chls.pro/ssl 下载并安装证书</li>
+</ol>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/lsi4wqns55hsptvvnmar5xkh/Screenshot_20171220-180049.png" alt="Screenshot_20171220-180049.png-47.4kB"></p>
+<ul>
+<li>开启 SSL Proxying</li>
+</ul>
+<ol>
+<li><p>右键网络请求，点击 Enable SSL Proxying 菜单项</p>
+</li>
+<li><p>Proxy - &gt; SSL Proxying Setting -&gt; 勾选 Enable SSL Proxying -&gt; 添加域名<br><img src="http://static.zybuluo.com/LeoPoldCrossing/l7l81tr2bndxc18rvdxlfbwl/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2018.33.43.png" alt="屏幕快照 2017-12-20 18.33.43.png-152.8kB"></p>
+</li>
+</ol>
+<ul>
+<li>Https 抓包</li>
+</ul>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/9yxcjoe8mg8t68554guyws3s/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2018.30.40.png" alt="屏幕快照 2017-12-20 18.30.40.png-90kB"></p>
+<h2 id="网速模拟"><a href="#网速模拟" class="headerlink" title="网速模拟"></a>网速模拟</h2><p>在我们移动开发或测试工作中，常常需要模拟慢速网络或者高延迟的网络，以测试在移动网络下，应用的表现是否正常。</p>
+<p>在 Charles 菜单， 选择 Proxy -&gt; Throttle Setting ，勾选 Enable Throttling</p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/h2tlpqlndvsr9tz8us5f20nc/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.11.32.png" alt="屏幕快照 2017-12-20 19.11.32.png-139.4kB"></p>
+<p>如果我们只想模拟指定网站的慢速网络，可以再勾选上图中的 “Only for selected hosts” 项，然后在对话框的下半部分设置中增加指定的 hosts 项。</p>
+<h2 id="修改-重发-Request"><a href="#修改-重发-Request" class="headerlink" title="修改/重发 Request"></a>修改/重发 Request</h2><p>Charles 提供了网络请求的修改和重发功能，接口调试更方便，有么有。。。</p>
+<ul>
+<li>修改 Request </li>
+</ul>
+<p>右键网络请求 -&gt; 菜单项 -&gt; Compose</p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/hkrskh42xanol6sqzojor4vw/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.25.17.png" alt="屏幕快照 2017-12-20 19.25.17.png-134.6kB"></p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/i0dqxnhbtvgq1orhbi0d5ijy/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.26.02.png" alt="屏幕快照 2017-12-20 19.26.02.png-70.2kB"></p>
+<p>我们可以修改请求的任何信息，Url地址、参数、端口、Header 等等，点击 Execute 执行网络请求</p>
+<ul>
+<li>重发 Request </li>
+</ul>
+<p>右键网络请求 -&gt; 菜单项 -&gt; Repeat/Repeat Advanced</p>
+<p>Repeat 仅重试一次，Repeat Advanced 可以设置 重试次数，线程数量，重试间隔等等，可以做简单的服务器压力测试</p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/ngv2hykvo2kgy4qjioy1qa7w/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.36.39.png" alt="屏幕快照 2017-12-20 19.36.39.png-33.2kB"></p>
+<h2 id="修改-Response"><a href="#修改-Response" class="headerlink" title="修改 Response"></a>修改 Response</h2><p>作为移动开发，经常需要服务器返回一些特殊的内容，方便我们调式一些情况，比如数据为空，数据异常，请求超时等等。又是一个很实用的功能，有木有。。</p>
+<p>Charles 提供了Map，Rewrite及Breakpoints三种方式修改Response </p>
+<ul>
+<li><p>Map： 适合长期将某一些请求重定向到另一个 Url 或者本地文件</p>
+</li>
+<li><p>Rewrite ： 适合对网络请求进行一些正则替换</p>
+</li>
+<li><p>Breakpoints ： 适合一些临时性的修改</p>
+</li>
+</ul>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><ul>
+<li>Map Remote ： 将指定网络请求重定向到另一个网络地址 ，Tools -&gt; Map Remote </li>
+</ul>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/dww2ftmok5zpvmjra3h1pbqe/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2010.42.20.png" alt="屏幕快照 2017-12-21 10.42.20.png-141.2kB"></p>
+<ul>
+<li>Map Local ： 将指定网络请求重定向到本地文件 ，Tools -&gt; Map Local</li>
+</ul>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/fpl08jrgpcm0521ymshs25vr/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2011.19.45.png" alt="屏幕快照 2017-12-21 11.19.45.png-105.1kB"></p>
+<h3 id="Rewrite"><a href="#Rewrite" class="headerlink" title="Rewrite"></a>Rewrite</h3><p>Rewrite 功能适合某一个请求进行一些正则替换。Tools -&gt; Rewrite</p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/x0gknnzx6ahj3zd7z6fozgep/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2011.49.15.png" alt="屏幕快照 2017-12-21 11.49.15.png-245.2kB"></p>
+<p>举个例子：将我们的资产接口中访问 “高端理财”替换为”超级理财”，再也不需要张普同学跑回工位改代码了。。。</p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/6bdxsk7jxspy5xqh4kyjfic8/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2011.58.19.png" alt="屏幕快照 2017-12-21 11.58.19.png-42.7kB"></p>
+<h3 id="Breakpoints"><a href="#Breakpoints" class="headerlink" title="Breakpoints"></a>Breakpoints</h3><p>Rewrite 功能适合做批量和固定的替换，很多时候我们只是修改一次请求的Response，Rewrite 就感觉有些繁琐了。</p>
+<p>Breakpoints 功能类似我们开发过程中的断点，当指定的网络请求发生，Charles 截取到该请求但并未返回结果，这时我们可以修改网络请求的返回内容。</p>
+<ul>
+<li><p>添加断点<br>双击请求 -&gt; 勾选 Breakpoints<br><img src="http://static.zybuluo.com/LeoPoldCrossing/zpdtca1y2jlc5a2zugnz92g1/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2012.52.00.png" alt="屏幕快照 2017-12-21 12.52.00.png-219.2kB"></p>
+</li>
+<li><p>断点设置<br>Proxy -&gt; Breakpoints Setting<br><img src="http://static.zybuluo.com/LeoPoldCrossing/imftchjxq9ns85ys8y76slly/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2012.49.37.png" alt="屏幕快照 2017-12-21 12.49.37.png-241.9kB"></p>
+</li>
+<li><p>修改请求内容</p>
+</li>
+</ul>
+<ol>
+<li>完成了前面两步操作，再次发起接口请求，会弹出断点对话框</li>
+<li>点击 Edit Response ，修改Body</li>
+<li>点击 Execute ，将Body返回<br><img src="http://static.zybuluo.com/LeoPoldCrossing/mdzvctziv826pbf88ytzqsza/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2013.02.25.png" alt="屏幕快照 2017-12-21 13.02.25.png-99.8kB"></li>
+</ol>
+<blockquote>
+<p>Tip:使用 Breakpoints 功能将网络请求截获并修改过程中，整个网络请求的计时并不会暂停，所以长时间的暂停可能导致客户端的请求超时。</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过 Charles 软件，我们可以很方便地在日常开发中，截取和调试网络请求内容，分析封包协议以及模拟慢速网络。用好 Charles 可以极大的方便我们对于带有网络请求的 App 的开发和调试。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Charles/" rel="tag"># Charles</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/06/Tinker集成优化/" rel="next" title="Tinker集成优化">
+                <i class="fa fa-chevron-left"></i> Tinker集成优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/29/Flutter-开发环境搭建/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Leo" />
+          <p class="site-author-name" itemprop="name">Leo</p>
+          <p class="site-description motion-element" itemprop="description">To the very best of times</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/LeoPoldCrossing" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/LeopoldCrossing" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载地址"><span class="nav-number">2.1.</span> <span class="nav-text">下载地址</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#破解"><span class="nav-number">3.</span> <span class="nav-text">破解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#破解jar生成"><span class="nav-number">3.1.</span> <span class="nav-text">破解jar生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换jar包"><span class="nav-number">3.2.</span> <span class="nav-text">替换jar包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置代理"><span class="nav-number">4.</span> <span class="nav-text">配置代理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器"><span class="nav-number">4.1.</span> <span class="nav-text">浏览器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-Device"><span class="nav-number">4.2.</span> <span class="nav-text">iOS Device</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android"><span class="nav-number">4.3.</span> <span class="nav-text">Android</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Charles-使用"><span class="nav-number">5.</span> <span class="nav-text">Charles 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#视图介绍"><span class="nav-number">5.1.</span> <span class="nav-text">视图介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤请求"><span class="nav-number">5.2.</span> <span class="nav-text">过滤请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https请求"><span class="nav-number">5.3.</span> <span class="nav-text">Https请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网速模拟"><span class="nav-number">5.4.</span> <span class="nav-text">网速模拟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-重发-Request"><span class="nav-number">5.5.</span> <span class="nav-text">修改/重发 Request</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-Response"><span class="nav-number">5.6.</span> <span class="nav-text">修改 Response</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">5.6.1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rewrite"><span class="nav-number">5.6.2.</span> <span class="nav-text">Rewrite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Breakpoints"><span class="nav-number">5.6.3.</span> <span class="nav-text">Breakpoints</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

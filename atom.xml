@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-16T03:42:55.000Z</updated>
+  <updated>2019-09-29T09:59:34.820Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,510 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/09/29/Flutter-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>http://yoursite.com/2019/09/29/Flutter-开发环境搭建/</id>
+    <published>2019-09-29T09:59:34.820Z</published>
+    <updated>2019-09-29T09:59:34.820Z</updated>
+    
+    <content type="html"><![CDATA[<p>title: Flutter 开发环境搭建<br>date: 2019-09-29 10:47:53<br>tags: </p>
+<ul>
+<li>Flutter<br>categories:</li>
+<li>技术分享</li>
+</ul>
+<hr>
+<blockquote>
+<p>前言：因为笔者使用的是MAC，所以我这里只介绍MAC系统的开发环境搭建，Windows及Linux系统请移步 <a href="https://flutter.dev/docs/get-started/install" target="_blank" rel="external">Flutter 开发环境搭建</a></p>
+</blockquote>
+<hr>
+<p>基于 Flutter 1.9.1 版本（<a href="https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_v1.9.1+hotfix.2-stable.zip" target="_blank" rel="external">下载</a>） </p>
+<h1 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h1><ol>
+<li>操作系统： macOS（64-bit）</li>
+<li>剩余磁盘空间： 2.8GB</li>
+<li>命令行工具： </li>
+</ol>
+<ul>
+<li>bash</li>
+<li>curl</li>
+<li>git 2.x</li>
+<li>mkdir</li>
+<li>rm</li>
+<li>unzip</li>
+<li>which</li>
+</ul>
+<h1 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h1><h2 id="获取Flutter-SDK"><a href="#获取Flutter-SDK" class="headerlink" title="获取Flutter SDK"></a>获取Flutter SDK</h2><ul>
+<li><a href="https://flutter.dev/docs/development/tools/sdk/releases?tab=macos" target="_blank" rel="external">Mac Flutter下载</a></li>
+<li>解压文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/development</div><div class="line">unzip ~/Downloads/flutter_macos_v1.9.1+hotfix.2-stable.zip</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="环境变量配置-1"><a href="#环境变量配置-1" class="headerlink" title="环境变量配置"></a>环境变量配置</h2><ul>
+<li>设置环境变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ export PATH=&quot;$PATH:`pwd`/flutter/bin&quot;  // 仅配置当前终端变量</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># PATH_TO_FLUTTER_GIT_DIRECTORY  为Flutter SDK 存储目录</div><div class="line">$ export PATH=&quot;$PATH:[PATH_TO_FLUTTER_GIT_DIRECTORY]/flutter/bin&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>刷新环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ source $HOME/.bash_profile</div></pre></td></tr></table></figure>
+</li>
+<li><p>验证环境变量配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ echo $PATH</div><div class="line">$ which flutter</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="诊断开发环境-Flutter-Doctor"><a href="#诊断开发环境-Flutter-Doctor" class="headerlink" title="诊断开发环境 Flutter Doctor"></a>诊断开发环境 Flutter Doctor</h3><p>这时候它会将你未安装的依赖一一列出，每个电脑缺少的依赖都不尽相同，例如下面这样，然后按照错误提示逐条修复<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">wangyonggangdeMacBook-Pro:~ LeoPoldCrossing$ flutter doctor</div><div class="line">Doctor summary (to see all details, run flutter doctor -v):</div><div class="line">[✓] Flutter (Channel beta, v1.9.1+hotfix.2, on Mac OS X 10.14 18A391, locale</div><div class="line">    zh-Hans-CN)</div><div class="line">[!] Android toolchain - develop for Android devices (Android SDK version 28.0.3)</div><div class="line">    ! Some Android licenses not accepted.  To resolve this, run: flutter doctor</div><div class="line">      --android-licenses</div><div class="line">[!] Xcode - develop for iOS and macOS (Xcode 10.1)</div><div class="line">    ✗ CocoaPods installed but not initialized.</div><div class="line">        CocoaPods is used to retrieve the iOS and macOS platform side&apos;s plugin</div><div class="line">        code that responds to your plugin usage on the Dart side.</div><div class="line">        Without CocoaPods, plugins will not work on iOS or macOS.</div><div class="line">        For more info, see https://flutter.dev/platform-plugins</div><div class="line">      To initialize CocoaPods, run:</div><div class="line">        pod setup</div><div class="line">      once to finalize CocoaPods&apos; installation.</div><div class="line">[✓] Android Studio (version 3.4)</div><div class="line">[!] IntelliJ IDEA Ultimate Edition (version 2018.1.4)</div><div class="line">    ✗ Flutter plugin not installed; this adds Flutter specific functionality.</div><div class="line">    ✗ Dart plugin not installed; this adds Dart specific functionality.</div><div class="line">[!] IntelliJ IDEA Ultimate Edition (version 2016.3.1)</div><div class="line">    ✗ Flutter plugin not installed; this adds Flutter specific functionality.</div><div class="line">    ✗ Dart plugin not installed; this adds Dart specific functionality.</div><div class="line">    ✗ This install is older than the minimum recommended version of 2017.1.0.</div><div class="line">[✓] VS Code (version 1.38.1)</div><div class="line">[✓] Connected device (1 available)</div></pre></td></tr></table></figure></p>
+<h2 id="国内镜像"><a href="#国内镜像" class="headerlink" title="国内镜像"></a>国内镜像</h2><p>由于一些flutter命令需要联网获取数据，如果您是在国内访问，由于众所周知的原因，直接访问很可能不会成功。 下面的PUB_HOSTED_URL和FLUTTER_STORAGE_BASE_URL是google为国内开发者搭建的临时镜像。详情请参考 Using Flutter in China<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ export PUB_HOSTED_URL=https://pub.flutter-io.cn（https://mirrors.sjtug.sjtu.edu.cn/）</div><div class="line">$ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</div><div class="line"></div><div class="line">or </div><div class="line"></div><div class="line">$ export PUB_HOSTED_URL= https://dart-pub.mirrors.sjtug.sjtu.edu.cn/</div><div class="line">$ export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn/</div><div class="line"></div><div class="line">$ export PATH=&quot;$PWD/flutter/bin:$PATH&quot;</div><div class="line">$ cd ./flutter</div><div class="line">$ flutter doctor</div></pre></td></tr></table></figure></p>
+<h1 id="平台配置"><a href="#平台配置" class="headerlink" title="平台配置"></a>平台配置</h1><h2 id="IOS设置"><a href="#IOS设置" class="headerlink" title="IOS设置"></a>IOS设置</h2><h3 id="1-Xcode安装"><a href="#1-Xcode安装" class="headerlink" title="1. Xcode安装"></a>1. Xcode安装</h3><ul>
+<li><a href="https://developer.apple.com/xcode/" target="_blank" rel="external">Xcode</a> 或通过 AppStore 安装最新版XCode</li>
+<li><p>配置XCode命令使用最新安装的Xcode版本（如果使用其他版本，请替换路径）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer</div></pre></td></tr></table></figure>
+</li>
+<li><p>同意XCode条款，可通过以下命令操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sodo xcodebuild -license</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-IOS-模拟器设置"><a href="#2-IOS-模拟器设置" class="headerlink" title="2. IOS 模拟器设置"></a>2. IOS 模拟器设置</h3><ul>
+<li><p>打开模拟器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ open -a Simulator</div></pre></td></tr></table></figure>
+</li>
+<li><p>设备选择（64位，至少Iphone5s） Hardware - Device</p>
+</li>
+<li><p>运行Flutter APP </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ flutter create my_app</div><div class="line"></div><div class="line">$ cd my_app</div><div class="line"></div><div class="line">$ flutter run</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-真机运行"><a href="#3-真机运行" class="headerlink" title="3. 真机运行"></a>3. 真机运行</h3><ul>
+<li><p>安装并设置CocoaPods</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo gem install cocoapods</div><div class="line">$ pod setup</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加账号及信任设备 </p>
+<ul>
+<li>在Flutter项目根目录下运行 open ios/Runner.xcworkspace</li>
+<li>选择要运行项目的的设备</li>
+<li>左侧面板选择Runner工程</li>
+<li><p>选择Team </p>
+<ol>
+<li>Xcode 9 &amp; 10, General &gt; Signing &gt; Team.</li>
+<li>Xcode 11,  Signing &amp; Capabilities &gt; Team</li>
+</ol>
+</li>
+<li><p>第一次运行IOS项目需要账号<br><img src="https://flutter.dev/images/setup/xcode-account.png" alt="此处输入图片的描述"></p>
+</li>
+<li>信任开发者<br>通用 - 设备管理</li>
+</ul>
+</li>
+<li><p>Flutter Run 跑起来</p>
+</li>
+</ul>
+<h2 id="Android-配置"><a href="#Android-配置" class="headerlink" title="Android 配置"></a>Android 配置</h2><h3 id="1-安装AndroidStudio下载地址"><a href="#1-安装AndroidStudio下载地址" class="headerlink" title="1. 安装AndroidStudio下载地址"></a>1. 安装AndroidStudio<a href="https://developer.android.com/studio" target="_blank" rel="external">下载地址</a></h3><h3 id="2-Android真机设备"><a href="#2-Android真机设备" class="headerlink" title="2. Android真机设备"></a>2. Android真机设备</h3><ul>
+<li>系统版本要求<br>Android 4.1以上</li>
+<li>设置<ul>
+<li>打开开发调试模式</li>
+<li>运行flutter devices检测是否识别</li>
+</ul>
+</li>
+<li>Android模拟器<br>AndroidStudio - Tools - Android - AVD Manager - Create Virtual Device 选择一个模拟器创建<h2 id="编辑器配置"><a href="#编辑器配置" class="headerlink" title="编辑器配置"></a>编辑器配置</h2><h3 id="Android-Studio"><a href="#Android-Studio" class="headerlink" title="Android Studio"></a>Android Studio</h3></li>
+<li>安装Android Studio <a href="https://developer.android.com/studio" target="_blank" rel="external">下载地址</a> </li>
+<li>安装Flutter插件<br>Perferences - Plugin - 搜索Flutter - 安装</li>
+<li>安装Dart插件<br>Perferences - Plugin - 搜索Dart - 安装<h3 id="VS-Code"><a href="#VS-Code" class="headerlink" title="VS Code"></a>VS Code</h3></li>
+<li>安装VS Code <a href="https://code.visualstudio.com" target="_blank" rel="external">下载地址</a> </li>
+<li>安装Flutter插件<br>查看 - 命令面板 - 输入install  - 选择Extensions: Install Extensions - 输入Flutter </li>
+<li>安装Dart插件<br>查看 - 命令面板 - 输入install  - 选择Extensions: Install Extensions - Dart</li>
+<li>检查设置<br>查看 - 命令面板 - 输入Doctor - 选择Flutter: Run Flutter Doctor</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;title: Flutter 开发环境搭建&lt;br&gt;date: 2019-09-29 10:47:53&lt;br&gt;tags: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flutter&lt;br&gt;categories:&lt;/li&gt;
+&lt;li&gt;技术分享&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;blockquot
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Charles</title>
+    <link href="http://yoursite.com/2017/12/24/Charles-%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2017/12/24/Charles-使用/</id>
+    <published>2017-12-24T02:47:53.000Z</published>
+    <updated>2017-12-25T05:52:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="https://www.charlesproxy.com/" target="_blank" rel="external">Charles</a> 是在 Mac 下常用的网络抓包工具，在开发过程中与服务端调式接口的必备利器。</p>
+<p>Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。<br>除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。</p>
+<a id="more"></a>
+<p>Charles 主要的功能包括：</p>
+<ul>
+<li>截取 Http 和 Https 网络封包。</li>
+<li>支持重发网络请求，方便后端调试。</li>
+<li>支持修改网络请求参数。</li>
+<li>支持网络请求的截获并动态修改。</li>
+<li>支持模拟慢速网络。</li>
+</ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="https://www.charlesproxy.com/download/" target="_blank" rel="external">下载地址</a></h2><h1 id="破解"><a href="#破解" class="headerlink" title="破解"></a>破解</h1><p>Charles 是一个收费软件，在天朝，看到收费两个字，呵呵之~</p>
+<h2 id="破解jar生成"><a href="#破解jar生成" class="headerlink" title="破解jar生成"></a>破解jar生成</h2><p><a href="https://www.zzzmode.com/mytools/charles/" target="_blank" rel="external"><strong>点我，点我</strong></a></p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/7h28sl69on8kjs0e4xjx3xw6/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2015.07.44.png" alt="屏幕快照 2017-12-19 15.07.44.png-91.4kB"></p>
+<h2 id="替换jar包"><a href="#替换jar包" class="headerlink" title="替换jar包"></a>替换jar包</h2><p>macOS: /Applications/Charles.app/Contents/Java/charles.jar</p>
+<p>Windows: C:\Program Files\Charles\lib\charles.jar</p>
+<h1 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h1><h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><p><img src="http://static.zybuluo.com/LeoPoldCrossing/j5anx0bbtp81ogfqszduirpj/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2015.58.26.png" alt="屏幕快照 2017-12-19 15.58.26.png-368.3kB"></p>
+<p>选择菜单中的 “Proxy” -&gt; “macOS Proxy” 将 charles 设置为系统代理（需要授权），然后我们就可以在Charles界面看到网络请求。Windows系统类似</p>
+<h2 id="iOS-Device"><a href="#iOS-Device" class="headerlink" title="iOS Device"></a>iOS Device</h2><p>iOS 设备我们需要手动的设置 Http 代理</p>
+<p>设置 -&gt; 无线 -&gt; 已连接WIFI -&gt; 配置代理 -&gt; 手动 </p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/pglejtggtjzhhv7cvdz0l00a/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2016.38.30.png" alt="屏幕快照 2017-12-19 16.38.30.png-153.7kB"></p>
+<p>服务器地址为 运行charles的电脑 ip 地址，端口默认为 8888 </p>
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><ul>
+<li>配置手机 wifi 网络代理</li>
+</ul>
+<p>设置 -&gt; 无线网络 -&gt; WIFI -&gt; 长按 -&gt; 修改网络 -&gt; 显示高级选项 -&gt; 代理 -&gt; 手动 </p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/b8l4bthgoa2dmmfazvbqid4w/Screenshot_20171219-233621.png" alt="Screenshot_20171219-233621.png-73.1kB"></p>
+<blockquote>
+<p>部分手机被隐藏，可以通过语音助手唤起 “”proxy””</p>
+</blockquote>
+<ul>
+<li>硬编码 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HttpHost httpproxy = new HttpHost(&quot;192.168.0.101&quot;, 8888, &quot;http&quot;);</div><div class="line">httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,httpproxy);</div></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HttpUrlConnection conn = url.openConnection(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(&quot;192.168.0.101&quot;, 8888)));</div></pre></td></tr></table></figure>
+<h1 id="Charles-使用"><a href="#Charles-使用" class="headerlink" title="Charles 使用"></a>Charles 使用</h1><p><img src="http://static.zybuluo.com/LeoPoldCrossing/z8z8ai8n8zgd85016avblch8/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-19%2023.46.08.png" alt="屏幕快照 2017-12-19 23.46.08.png-435.8kB"></p>
+<h2 id="视图介绍"><a href="#视图介绍" class="headerlink" title="视图介绍"></a>视图介绍</h2><ul>
+<li><p>Structure ： 视图将网络请求按访问的域名分类。</p>
+</li>
+<li><p>Sequence ： 视图将网络请求按访问的时间排序。</p>
+</li>
+</ul>
+<h2 id="过滤请求"><a href="#过滤请求" class="headerlink" title="过滤请求"></a>过滤请求</h2><ul>
+<li><p>Sequence 视图，在 Filter 栏中输入关键字<br>用于临时过滤的场景</p>
+</li>
+<li><p>Recording Setting -&gt; include<br>用于固定过滤，比如过滤 jinhui365.com<br><img src="http://static.zybuluo.com/LeoPoldCrossing/hp6vkrj2tvtyt3davlpzhm0j/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2000.07.04.png" alt="屏幕快照 2017-12-20 00.07.04.png-404.1kB"></p>
+</li>
+<li><p>Focus 过滤</p>
+</li>
+</ul>
+<ol>
+<li>Structure 视图 : 网络请求右击，选择”Focus”，仅展示过滤的请求，其他请求放入 “Other Hosts” 目录。</li>
+<li>Sequence 视图 : 网络请求右击，选择”Focus”，并且勾选Filter栏右侧checkbox，仅展示过滤的请求</li>
+</ol>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/4vxgfo6h4sk04rmfgf6g10lk/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2010.55.51.png" alt="屏幕快照 2017-12-20 10.55.51.png-62.1kB">    <img src="http://static.zybuluo.com/LeoPoldCrossing/zyw1f2iw73wakq8zzm72uyiw/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2010.58.52.png" alt="屏幕快照 2017-12-20 10.58.52.png-146.4kB"></p>
+<h2 id="Https请求"><a href="#Https请求" class="headerlink" title="Https请求"></a>Https请求</h2><p>成功的抓到了网络请求，却发现有很多的红✘✘，强迫症郁闷了。。。<br><img src="http://static.zybuluo.com/LeoPoldCrossing/t00oq6fe2rwfzx9tt09w8bby/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2011.31.59.png" alt="屏幕快照 2017-12-20 11.31.59.png-186.6kB"></p>
+<p>查看发现，出现红✘的请求全部是 https 协议，想要分析该请求，需要安装 Charles 的 CA 证书。</p>
+<ul>
+<li>Mac 证书安装</li>
+</ul>
+<ol>
+<li>安装证书<br>“Help” -&gt; “SSL Proxying” -&gt; “Install Charles Root Certificate”<br><img src="http://static.zybuluo.com/LeoPoldCrossing/kswy57che5fdqxxwuezhcmkw/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2017.35.08.png" alt="屏幕快照 2017-12-20 17.35.08.png-239kB"></li>
+<li>证书配置<br>step完成后，在弹出的钥匙串对话框中，双击 charles 证书，将其设置为始终信任<br><img src="http://static.zybuluo.com/LeoPoldCrossing/6hla9bnkmceysqzecc5bv1hx/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2017.38.24.png" alt="屏幕快照 2017-12-20 17.38.24.png-231.8kB"></li>
+</ol>
+<ul>
+<li>移动设备证书安装</li>
+</ul>
+<ol>
+<li>移动设备设置 Http 代理<br><img src="http://static.zybuluo.com/LeoPoldCrossing/bko05h0pzaku284q70uwmzbc/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2017.50.47.png" alt="屏幕快照 2017-12-20 17.50.47.png-27.4kB"></li>
+<li>手机浏览器访问 chls.pro/ssl 下载并安装证书</li>
+</ol>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/lsi4wqns55hsptvvnmar5xkh/Screenshot_20171220-180049.png" alt="Screenshot_20171220-180049.png-47.4kB"></p>
+<ul>
+<li>开启 SSL Proxying</li>
+</ul>
+<ol>
+<li><p>右键网络请求，点击 Enable SSL Proxying 菜单项</p>
+</li>
+<li><p>Proxy - &gt; SSL Proxying Setting -&gt; 勾选 Enable SSL Proxying -&gt; 添加域名<br><img src="http://static.zybuluo.com/LeoPoldCrossing/l7l81tr2bndxc18rvdxlfbwl/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2018.33.43.png" alt="屏幕快照 2017-12-20 18.33.43.png-152.8kB"></p>
+</li>
+</ol>
+<ul>
+<li>Https 抓包</li>
+</ul>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/9yxcjoe8mg8t68554guyws3s/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2018.30.40.png" alt="屏幕快照 2017-12-20 18.30.40.png-90kB"></p>
+<h2 id="网速模拟"><a href="#网速模拟" class="headerlink" title="网速模拟"></a>网速模拟</h2><p>在我们移动开发或测试工作中，常常需要模拟慢速网络或者高延迟的网络，以测试在移动网络下，应用的表现是否正常。</p>
+<p>在 Charles 菜单， 选择 Proxy -&gt; Throttle Setting ，勾选 Enable Throttling</p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/h2tlpqlndvsr9tz8us5f20nc/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.11.32.png" alt="屏幕快照 2017-12-20 19.11.32.png-139.4kB"></p>
+<p>如果我们只想模拟指定网站的慢速网络，可以再勾选上图中的 “Only for selected hosts” 项，然后在对话框的下半部分设置中增加指定的 hosts 项。</p>
+<h2 id="修改-重发-Request"><a href="#修改-重发-Request" class="headerlink" title="修改/重发 Request"></a>修改/重发 Request</h2><p>Charles 提供了网络请求的修改和重发功能，接口调试更方便，有么有。。。</p>
+<ul>
+<li>修改 Request </li>
+</ul>
+<p>右键网络请求 -&gt; 菜单项 -&gt; Compose</p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/hkrskh42xanol6sqzojor4vw/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.25.17.png" alt="屏幕快照 2017-12-20 19.25.17.png-134.6kB"></p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/i0dqxnhbtvgq1orhbi0d5ijy/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.26.02.png" alt="屏幕快照 2017-12-20 19.26.02.png-70.2kB"></p>
+<p>我们可以修改请求的任何信息，Url地址、参数、端口、Header 等等，点击 Execute 执行网络请求</p>
+<ul>
+<li>重发 Request </li>
+</ul>
+<p>右键网络请求 -&gt; 菜单项 -&gt; Repeat/Repeat Advanced</p>
+<p>Repeat 仅重试一次，Repeat Advanced 可以设置 重试次数，线程数量，重试间隔等等，可以做简单的服务器压力测试</p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/ngv2hykvo2kgy4qjioy1qa7w/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-20%2019.36.39.png" alt="屏幕快照 2017-12-20 19.36.39.png-33.2kB"></p>
+<h2 id="修改-Response"><a href="#修改-Response" class="headerlink" title="修改 Response"></a>修改 Response</h2><p>作为移动开发，经常需要服务器返回一些特殊的内容，方便我们调式一些情况，比如数据为空，数据异常，请求超时等等。又是一个很实用的功能，有木有。。</p>
+<p>Charles 提供了Map，Rewrite及Breakpoints三种方式修改Response </p>
+<ul>
+<li><p>Map： 适合长期将某一些请求重定向到另一个 Url 或者本地文件</p>
+</li>
+<li><p>Rewrite ： 适合对网络请求进行一些正则替换</p>
+</li>
+<li><p>Breakpoints ： 适合一些临时性的修改</p>
+</li>
+</ul>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><ul>
+<li>Map Remote ： 将指定网络请求重定向到另一个网络地址 ，Tools -&gt; Map Remote </li>
+</ul>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/dww2ftmok5zpvmjra3h1pbqe/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2010.42.20.png" alt="屏幕快照 2017-12-21 10.42.20.png-141.2kB"></p>
+<ul>
+<li>Map Local ： 将指定网络请求重定向到本地文件 ，Tools -&gt; Map Local</li>
+</ul>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/fpl08jrgpcm0521ymshs25vr/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2011.19.45.png" alt="屏幕快照 2017-12-21 11.19.45.png-105.1kB"></p>
+<h3 id="Rewrite"><a href="#Rewrite" class="headerlink" title="Rewrite"></a>Rewrite</h3><p>Rewrite 功能适合某一个请求进行一些正则替换。Tools -&gt; Rewrite</p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/x0gknnzx6ahj3zd7z6fozgep/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2011.49.15.png" alt="屏幕快照 2017-12-21 11.49.15.png-245.2kB"></p>
+<p>举个例子：将我们的资产接口中访问 “高端理财”替换为”超级理财”，再也不需要张普同学跑回工位改代码了。。。</p>
+<p><img src="http://static.zybuluo.com/LeoPoldCrossing/6bdxsk7jxspy5xqh4kyjfic8/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2011.58.19.png" alt="屏幕快照 2017-12-21 11.58.19.png-42.7kB"></p>
+<h3 id="Breakpoints"><a href="#Breakpoints" class="headerlink" title="Breakpoints"></a>Breakpoints</h3><p>Rewrite 功能适合做批量和固定的替换，很多时候我们只是修改一次请求的Response，Rewrite 就感觉有些繁琐了。</p>
+<p>Breakpoints 功能类似我们开发过程中的断点，当指定的网络请求发生，Charles 截取到该请求但并未返回结果，这时我们可以修改网络请求的返回内容。</p>
+<ul>
+<li><p>添加断点<br>双击请求 -&gt; 勾选 Breakpoints<br><img src="http://static.zybuluo.com/LeoPoldCrossing/zpdtca1y2jlc5a2zugnz92g1/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2012.52.00.png" alt="屏幕快照 2017-12-21 12.52.00.png-219.2kB"></p>
+</li>
+<li><p>断点设置<br>Proxy -&gt; Breakpoints Setting<br><img src="http://static.zybuluo.com/LeoPoldCrossing/imftchjxq9ns85ys8y76slly/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2012.49.37.png" alt="屏幕快照 2017-12-21 12.49.37.png-241.9kB"></p>
+</li>
+<li><p>修改请求内容</p>
+</li>
+</ul>
+<ol>
+<li>完成了前面两步操作，再次发起接口请求，会弹出断点对话框</li>
+<li>点击 Edit Response ，修改Body</li>
+<li>点击 Execute ，将Body返回<br><img src="http://static.zybuluo.com/LeoPoldCrossing/mdzvctziv826pbf88ytzqsza/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-12-21%2013.02.25.png" alt="屏幕快照 2017-12-21 13.02.25.png-99.8kB"></li>
+</ol>
+<blockquote>
+<p>Tip:使用 Breakpoints 功能将网络请求截获并修改过程中，整个网络请求的计时并不会暂停，所以长时间的暂停可能导致客户端的请求超时。</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过 Charles 软件，我们可以很方便地在日常开发中，截取和调试网络请求内容，分析封包协议以及模拟慢速网络。用好 Charles 可以极大的方便我们对于带有网络请求的 App 的开发和调试。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.charlesproxy.com/&quot;&gt;Charles&lt;/a&gt; 是在 Mac 下常用的网络抓包工具，在开发过程中与服务端调式接口的必备利器。&lt;/p&gt;
+&lt;p&gt;Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。&lt;br&gt;除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Charles" scheme="http://yoursite.com/tags/Charles/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tinker集成优化</title>
+    <link href="http://yoursite.com/2017/07/06/Tinker%E9%9B%86%E6%88%90%E4%BC%98%E5%8C%96/"/>
+    <id>http://yoursite.com/2017/07/06/Tinker集成优化/</id>
+    <published>2017-07-06T02:47:53.000Z</published>
+    <updated>2018-04-21T03:50:46.282Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-兼容多渠道包，使用zip-comment方式生成渠道包（完成）"><a href="#1-兼容多渠道包，使用zip-comment方式生成渠道包（完成）" class="headerlink" title="1. 兼容多渠道包，使用zip comment方式生成渠道包（完成）"></a>1. 兼容多渠道包，使用zip comment方式生成渠道包（完成）</h3><p><a href="https://github.com/LeoPoldCrossing/packer-ng-plugin" target="_blank" rel="external">多渠道打包 packer-ng-plugin</a></p>
+<a id="more"></a>
+<ul>
+<li><p>1.1 引入</p>
+<ul>
+<li><p>根目录build.gradle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    ......</div><div class="line">    dependencies&#123;</div><div class="line">    // add packer-ng</div><div class="line">        classpath &apos;com.mcxiaoke.gradle:packer-ng:1.0.8&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改android模块的 build.gradle </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;packer&apos; </div><div class="line">dependencies &#123;</div><div class="line">    compile &apos;com.mcxiaoke.gradle:packer-helper:1.0.8&apos;</div><div class="line">&#125; </div><div class="line">android &#123;</div><div class="line">...</div><div class="line">signingConfigs &#123;</div><div class="line">    release &#123;</div><div class="line">            // 满足下面两个条件时需要此配置</div><div class="line">            // 1. Gradle版本 &gt;= 2.14.1</div><div class="line">            // 2. Android Gradle Plugin 版本 &gt;= 2.2.0</div><div class="line">            // 作用是只使用旧版签名，禁用V2版签名模式</div><div class="line">            v2SigningEnabled false </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>1.2 打包流程</p>
+<ul>
+<li>指定market属性 ： 两种方式<ul>
+<li>打包时命令行使用 -Pmarket = yourMarketPath</li>
+<li>在gradle.properties 里加入 market=yourMarketFilePath<br>market文件是渠道名列表文件，路径为相对路径 一般放在项目根目录 </li>
+</ul>
+</li>
+<li><p>market 格式 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">lianxiang#联想乐商店 // #前面为渠道号，后面为注释</div></pre></td></tr></table></figure>
+</li>
+<li><p>打包命令：market.txt 在项目根目录</p>
+<ul>
+<li><p>普通打包 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew -Pmarket=markets.txt clean apkRelease</div></pre></td></tr></table></figure>
+</li>
+<li><p>指定productFlavors 打包<br>如果项目中有多个productFlavors，默认使用第一个flavor生成的apk文件作为打包工具的输入参数，也可以指定flavor生成渠道包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 指定 使用名称为demo 的flavor 打包</div><div class="line">./gradlew -Pmarket=markets.txt clean apkDemoRelease</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>1.3 插件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">packer &#123;</div><div class="line">    // 是否检查signingConfig ，默认false</div><div class="line">    checkSigningConfig = true</div><div class="line">    // 是否检查gradle配置中的zipAlignEnabled，默认false </div><div class="line">    checkZipAlign = true</div><div class="line">    // 输出的apk文件名称</div><div class="line">    archiveNameFormat = &apos;$&#123;appPkg&#125;-$&#123;flavorName&#125;-$&#123;buildType&#125;-v$&#123;versionName&#125;-$&#123;versionCode&#125;&apos;</div><div class="line">    // 输出目录</div><div class="line">    archiveOutput = file(new File(project.buildDir.path, &quot;archives&quot;))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">apk 文件 名称配置：</div><div class="line"></div><div class="line">projectName - 项目名字</div><div class="line">appName - App模块名字</div><div class="line">appPkg - applicationId (App包名packageName)</div><div class="line">buildType - buildType (release/debug/beta等)</div><div class="line">flavorName - flavorName (对应渠道打包中的渠道名字)</div><div class="line">versionName - versionName (显示用的版本号)</div><div class="line">versionCode - versionCode (内部版本号)</div><div class="line">buildTime - buildTime (编译构建日期时间)</div><div class="line">fileMD5 - fileMD5 (最终APK文件的MD5哈希值) (v1.0.5新增)</div><div class="line">fileSHA1 - fileSHA1 (最终APK文件的SHA1哈希值) (v1.0.5新增)</div></pre></td></tr></table></figure>
+<h3 id="2-资源文件未做修改，patch文件过大（完成）"><a href="#2-资源文件未做修改，patch文件过大（完成）" class="headerlink" title="2. 资源文件未做修改，patch文件过大（完成）"></a>2. 资源文件未做修改，patch文件过大（完成）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// 1. 关闭aapt对png优化</div><div class="line">android&#123;</div><div class="line">    ...</div><div class="line">    aaptOptions &#123;</div><div class="line">        cruncherEnabled false</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// 2. 确认png文件没有修改的情况下 忽略png的修改</div><div class="line">tinkerPatch&#123;</div><div class="line">    ...</div><div class="line">    res&#123;</div><div class="line">        ...</div><div class="line">        ignoreChange = [&quot;*.png&quot;]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-TinkerPatch-补丁管理后台集成（完成）"><a href="#3-TinkerPatch-补丁管理后台集成（完成）" class="headerlink" title="3. TinkerPatch 补丁管理后台集成（完成）"></a>3. TinkerPatch 补丁管理后台集成（完成）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">gradle接入</div><div class="line">// tinker server</div><div class="line">compile(&quot;com.tencent.tinker:tinker-server-android:0.3.2&quot;)</div><div class="line">// 配置appkey  appVersion</div><div class="line">android&#123;</div><div class="line">    ...</div><div class="line">    // 微信Tinker 后台的appkey</div><div class="line">    buildConfigField &quot;String&quot;, &quot;APP_KEY&quot;, &quot;\&quot;68cfdc1fa61a19df\&quot;&quot;</div><div class="line">    buildConfigField &quot;String&quot;, &quot;APP_VERSION&quot;, &quot;\&quot;$&#123;versionName&#125;\&quot;&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 初始化TinkerPatch SDK</div><div class="line">TinkerServerManager.installTinkerServer(</div><div class="line">                getApplication(),Tinker.with(getApplication()), 1,BuildConfig.APP_KEY, BuildConfig.APP_VERSION, channel);</div><div class="line">// 检查是否有新补丁,默认1小时检查一次</div><div class="line">    TinkerServerManager.checkTinkerUpdate(false);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 注册service </div><div class="line">&lt;service</div><div class="line">    android:name=&quot;com.tencent.tinker.app.service.TinkerServerResultService&quot;</div><div class="line">    android:exported=&quot;false&quot;</div><div class="line">    /&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div></pre></td><td class="code"><pre><div class="line">// TinkerServerManager 及 Callback的封装</div><div class="line">public class TinkerServerManager &#123;</div><div class="line"></div><div class="line">    private static final String TAG = &quot;Tinker.ServerManager&quot;;</div><div class="line">    private static final String CONDITION_CHANNEL = &quot;channel&quot;;</div><div class="line"></div><div class="line">    static TinkerServerClient sTinkerServerClient;</div><div class="line">    static String channel;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 初始化 TinkerServer 实例</div><div class="line">     * @param context context</div><div class="line">     * @param tinker &#123;@link Tinker&#125; 实例</div><div class="line">     * @param hours  访问服务器的时间间隔, 单位为小时, 应为 &gt;= 0</div><div class="line">     * @param appKey 从Tinkerpatch中得到的appKey</div><div class="line">     * @param appVersion 在Tinkerpatch中填写的appVersion</div><div class="line">     * @param channel 发布的渠道名称，由于GooglePlay渠道的政策限制，我们会停止所有channel中含有google关键字的动态下发功能。</div><div class="line">     */</div><div class="line">    public static void installTinkerServer(Context context, Tinker tinker,</div><div class="line">                                           int hours, String appKey, String appVersion, String channel) &#123;</div><div class="line">        final boolean debug = Debugger.getInstance(context).isDebug();</div><div class="line">        TinkerLog.w(TAG, String.format(&quot;installTinkerServer, debug value: %s appVersion: %s, channel: %s&quot;,</div><div class="line">            String.valueOf(debug), appVersion, channel)</div><div class="line">        );</div><div class="line">        sTinkerServerClient = TinkerServerClient.init(</div><div class="line">            context,</div><div class="line">            tinker,</div><div class="line">            appKey,</div><div class="line">            appVersion,</div><div class="line">            debug,</div><div class="line">            new TinkerServerPatchRequestCallback()</div><div class="line">        );</div><div class="line">        // add channel condition</div><div class="line">        sTinkerServerClient.updateTinkerCondition(CONDITION_CHANNEL, channel);</div><div class="line">        sTinkerServerClient.setCheckIntervalByHours(hours);</div><div class="line">        TinkerServerManager.channel = channel;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 检查服务器是否有补丁更新</div><div class="line">     * @param immediately 是否立刻检查,忽略时间间隔限制</div><div class="line">     */</div><div class="line">    public static void checkTinkerUpdate(final boolean immediately) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;checkTinkerUpdate, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        Tinker tinker = sTinkerServerClient.getTinker();</div><div class="line">        //only check at the main process</div><div class="line">        if (tinker.isMainProcess()) &#123;</div><div class="line">            Looper.getMainLooper().myQueue().addIdleHandler(new MessageQueue.IdleHandler() &#123;</div><div class="line">                @Override</div><div class="line">                public boolean queueIdle() &#123;</div><div class="line">                    sTinkerServerClient.checkTinkerUpdate(immediately);</div><div class="line">                    return false;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 向服务器请求在线参数信息</div><div class="line">     * @param configRequestCallback</div><div class="line">     * @param immediately            是否立刻请求,忽略时间间隔限制</div><div class="line">     */</div><div class="line">    public static void getDynamicConfig(final ConfigRequestCallback configRequestCallback, final boolean immediately) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;checkTinkerUpdate, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        Tinker tinker = sTinkerServerClient.getTinker();</div><div class="line">        //only check at the main process</div><div class="line">        if (tinker.isMainProcess()) &#123;</div><div class="line">            Looper.getMainLooper().myQueue().addIdleHandler(new MessageQueue.IdleHandler() &#123;</div><div class="line">                @Override</div><div class="line">                public boolean queueIdle() &#123;</div><div class="line">                    sTinkerServerClient.getDynamicConfig(configRequestCallback, immediately);</div><div class="line">                    return false;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 设置在线参数的时间间隔</div><div class="line">     * @param hours 大于等于0的整数</div><div class="line">     */</div><div class="line">    public static void setGetConfigIntervalByHours(int hours) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;setGetConfigIntervalByHours, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        sTinkerServerClient.setGetConfigIntervalByHours(hours);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 将在线参数返回的 json 转化为 Hashmap</div><div class="line">     * @param jsonString</div><div class="line">     * @return</div><div class="line">     * @throws JSONException</div><div class="line">     */</div><div class="line">    public static HashMap&lt;String, String&gt; jsonToMap(String jsonString) throws JSONException &#123;</div><div class="line">        HashMap&lt;String, String&gt; map = new HashMap&lt;&gt;();</div><div class="line">        JSONObject jObject = new JSONObject(jsonString);</div><div class="line">        Iterator&lt;String&gt; keys = jObject.keys();</div><div class="line"></div><div class="line">        while (keys.hasNext()) &#123;</div><div class="line">            String key = keys.next();</div><div class="line">            String value = jObject.getString(key);</div><div class="line">            map.put(key, value);</div><div class="line">        &#125;</div><div class="line">        return map;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * 设置条件下发的属性</div><div class="line">     * @param key</div><div class="line">     * @param value</div><div class="line">     */</div><div class="line">    public static void updateTinkerCondition(String key, String value) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;updateTinkerCondition, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        sTinkerServerClient.updateTinkerCondition(key, value);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 上报补丁合成情况</div><div class="line">     * @param patchResult</div><div class="line">     */</div><div class="line">    public static void reportTinkerPatchFail(PatchResult patchResult) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchFail, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (patchResult == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchFail, patchResult == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if (patchResult.isSuccess) &#123;</div><div class="line">            TinkerLog.i(TAG, &quot;reportTinkerPatchFail, patch success, just return&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        String patchMd5 = (patchResult.patchVersion != null)</div><div class="line">            ? patchResult.patchVersion : SharePatchFileUtil.getMD5(new File(patchResult.rawPatchFilePath));</div><div class="line"></div><div class="line">        if (!patchMd5.equals(sTinkerServerClient.getCurrentPatchMd5())) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchFail, md5 not equal, patchMd5:%s, currentPatchMd5:%s&quot;,</div><div class="line">                patchMd5, sTinkerServerClient.getCurrentPatchMd5()</div><div class="line">            );</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        sTinkerServerClient.reportPatchFail(</div><div class="line">            sTinkerServerClient.getCurrentPatchVersion(),</div><div class="line">            DefaultPatchRequestCallback.ERROR_PATCH_FAIL</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 上报补丁合成情况</div><div class="line">     * @param patchMd5</div><div class="line">     */</div><div class="line">    public static void reportTinkerPatchListenerFail(int returnCode, String patchMd5) &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchListenerFail, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (returnCode == ShareConstants.ERROR_PATCH_OK) &#123;</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (patchMd5 == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchListenerFail, patchMd5 == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        if (!patchMd5.equals(sTinkerServerClient.getCurrentPatchMd5())) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchListenerFail, md5 not equal, patchMd5:%s, currentPatchMd5:%s&quot;,</div><div class="line">                patchMd5, sTinkerServerClient.getCurrentPatchMd5()</div><div class="line">            );</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        sTinkerServerClient.reportPatchFail(</div><div class="line">            sTinkerServerClient.getCurrentPatchVersion(),</div><div class="line">            DefaultPatchRequestCallback.ERROR_LISTENER_CHECK_FAIL</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * 上报补丁加载情况</div><div class="line">     */</div><div class="line">    public static void reportTinkerLoadFail() &#123;</div><div class="line">        if (sTinkerServerClient == null) &#123;</div><div class="line">            TinkerLog.e(TAG, &quot;reportTinkerPatchFail, sTinkerServerClient == null&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        sTinkerServerClient.reportPatchFail(</div><div class="line">            sTinkerServerClient.getCurrentPatchVersion(),</div><div class="line">            DefaultPatchRequestCallback.ERROR_LOAD_FAIL</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static boolean isGooglePlayChannel() &#123;</div><div class="line">        return channel.contains(&quot;google&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static boolean is360Channel()&#123;</div><div class="line">        return channel.contains(&quot;360&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line">public class TinkerServerPatchRequestCallback extends DefaultPatchRequestCallback &#123;</div><div class="line">    private static final String TAG = &quot;Tinker.TinkerServerDefaultRequestCallback&quot;;</div><div class="line"></div><div class="line">    public static final String TINKER_RETRY_PATCH     = &quot;tinker_retry_patch&quot;;</div><div class="line">    public static final int    TINKER_MAX_RETRY_COUNT = 3;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public boolean beforePatchRequest() &#123;</div><div class="line">        boolean result = super.beforePatchRequest();</div><div class="line">        if (result) &#123;</div><div class="line">            TinkerServerClient client = TinkerServerClient.get();</div><div class="line">            Tinker tinker = client.getTinker();</div><div class="line">            Context context = client.getContext();</div><div class="line"></div><div class="line">            if (!tinker.isMainProcess()) &#123;</div><div class="line">                TinkerLog.e(TAG, &quot;beforePatchRequest, only request on the main process&quot;);</div><div class="line">                return false;</div><div class="line">            &#125;</div><div class="line">            if (TinkerServerManager.isGooglePlayChannel()) &#123;</div><div class="line">                TinkerLog.e(TAG, &quot;beforePatchRequest, google play channel, return false&quot;);</div><div class="line">                return false;</div><div class="line">            &#125;</div><div class="line">            if (TinkerServerManager.is360Channel()) &#123;</div><div class="line">                TinkerLog.e(TAG, &quot;beforePatchRequest, 360 channel, return false&quot;);</div><div class="line">                return false;</div><div class="line">            &#125;</div><div class="line">            // main process must be the newly version</div><div class="line">            // check whether it is pending work</div><div class="line">            String currentPatchMd5 = client.getCurrentPatchMd5();</div><div class="line">            TinkerLoadResult tinkerLoadResult = tinker.getTinkerLoadResultIfPresent();</div><div class="line"></div><div class="line">            if (tinkerLoadResult.currentVersion == null || !currentPatchMd5.equals(tinkerLoadResult.currentVersion)) &#123;</div><div class="line">                Integer version = client.getCurrentPatchVersion();</div><div class="line">                if (version &gt; 0) &#123;</div><div class="line">                    File patchFile = ServerUtils.getServerFile(</div><div class="line">                        context, client.getAppVersion(), String.valueOf(version)</div><div class="line">                    );</div><div class="line">                    if (patchFile.exists() &amp;&amp; patchFile.isFile() &amp;&amp; handlePatchFile(context, version, patchFile)) &#123;</div><div class="line">                        return false;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private boolean handlePatchFile(Context context, Integer version, File patchFile) &#123;</div><div class="line">        SharedPreferences sp = context.getSharedPreferences(</div><div class="line">            TinkerServerClient.SHARE_SERVER_PREFERENCE_CONFIG, Context.MODE_PRIVATE</div><div class="line">        );</div><div class="line">        int current = sp.getInt(TINKER_RETRY_PATCH, 0);</div><div class="line">        if (current &gt;= TINKER_MAX_RETRY_COUNT) &#123;</div><div class="line">            SharePatchFileUtil.safeDeleteFile(patchFile);</div><div class="line">            sp.edit().putInt(TINKER_RETRY_PATCH, 0).commit();</div><div class="line">            TinkerLog.w(TAG,</div><div class="line">                &quot;beforePatchRequest, retry patch install more than %d times, version: %d, patch:%s&quot;,</div><div class="line">                current, version, patchFile.getPath()</div><div class="line">            );</div><div class="line">        &#125; else &#123;</div><div class="line">            TinkerLog.w(TAG, &quot;beforePatchRequest, have pending patch to install, version: %d, patch:%s&quot;,</div><div class="line">                version, patchFile.getPath()</div><div class="line">            );</div><div class="line"></div><div class="line">            sp.edit().putInt(TINKER_RETRY_PATCH, ++current).commit();</div><div class="line">            TinkerInstaller.onReceiveUpgradePatch(context, patchFile.getAbsolutePath());</div><div class="line">            return true;</div><div class="line">        &#125;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onPatchRollback() &#123;</div><div class="line">        TinkerLog.w(TAG, &quot;onPatchRollback&quot;);</div><div class="line">        TinkerServerClient client = TinkerServerClient.get();</div><div class="line"></div><div class="line">        if (!client.getTinker().isTinkerLoaded()) &#123;</div><div class="line">            TinkerLog.w(TAG, &quot;onPatchRollback, tinker is not loaded, just return&quot;);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if (TinkerServerUtils.isBackground()) &#123;</div><div class="line">            TinkerLog.i(TAG, &quot;onPatchRollback, it is in background, just clean patch and kill all process&quot;);</div><div class="line">            rollbackPatchDirectly();</div><div class="line">        &#125; else &#123;</div><div class="line">            //we can wait process at background, such as onAppBackground</div><div class="line">            //or we can restart when the screen off</div><div class="line">            TinkerLog.i(TAG, &quot;tinker wait screen to clean patch and kill all process&quot;);</div><div class="line">            new TinkerServerUtils.ScreenState(client.getContext(), new TinkerServerUtils.IOnScreenOff() &#123;</div><div class="line">                @Override</div><div class="line">                public void onScreenOff() &#123;</div><div class="line">                    rollbackPatchDirectly();</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onPatchDownloadFail(Exception e, Integer newVersion, Integer currentVersion) &#123;</div><div class="line">        super.onPatchDownloadFail(e, newVersion, currentVersion);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onPatchSyncFail(Exception e) &#123;</div><div class="line">        super.onPatchSyncFail(e);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public boolean onPatchUpgrade(File file, Integer newVersion, Integer currentVersion) &#123;</div><div class="line">        boolean result = super.onPatchUpgrade(file, newVersion, currentVersion);</div><div class="line">        if (result) &#123;</div><div class="line">            TinkerServerClient client = TinkerServerClient.get();</div><div class="line">            Context context = client.getContext();</div><div class="line">            SharedPreferences sp = context.getSharedPreferences(</div><div class="line">                TinkerServerClient.SHARE_SERVER_PREFERENCE_CONFIG, Context.MODE_PRIVATE</div><div class="line">            );</div><div class="line">            sp.edit().putInt(TINKER_RETRY_PATCH, 0).commit();</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="4-合成进程可能被中断，补丁合成的重试"><a href="#4-合成进程可能被中断，补丁合成的重试" class="headerlink" title="4. 合成进程可能被中断，补丁合成的重试"></a>4. 合成进程可能被中断，补丁合成的重试</h3><p>重试三次 TinkerServePatchRequestCallBack  – handlePatchFile </p>
+<h3 id="5-补丁后程序无法启动的处理（完成）"><a href="#5-补丁后程序无法启动的处理（完成）" class="headerlink" title="5. 补丁后程序无法启动的处理（完成）"></a>5. 补丁后程序无法启动的处理（完成）</h3><p>停用Tinker 及 清理补丁</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Tinker.with(context).setTinkerDisable();</div><div class="line">Tinker.with(context).cleanPatch();</div></pre></td></tr></table></figure>
+<h3 id="6-Tinker-默认的-DefaultTinkerResultService-会在加载patch成功之后立刻杀掉进程-应该在程序进入后台或者手机锁屏后杀掉进程，使补丁生效！-（完成）"><a href="#6-Tinker-默认的-DefaultTinkerResultService-会在加载patch成功之后立刻杀掉进程-应该在程序进入后台或者手机锁屏后杀掉进程，使补丁生效！-（完成）" class="headerlink" title="6. Tinker 默认的 DefaultTinkerResultService 会在加载patch成功之后立刻杀掉进程,应该在程序进入后台或者手机锁屏后杀掉进程，使补丁生效！ （完成）"></a>6. Tinker 默认的 DefaultTinkerResultService 会在加载patch成功之后立刻杀掉进程,应该在程序进入后台或者手机锁屏后杀掉进程，使补丁生效！ （完成）</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-兼容多渠道包，使用zip-comment方式生成渠道包（完成）&quot;&gt;&lt;a href=&quot;#1-兼容多渠道包，使用zip-comment方式生成渠道包（完成）&quot; class=&quot;headerlink&quot; title=&quot;1. 兼容多渠道包，使用zip comment方式生成渠道包（完成）&quot;&gt;&lt;/a&gt;1. 兼容多渠道包，使用zip comment方式生成渠道包（完成）&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/LeoPoldCrossing/packer-ng-plugin&quot;&gt;多渠道打包 packer-ng-plugin&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+      <category term="hotfix" scheme="http://yoursite.com/tags/hotfix/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微信Tinker集成</title>
+    <link href="http://yoursite.com/2017/07/01/%E5%BE%AE%E4%BF%A1Tinker%E9%9B%86%E6%88%90/"/>
+    <id>http://yoursite.com/2017/07/01/微信Tinker集成/</id>
+    <published>2017-07-01T02:47:53.000Z</published>
+    <updated>2018-04-21T03:49:13.414Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<blockquote>
+<p>前言： Tinker 是一个开源项目(Github链接)，它是微信官方的Android热补丁解决方案，它支持动态下发代码、So库以及资源，让应用能够在不需要重新安装的情况下实现更新。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="1-1-Gradle-接入"><a href="#1-1-Gradle-接入" class="headerlink" title="1.1 Gradle 接入"></a>1.1 Gradle 接入</h4><p>在项目的build.gradle中添加 tinker-patch-gradle-plugin的依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath (&apos;com.tencent.tinker:tinker-patch-gradle-plugin:1.7.5&apos;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在app的build.gradle中添加tinker的库依赖以及apply tinker 的gradle plugin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dependencies&#123;</div><div class="line">    //tinker的核心库</div><div class="line">    compile(&apos;com.tencent.tinker:tinker-android-lib:1.7.5&apos;)</div><div class="line">    //可选，用于注解生成application类</div><div class="line">    provided(&apos;com.tencent.tinker:tinker-android-anno:1.7.5&apos;)</div><div class="line">&#125;</div><div class="line">//　应用plugin </div><div class="line">apply plugin:&apos;com.tencent.tinker.patch&apos;</div></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="1-2-Tinker-Gradle-配置"><a href="#1-2-Tinker-Gradle-配置" class="headerlink" title="1.2 Tinker Gradle 配置"></a>1.2 Tinker Gradle 配置</h4><p><a href="https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97" target="_blank" rel="external">参考 Tinker 接入指南</a><br>tinkerPatch 全局配置示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">tinkerPatch &#123;</div><div class="line">        // 基准包 path </div><div class="line">        oldApk = getOldApkPath()</div><div class="line">        ignoreWarning = false</div><div class="line">        useSign = true</div><div class="line">        buildConfig &#123;</div><div class="line">            // mapping文件</div><div class="line">            applyMapping = getApplyMappingPath()</div><div class="line">            // R文件</div><div class="line">            applyResourceMapping = getApplyResourceMappingPath()</div><div class="line">            // tinkerId 必须设置</div><div class="line">            tinkerId = getTinkerIdValue()</div><div class="line">        &#125;</div><div class="line">        dex &#123;</div><div class="line">            dexMode = &quot;jar&quot;</div><div class="line">            // 是否提前生成dex，而非合成方式，回退成Qzone方案</div><div class="line">            usePreGeneratedPatchDex = false</div><div class="line">            pattern = [&quot;classes*.dex&quot;,</div><div class="line">                       &quot;assets/secondary-dex-?.jar&quot;]</div><div class="line">            loader = [&quot;com.tencent.tinker.loader.*&quot;, &quot;com.rxhui.pay.application.MyApplication&quot;,</div><div class="line">            ]</div><div class="line">        &#125;</div><div class="line">        lib &#123;</div><div class="line">            pattern = [&quot;lib/armeabi/*.so&quot;]</div><div class="line">        &#125;</div><div class="line">        res &#123;</div><div class="line">            pattern = [&quot;res/*&quot;, &quot;assets/*&quot;, &quot;resources.arsc&quot;, &quot;AndroidManifest.xml&quot;]</div><div class="line">            // 生成patch 需要忽略的文件pattern（此处有坑）</div><div class="line">//            ignoreChange = []</div><div class="line">            ignoreChange = [&quot;*.png&quot;]</div><div class="line">            largeModSize = 100</div><div class="line">        &#125;</div><div class="line">        packageConfig &#123;</div><div class="line">            //todo 每次升级时，填写升级信息</div><div class="line">            configField(&quot;patchMessage&quot;, &quot;tinker test&quot;)</div><div class="line">            configField(&quot;platform&quot;, &quot;all&quot;)</div><div class="line">            configField(&quot;patchVersion&quot;, getTinkerIdValue())</div><div class="line">        &#125;</div><div class="line">        sevenZip &#123;</div><div class="line">            zipArtifact = &quot;com.tencent.mm:SevenZip:1.1.10&quot;</div><div class="line">            /**</div><div class="line">             * optional，default &apos;7za&apos;</div><div class="line">             * todo you can specify the 7za path yourself, it will overwrite the zipArtifact value</div><div class="line">             */</div><div class="line">//            path = &quot;/usr/bin/7za&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="1-3-Patch-生成"><a href="#1-3-Patch-生成" class="headerlink" title="1.3 Patch 生成"></a>1.3 Patch 生成</h4><ul>
+<li>执行assemble任务，生成 oldApk </li>
+<li>修改代码，bug 修复，资源文件修改等等</li>
+<li>修改gradle tinkerPatch 配置，oldApk applyMapping及applyResourceMapping （混淆 mapping 和R文件使用同一份）</li>
+<li>执行 tinkerPatch task 生成patch文件</li>
+</ul>
+<p>apk路径，mapping 路径，R.txt 路径 示例代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">def bakPath = file(&quot;$&#123;rootDir&#125;/tinker/bakApk&quot;)</div><div class="line">ext &#123;</div><div class="line">    // 普通生成patch模式</div><div class="line">    tinkerOldApkPath = &quot;$&#123;bakPath&#125;/base-app-release-v1.0.1-2016-1125.apk&quot;</div><div class="line">    tinkerApplyMappingPath = &quot;$&#123;bakPath&#125;/base-app-release-v1.0.1-2016-1125-mapping.txt&quot;</div><div class="line">    tinkerApplyResourcePath = &quot;$&#123;bakPath&#125;/base-app-release-v1.0.1-2016-1125-R.txt&quot;</div><div class="line"></div><div class="line">    // 包含多个flavor时配置  </div><div class="line">    tinkerBuildFlavorDirectory = &quot;$&#123;bakPath&#125;/app-2016-1209&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">tinkerPatch中：</div><div class="line"></div><div class="line">List&lt;String&gt; flavors = new ArrayList&lt;&gt;();</div><div class="line">    project.android.productFlavors.each &#123;flavor -&gt;</div><div class="line">        flavors.add(flavor.name)</div><div class="line">    &#125;</div><div class="line">    boolean hasFlavors = flavors.size() &gt; 0</div><div class="line">    /**</div><div class="line">    * 备份apk mapping R文件值bakPath</div><div class="line">    */</div><div class="line">    android.applicationVariants.all &#123; variant -&gt;</div><div class="line">        /**</div><div class="line">         * task type, you want to bak</div><div class="line">         */</div><div class="line">        def taskName = variant.name</div><div class="line">        def date = new Date().format(&quot;MMdd-HH-mm-ss&quot;)</div><div class="line"></div><div class="line">        tasks.all &#123;</div><div class="line">            if (&quot;assemble$&#123;taskName.capitalize()&#125;&quot;.equalsIgnoreCase(it.name)) &#123;</div><div class="line"></div><div class="line">                it.doLast &#123;</div><div class="line">                    copy &#123;</div><div class="line">                        def fileNamePrefix = &quot;$&#123;project.name&#125;-$&#123;variant.baseName&#125;&quot;</div><div class="line">                        def newFileNamePrefix = hasFlavors ? &quot;$&#123;fileNamePrefix&#125;&quot; : &quot;$&#123;fileNamePrefix&#125;-$&#123;date&#125;&quot;</div><div class="line"></div><div class="line">                        def destPath = hasFlavors ? file(&quot;$&#123;bakPath&#125;/$&#123;project.name&#125;-$&#123;date&#125;/$&#123;variant.flavorName&#125;&quot;) : bakPath</div><div class="line">                        from variant.outputs.outputFile</div><div class="line">                        into destPath</div><div class="line">                        rename &#123; String fileName -&gt;</div><div class="line">                            fileName.replace(&quot;$&#123;fileNamePrefix&#125;.apk&quot;, &quot;$&#123;newFileNamePrefix&#125;.apk&quot;)</div><div class="line">                        &#125;</div><div class="line"></div><div class="line">                        from &quot;$&#123;buildDir&#125;/outputs/mapping/$&#123;variant.dirName&#125;/mapping.txt&quot;</div><div class="line">                        into destPath</div><div class="line">                        rename &#123; String fileName -&gt;</div><div class="line">                            fileName.replace(&quot;mapping.txt&quot;, &quot;$&#123;newFileNamePrefix&#125;-mapping.txt&quot;)</div><div class="line">                        &#125;</div><div class="line"></div><div class="line">                        from &quot;$&#123;buildDir&#125;/intermediates/symbols/$&#123;variant.dirName&#125;/R.txt&quot;</div><div class="line">                        into destPath</div><div class="line">                        rename &#123; String fileName -&gt;</div><div class="line">                            fileName.replace(&quot;R.txt&quot;, &quot;$&#123;newFileNamePrefix&#125;-R.txt&quot;)</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /**</div><div class="line">    * 多flavor 处理  配置每个flavor的tinkerPatch task </div><div class="line">    */</div><div class="line">    project.afterEvaluate &#123;</div><div class="line">        //sample use for build all flavor for one time</div><div class="line">        if (hasFlavors) &#123;</div><div class="line">            task(tinkerPatchAllFlavorRelease) &#123;</div><div class="line">                group = &apos;tinker&apos;</div><div class="line">                def originOldPath = getTinkerBuildFlavorDirectory()</div><div class="line">                for (String flavor : flavors) &#123;</div><div class="line">                    def tinkerTask = tasks.getByName(&quot;tinkerPatch$&#123;flavor.capitalize()&#125;Release&quot;)</div><div class="line">                    dependsOn tinkerTask</div><div class="line">                    def preAssembleTask = tasks.getByName(&quot;process$&#123;flavor.capitalize()&#125;ReleaseManifest&quot;)</div><div class="line">                    preAssembleTask.doFirst &#123;</div><div class="line">                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 15)</div><div class="line">                        project.tinkerPatch.oldApk = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-release.apk&quot;</div><div class="line">                        project.tinkerPatch.buildConfig.applyMapping = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-release-mapping.txt&quot;</div><div class="line">                        project.tinkerPatch.buildConfig.applyResourceMapping = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-release-R.txt&quot;</div><div class="line"></div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            task(tinkerPatchAllFlavorDebug) &#123;</div><div class="line">                group = &apos;tinker&apos;</div><div class="line">                def originOldPath = getTinkerBuildFlavorDirectory()</div><div class="line">                for (String flavor : flavors) &#123;</div><div class="line">                    def tinkerTask = tasks.getByName(&quot;tinkerPatch$&#123;flavor.capitalize()&#125;Debug&quot;)</div><div class="line">                    dependsOn tinkerTask</div><div class="line">                    def preAssembleTask = tasks.getByName(&quot;process$&#123;flavor.capitalize()&#125;DebugManifest&quot;)</div><div class="line">                    preAssembleTask.doFirst &#123;</div><div class="line">                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 13)</div><div class="line">                        project.tinkerPatch.oldApk = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-debug.apk&quot;</div><div class="line">                        project.tinkerPatch.buildConfig.applyMapping = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-debug-mapping.txt&quot;</div><div class="line">                        project.tinkerPatch.buildConfig.applyResourceMapping = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-debug-R.txt&quot;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="1-4-Tinker-patch-加载"><a href="#1-4-Tinker-patch-加载" class="headerlink" title="1.4 Tinker patch 加载"></a>1.4 Tinker patch 加载</h4><ul>
+<li><p>1.4.1 改造Application类（实现补丁包可以对Application做修改），两种方式（建议使用注解的方式）：</p>
+<ul>
+<li>（1）定义代理类实现DefaultApplicationLike<br><a href="https://github.com/Tencent/tinker/wiki/Tinker-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%89%A9%E5%B1%95" target="_blank" rel="external">Tinker自定义扩展</a></li>
+<li>（2）Annotation 方式，需要引入 tinker-android-anno。保证无法修改Application，避免误操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> @DefaultLifeCycle(</div><div class="line">application = &quot;.SampleApplication&quot;,                       //application类名</div><div class="line">flags = ShareConstants.TINKER_ENABLE_ALL,                 //tinkerFlags</div><div class="line">loaderClass = &quot;com.tencent.tinker.loader.TinkerLoader&quot;,   //loaderClassName, 我们这里使用默认即可!</div><div class="line">loadVerifyFlag = false)                                   //tinkerLoadVerifyFlag</div><div class="line">public class SampleApplicationLike extends DefaultApplicationLike</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注：将原来的application类删掉，初始化操作全部放在代理类中。</p>
+<ul>
+<li><p>1.4.2 gradle tinker patch 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dex &#123;</div><div class="line">loader = [&quot;com.tencent.tinker.loader.*&quot;,</div><div class="line">         // 配置成自己的application </div><div class="line">          &quot;tinker.sample.android.YourApplication&quot;,       </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>1.4.3 安装tinker </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">@SuppressWarnings(&quot;unused&quot;)</div><div class="line">@DefaultLifeCycle(application = &quot;tinker.sample.android.app.SampleApplication&quot;,</div><div class="line">                  flags = ShareConstants.TINKER_ENABLE_ALL,</div><div class="line">                  loadVerifyFlag = false)</div><div class="line">public class SampleApplicationLike extends DefaultApplicationLike &#123;</div><div class="line">    private static final String TAG = &quot;Tinker.SampleApplicationLike&quot;;</div><div class="line"></div><div class="line">    public SampleApplicationLike(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag,</div><div class="line">                                 long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent,</div><div class="line">                                 Resources[] resources, ClassLoader[] classLoader, AssetManager[] assetManager) &#123;</div><div class="line">        super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent, resources, classLoader, assetManager);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)</div><div class="line">    @Override</div><div class="line">    public void onBaseContextAttached(Context base) &#123;</div><div class="line">        super.onBaseContextAttached(base);</div><div class="line">       </div><div class="line">        MultiDex.install(base);</div><div class="line"></div><div class="line">        SampleApplicationContext.application = getApplication();</div><div class="line">        SampleApplicationContext.context = getApplication();</div><div class="line"></div><div class="line">        //installTinker after load multiDex</div><div class="line">        //or you can put com.tencent.tinker.** to main dex</div><div class="line">        TinkerInstaller.install(this);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>1.4.4 加载补丁<br>将生成的补丁包，推送到指定目录，运行app时调用下面的代码进行加载。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + &quot;/patch_signed_7zip.apk&quot;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在实际开发过程中，我们是需要将补丁存到服务器，由服务器进行补丁分发，Tinker的开发团队已经提供，集成文档很详细，我就不做搬运工了。<a href="http://www.tinkerpatch.com/Docs/SDK" target="_blank" rel="external">Tinker Server SDK集成文档</a></p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;前言： Tinker 是一个开源项目(Github链接)，它是微信官方的Android热补丁解决方案，它支持动态下发代码、So库以及资源，让应用能够在不需要重新安装的情况下实现更新。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+      <category term="hotfix" scheme="http://yoursite.com/tags/hotfix/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android 设备获取唯一标识</title>
+    <link href="http://yoursite.com/2017/06/20/Android%E8%AE%BE%E5%A4%87%E8%8E%B7%E5%8F%96%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/"/>
+    <id>http://yoursite.com/2017/06/20/Android设备获取唯一标识/</id>
+    <published>2017-06-20T02:47:53.000Z</published>
+    <updated>2018-04-21T04:03:43.952Z</updated>
+    
+    <content type="html"><![CDATA[<p>Android设备有很多的”标识”号，比如常见的IMEI，SerizalNumber，UUID等概念。既然这样，那我们就把这些概念拉出来溜溜，对这些标识做一个总结，看看Android为毛整这么多标识。</p>
+<a id="more"></a>
+<h3 id="DEVICE-ID"><a href="#DEVICE-ID" class="headerlink" title="DEVICE_ID"></a>DEVICE_ID</h3><ul>
+<li><p>IMEI（International Mobile EquipmentIdentity）<br>是国际移动设备身份码的缩写，由15为数字组成，它与每台手机一一对应，该码是全世界唯一的。</p>
+</li>
+<li><p>MEID（Mobile Equipment Identifier）<br>全球唯一的56bit CDMA制式移动终端标识号。标示号会被烧入到终端里，不可修改。可用来对CDMA制式移动设备进行身份识别和跟踪，由14位数字组成。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public static String getDeviceID(Context context)&#123;</div><div class="line">    TelephonyManager tm = (TelephonyManager)context.getSystemService（Context.TELEPHONY_SERVICE）；</div><div class="line">    return tm.getDeviceID().toString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码会根据不同的手机设备返回IMEI，MEID或者ESN码，作为Android手机设备的唯一标识。是不是感觉很简单？ 好吧，让我们看看官方开发者的是怎么说的。</p>
+<ul>
+<li><p>Non-phones: Wifi-only devices or music players that don’t have telephony hardware just don’t have this kind of unique identifier.</p>
+</li>
+<li><p>Persistence: On devices which do have this, it persists across device data wipes and factory resets. It’s not clear at all if, in this situation, your app should regard this as the same device.</p>
+</li>
+<li><p>Privilege:It requires READ_PHONE_STATE permission, which is irritating if you don’t otherwise use or need telephony.</p>
+</li>
+<li><p>Bugs: We have seen a few instances of production phones for which the implementation is buggy and returns garbage, for example zeros or asterisks.</p>
+</li>
+</ul>
+<p>看完上面的介绍，感觉自己又被谷歌以及某些厂商们耍弄了一番，但是胳膊拧不过大腿，谁让人家强势呢，找替代方法吧，先去看看物理mac地址，地球人都知道这个玩意是唯一的。</p>
+<h3 id="MAC-ADDRESS"><a href="#MAC-ADDRESS" class="headerlink" title="MAC_ADDRESS"></a>MAC_ADDRESS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public static String getMacAddress(Context context)&#123;</div><div class="line">    WifiManager wm = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);</div><div class="line">    return wm.getConnectionInfo().getMacAddress();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public static String getBluetoothAddress()&#123;</div><div class="line">    BluetoothAdapter adapter = BluetoothAdapter.getDefauleAdapter();</div><div class="line">    if(adapter == null)&#123;</div><div class="line">        // 不支持蓝牙</div><div class="line">        return &quot;&quot; </div><div class="line">    &#125;</div><div class="line">    if(!adapter.isEnabled())&#123;</div><div class="line">        // 蓝牙未打开</div><div class="line">        return &quot;&quot;</div><div class="line">    &#125;</div><div class="line">    return adapter.getAddress();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>哦了，获取到了wifi或者蓝牙的mac地址，还没来得及庆幸一番，一盆凉水又浇了下来。</p>
+<ul>
+<li>硬件限制：不是所有的设备都有wifi或者蓝牙，硬件不支持，编一个mac地址出来？</li>
+<li>获取限制：如果wifi没有打开过，是无法获取mac地址的，蓝牙还要可恨一点，只有在打开的时候才能获取到。</li>
+</ul>
+<p>Pass，宝宝心里苦，宝宝不说，继续找其他方法。。。</p>
+<h3 id="Serial-Number"><a href="#Serial-Number" class="headerlink" title="Serial Number"></a>Serial Number</h3><p>硬件序列，在Android 2.2 以上的设备可以通过android.os.Build.SERIAL获得序列号。没有电话功能的设备上被要求必须提供，手机就看厂商心情了。。。所以经常返回unKnown，大写的PASS！！！</p>
+<h3 id="ANDROID-ID"><a href="#ANDROID-ID" class="headerlink" title="ANDROID_ID"></a>ANDROID_ID</h3><p>ANDROID_ID是设备第一次启动时产生和存储的64bit的一个数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public static String getAndroidId(Context context)&#123;</div><div class="line">    return Settings.Secure.getString(context.getContentResolver),Setting.Secure.ANDROID_ID);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这哥们看起来挺靠谱，但是android的各大厂商们又来刷存在感了。。。</p>
+<ul>
+<li>官方介绍：它在Android &lt;=2.1 or Android&gt;=2.3的版本是可靠的，但是2.2。。。，当然此缺陷可以忽略不计。。</li>
+<li>在某些厂商的设备，有一个bug，每个设备都会产生相同的ANDROID_ID:9774d56d682e549c。别问我为什么，我也不知道。。。</li>
+<li>某些厂商会返回null。。。</li>
+<li>设备差异：CDMA设备，ANDROID_ID和DEVICE_ID是同一个值。</li>
+</ul>
+<h3 id="Installtion-UUID"><a href="#Installtion-UUID" class="headerlink" title="Installtion: UUID"></a>Installtion: UUID</h3><p>UUID是官方推荐的一个标识方法，该方法无需访问设备的资源，跟设备类型无关。它是在程序第一次运行后生成一个ID实现的（<strong>自己生成，非系统生成！</strong>），它不是标识设备，而是某一个应用的唯一ID。 </p>
+<p>Google Developer Blog 给出了这样一个框架：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">public class Installation &#123;</div><div class="line">    private static String sID = null;</div><div class="line">    private static final String INSTALLATION = &quot;INSTALLATION&quot;;</div><div class="line"></div><div class="line">    public synchronized static String id(Context context) &#123;</div><div class="line">        if (sID == null) &#123;  </div><div class="line">            File installation = new File(context.getFilesDir(), INSTALLATION);</div><div class="line">            try &#123;</div><div class="line">                if (!installation.exists())</div><div class="line">                    writeInstallationFile(installation);</div><div class="line">                sID = readInstallationFile(installation);</div><div class="line">            &#125; catch (Exception e) &#123;</div><div class="line">                throw new RuntimeException(e);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return sID;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static String readInstallationFile(File installation) throws IOException &#123;</div><div class="line">        RandomAccessFile f = new RandomAccessFile(installation, &quot;r&quot;);</div><div class="line">        byte[] bytes = new byte[(int) f.length()];</div><div class="line">        f.readFully(bytes);</div><div class="line">        f.close();</div><div class="line">        return new String(bytes);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void writeInstallationFile(File installation) throws IOException &#123;</div><div class="line">        FileOutputStream out = new FileOutputStream(installation);</div><div class="line">        String id = UUID.randomUUID().toString();</div><div class="line">        out.write(id.getBytes());</div><div class="line">        out.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>前面说过，Installtion ID 不是设备的唯一标识，它会为不同的应用程序生成不同的ID，并且在程序重新安装后也会生成不同的ID。</p>
+<p>到这里我的耐心基本被消磨殆尽。。。</p>
+<p>##总结<br>既然通过一种方式，不能保证ID的可靠性，那就采用多个，对比以上的几种方案，决定通过ANDROID_ID,DEVICE_ID,INSTALLTION_ID来生成一个ID，先来看下此方案的注意事项：</p>
+<ul>
+<li>目前的手机基本上都在4.0以上，所以ANDROID_ID一般可用，可以通过其生成一个UUID</li>
+<li>厂商的定制导致ANDROID_ID返回9774d56d682e549c和Null,用DeviceID替代ANDROID_ID，作为种子生成一个UUID</li>
+<li>以上都无法获取，生成一个InstalltionID</li>
+<li>当需要生成一个deviceid时，即绑定设备时，采用该方案，不需要绑定设备，InstalltionID就可满足需求</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">import android.content.Context;</div><div class="line">import android.content.SharedPreferences;</div><div class="line">import android.provider.Settings.Secure;</div><div class="line">import android.telephony.TelephonyManager;</div><div class="line">import java.io.UnsupportedEncodingException;</div><div class="line">import java.util.UUID;</div><div class="line"></div><div class="line">public class DeviceUUIDFactory&#123;</div><div class="line">    private static final String PREFS_FILE = &quot;device_id.xml&quot;;</div><div class="line">    private static final String PREFFS_DEVICE_ID = &quot;device_id&quot;;</div><div class="line">    private static UUID uuid;</div><div class="line">    public DeviceUUIDFactory (Context context)&#123;</div><div class="line">        if(uuid == null)&#123;</div><div class="line">            synchronized (DeviceUUIDFactory.class)&#123;</div><div class="line">                if(uuid == null)&#123;</div><div class="line">                    final SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE,0);</div><div class="line">                    final String id = prefs.getString(PREFFS_DEVICE_ID,null);</div><div class="line">                    if(id != null)&#123;</div><div class="line">                         uuid = UUID.fromString(id);</div><div class="line">                    &#125;else&#123;</div><div class="line">                        final String androidID = Secure.getString(context.getContentResolver(),Secure.ANDROID_ID);</div><div class="line">                        try&#123;</div><div class="line">                            if(!&quot;9774d56d682e549c&quot;.equals(androidID))&#123;</div><div class="line">                                uuid = UUID.nameUUIDFROMBYTES(androidID.getBytes(&quot;utf8&quot;));</div><div class="line">                            &#125;</div><div class="line">                            else&#123;</div><div class="line">                                final String deviceId = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();</div><div class="line">                                uuid = deviceId!=null?UUID.nameUUIDFromBytes(deviceId.getBytes(&quot;utf8&quot;)):UUID.randomUUID();</div><div class="line">                            &#125;</div><div class="line">                        &#125;catch(UnsupportedEncodingException e)&#123;</div><div class="line">                            throw new RuntimeException(e);</div><div class="line">                        &#125;</div><div class="line">                        prefs.edit().putString(PREFFS_DEVICE_ID,uuid.toString()).commit();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Android设备有很多的”标识”号，比如常见的IMEI，SerizalNumber，UUID等概念。既然这样，那我们就把这些概念拉出来溜溜，对这些标识做一个总结，看看Android为毛整这么多标识。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Git 使用入门</title>

@@ -1,0 +1,775 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=sans-serif:300,300italic,400,400italic,700,700italic|sans-serif:300,300italic,400,400italic,700,700italic|sans-serif:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="hotfix," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言： Tinker 是一个开源项目(Github链接)，它是微信官方的Android热补丁解决方案，它支持动态下发代码、So库以及资源，让应用能够在不需要重新安装的情况下实现更新。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信Tinker集成">
+<meta property="og:url" content="http://yoursite.com/2017/07/01/微信Tinker集成/index.html">
+<meta property="og:site_name" content="Leo's Blog">
+<meta property="og:description" content="前言： Tinker 是一个开源项目(Github链接)，它是微信官方的Android热补丁解决方案，它支持动态下发代码、So库以及资源，让应用能够在不需要重新安装的情况下实现更新。">
+<meta property="og:updated_time" content="2018-04-21T03:49:13.414Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信Tinker集成">
+<meta name="twitter:description" content="前言： Tinker 是一个开源项目(Github链接)，它是微信官方的Android热补丁解决方案，它支持动态下发代码、So库以及资源，让应用能够在不需要重新安装的情况下实现更新。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/01/微信Tinker集成/"/>
+
+
+
+
+
+  <title> 微信Tinker集成 | Leo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Leo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/01/微信Tinker集成/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Leo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Leo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Leo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                微信Tinker集成
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-01T10:47:53+08:00">
+                2017-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<blockquote>
+<p>前言： Tinker 是一个开源项目(Github链接)，它是微信官方的Android热补丁解决方案，它支持动态下发代码、So库以及资源，让应用能够在不需要重新安装的情况下实现更新。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="1-1-Gradle-接入"><a href="#1-1-Gradle-接入" class="headerlink" title="1.1 Gradle 接入"></a>1.1 Gradle 接入</h4><p>在项目的build.gradle中添加 tinker-patch-gradle-plugin的依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath (&apos;com.tencent.tinker:tinker-patch-gradle-plugin:1.7.5&apos;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在app的build.gradle中添加tinker的库依赖以及apply tinker 的gradle plugin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dependencies&#123;</div><div class="line">    //tinker的核心库</div><div class="line">    compile(&apos;com.tencent.tinker:tinker-android-lib:1.7.5&apos;)</div><div class="line">    //可选，用于注解生成application类</div><div class="line">    provided(&apos;com.tencent.tinker:tinker-android-anno:1.7.5&apos;)</div><div class="line">&#125;</div><div class="line">//　应用plugin </div><div class="line">apply plugin:&apos;com.tencent.tinker.patch&apos;</div></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="1-2-Tinker-Gradle-配置"><a href="#1-2-Tinker-Gradle-配置" class="headerlink" title="1.2 Tinker Gradle 配置"></a>1.2 Tinker Gradle 配置</h4><p><a href="https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97" target="_blank" rel="external">参考 Tinker 接入指南</a><br>tinkerPatch 全局配置示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">tinkerPatch &#123;</div><div class="line">        // 基准包 path </div><div class="line">        oldApk = getOldApkPath()</div><div class="line">        ignoreWarning = false</div><div class="line">        useSign = true</div><div class="line">        buildConfig &#123;</div><div class="line">            // mapping文件</div><div class="line">            applyMapping = getApplyMappingPath()</div><div class="line">            // R文件</div><div class="line">            applyResourceMapping = getApplyResourceMappingPath()</div><div class="line">            // tinkerId 必须设置</div><div class="line">            tinkerId = getTinkerIdValue()</div><div class="line">        &#125;</div><div class="line">        dex &#123;</div><div class="line">            dexMode = &quot;jar&quot;</div><div class="line">            // 是否提前生成dex，而非合成方式，回退成Qzone方案</div><div class="line">            usePreGeneratedPatchDex = false</div><div class="line">            pattern = [&quot;classes*.dex&quot;,</div><div class="line">                       &quot;assets/secondary-dex-?.jar&quot;]</div><div class="line">            loader = [&quot;com.tencent.tinker.loader.*&quot;, &quot;com.rxhui.pay.application.MyApplication&quot;,</div><div class="line">            ]</div><div class="line">        &#125;</div><div class="line">        lib &#123;</div><div class="line">            pattern = [&quot;lib/armeabi/*.so&quot;]</div><div class="line">        &#125;</div><div class="line">        res &#123;</div><div class="line">            pattern = [&quot;res/*&quot;, &quot;assets/*&quot;, &quot;resources.arsc&quot;, &quot;AndroidManifest.xml&quot;]</div><div class="line">            // 生成patch 需要忽略的文件pattern（此处有坑）</div><div class="line">//            ignoreChange = []</div><div class="line">            ignoreChange = [&quot;*.png&quot;]</div><div class="line">            largeModSize = 100</div><div class="line">        &#125;</div><div class="line">        packageConfig &#123;</div><div class="line">            //todo 每次升级时，填写升级信息</div><div class="line">            configField(&quot;patchMessage&quot;, &quot;tinker test&quot;)</div><div class="line">            configField(&quot;platform&quot;, &quot;all&quot;)</div><div class="line">            configField(&quot;patchVersion&quot;, getTinkerIdValue())</div><div class="line">        &#125;</div><div class="line">        sevenZip &#123;</div><div class="line">            zipArtifact = &quot;com.tencent.mm:SevenZip:1.1.10&quot;</div><div class="line">            /**</div><div class="line">             * optional，default &apos;7za&apos;</div><div class="line">             * todo you can specify the 7za path yourself, it will overwrite the zipArtifact value</div><div class="line">             */</div><div class="line">//            path = &quot;/usr/bin/7za&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="1-3-Patch-生成"><a href="#1-3-Patch-生成" class="headerlink" title="1.3 Patch 生成"></a>1.3 Patch 生成</h4><ul>
+<li>执行assemble任务，生成 oldApk </li>
+<li>修改代码，bug 修复，资源文件修改等等</li>
+<li>修改gradle tinkerPatch 配置，oldApk applyMapping及applyResourceMapping （混淆 mapping 和R文件使用同一份）</li>
+<li>执行 tinkerPatch task 生成patch文件</li>
+</ul>
+<p>apk路径，mapping 路径，R.txt 路径 示例代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">def bakPath = file(&quot;$&#123;rootDir&#125;/tinker/bakApk&quot;)</div><div class="line">ext &#123;</div><div class="line">    // 普通生成patch模式</div><div class="line">    tinkerOldApkPath = &quot;$&#123;bakPath&#125;/base-app-release-v1.0.1-2016-1125.apk&quot;</div><div class="line">    tinkerApplyMappingPath = &quot;$&#123;bakPath&#125;/base-app-release-v1.0.1-2016-1125-mapping.txt&quot;</div><div class="line">    tinkerApplyResourcePath = &quot;$&#123;bakPath&#125;/base-app-release-v1.0.1-2016-1125-R.txt&quot;</div><div class="line"></div><div class="line">    // 包含多个flavor时配置  </div><div class="line">    tinkerBuildFlavorDirectory = &quot;$&#123;bakPath&#125;/app-2016-1209&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line">tinkerPatch中：</div><div class="line"></div><div class="line">List&lt;String&gt; flavors = new ArrayList&lt;&gt;();</div><div class="line">    project.android.productFlavors.each &#123;flavor -&gt;</div><div class="line">        flavors.add(flavor.name)</div><div class="line">    &#125;</div><div class="line">    boolean hasFlavors = flavors.size() &gt; 0</div><div class="line">    /**</div><div class="line">    * 备份apk mapping R文件值bakPath</div><div class="line">    */</div><div class="line">    android.applicationVariants.all &#123; variant -&gt;</div><div class="line">        /**</div><div class="line">         * task type, you want to bak</div><div class="line">         */</div><div class="line">        def taskName = variant.name</div><div class="line">        def date = new Date().format(&quot;MMdd-HH-mm-ss&quot;)</div><div class="line"></div><div class="line">        tasks.all &#123;</div><div class="line">            if (&quot;assemble$&#123;taskName.capitalize()&#125;&quot;.equalsIgnoreCase(it.name)) &#123;</div><div class="line"></div><div class="line">                it.doLast &#123;</div><div class="line">                    copy &#123;</div><div class="line">                        def fileNamePrefix = &quot;$&#123;project.name&#125;-$&#123;variant.baseName&#125;&quot;</div><div class="line">                        def newFileNamePrefix = hasFlavors ? &quot;$&#123;fileNamePrefix&#125;&quot; : &quot;$&#123;fileNamePrefix&#125;-$&#123;date&#125;&quot;</div><div class="line"></div><div class="line">                        def destPath = hasFlavors ? file(&quot;$&#123;bakPath&#125;/$&#123;project.name&#125;-$&#123;date&#125;/$&#123;variant.flavorName&#125;&quot;) : bakPath</div><div class="line">                        from variant.outputs.outputFile</div><div class="line">                        into destPath</div><div class="line">                        rename &#123; String fileName -&gt;</div><div class="line">                            fileName.replace(&quot;$&#123;fileNamePrefix&#125;.apk&quot;, &quot;$&#123;newFileNamePrefix&#125;.apk&quot;)</div><div class="line">                        &#125;</div><div class="line"></div><div class="line">                        from &quot;$&#123;buildDir&#125;/outputs/mapping/$&#123;variant.dirName&#125;/mapping.txt&quot;</div><div class="line">                        into destPath</div><div class="line">                        rename &#123; String fileName -&gt;</div><div class="line">                            fileName.replace(&quot;mapping.txt&quot;, &quot;$&#123;newFileNamePrefix&#125;-mapping.txt&quot;)</div><div class="line">                        &#125;</div><div class="line"></div><div class="line">                        from &quot;$&#123;buildDir&#125;/intermediates/symbols/$&#123;variant.dirName&#125;/R.txt&quot;</div><div class="line">                        into destPath</div><div class="line">                        rename &#123; String fileName -&gt;</div><div class="line">                            fileName.replace(&quot;R.txt&quot;, &quot;$&#123;newFileNamePrefix&#125;-R.txt&quot;)</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /**</div><div class="line">    * 多flavor 处理  配置每个flavor的tinkerPatch task </div><div class="line">    */</div><div class="line">    project.afterEvaluate &#123;</div><div class="line">        //sample use for build all flavor for one time</div><div class="line">        if (hasFlavors) &#123;</div><div class="line">            task(tinkerPatchAllFlavorRelease) &#123;</div><div class="line">                group = &apos;tinker&apos;</div><div class="line">                def originOldPath = getTinkerBuildFlavorDirectory()</div><div class="line">                for (String flavor : flavors) &#123;</div><div class="line">                    def tinkerTask = tasks.getByName(&quot;tinkerPatch$&#123;flavor.capitalize()&#125;Release&quot;)</div><div class="line">                    dependsOn tinkerTask</div><div class="line">                    def preAssembleTask = tasks.getByName(&quot;process$&#123;flavor.capitalize()&#125;ReleaseManifest&quot;)</div><div class="line">                    preAssembleTask.doFirst &#123;</div><div class="line">                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 15)</div><div class="line">                        project.tinkerPatch.oldApk = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-release.apk&quot;</div><div class="line">                        project.tinkerPatch.buildConfig.applyMapping = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-release-mapping.txt&quot;</div><div class="line">                        project.tinkerPatch.buildConfig.applyResourceMapping = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-release-R.txt&quot;</div><div class="line"></div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            task(tinkerPatchAllFlavorDebug) &#123;</div><div class="line">                group = &apos;tinker&apos;</div><div class="line">                def originOldPath = getTinkerBuildFlavorDirectory()</div><div class="line">                for (String flavor : flavors) &#123;</div><div class="line">                    def tinkerTask = tasks.getByName(&quot;tinkerPatch$&#123;flavor.capitalize()&#125;Debug&quot;)</div><div class="line">                    dependsOn tinkerTask</div><div class="line">                    def preAssembleTask = tasks.getByName(&quot;process$&#123;flavor.capitalize()&#125;DebugManifest&quot;)</div><div class="line">                    preAssembleTask.doFirst &#123;</div><div class="line">                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 13)</div><div class="line">                        project.tinkerPatch.oldApk = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-debug.apk&quot;</div><div class="line">                        project.tinkerPatch.buildConfig.applyMapping = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-debug-mapping.txt&quot;</div><div class="line">                        project.tinkerPatch.buildConfig.applyResourceMapping = &quot;$&#123;originOldPath&#125;/$&#123;flavorName&#125;/$&#123;project.name&#125;-$&#123;flavorName&#125;-debug-R.txt&quot;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="1-4-Tinker-patch-加载"><a href="#1-4-Tinker-patch-加载" class="headerlink" title="1.4 Tinker patch 加载"></a>1.4 Tinker patch 加载</h4><ul>
+<li><p>1.4.1 改造Application类（实现补丁包可以对Application做修改），两种方式（建议使用注解的方式）：</p>
+<ul>
+<li>（1）定义代理类实现DefaultApplicationLike<br><a href="https://github.com/Tencent/tinker/wiki/Tinker-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%89%A9%E5%B1%95" target="_blank" rel="external">Tinker自定义扩展</a></li>
+<li>（2）Annotation 方式，需要引入 tinker-android-anno。保证无法修改Application，避免误操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> @DefaultLifeCycle(</div><div class="line">application = &quot;.SampleApplication&quot;,                       //application类名</div><div class="line">flags = ShareConstants.TINKER_ENABLE_ALL,                 //tinkerFlags</div><div class="line">loaderClass = &quot;com.tencent.tinker.loader.TinkerLoader&quot;,   //loaderClassName, 我们这里使用默认即可!</div><div class="line">loadVerifyFlag = false)                                   //tinkerLoadVerifyFlag</div><div class="line">public class SampleApplicationLike extends DefaultApplicationLike</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注：将原来的application类删掉，初始化操作全部放在代理类中。</p>
+<ul>
+<li><p>1.4.2 gradle tinker patch 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dex &#123;</div><div class="line">loader = [&quot;com.tencent.tinker.loader.*&quot;,</div><div class="line">         // 配置成自己的application </div><div class="line">          &quot;tinker.sample.android.YourApplication&quot;,       </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>1.4.3 安装tinker </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">@SuppressWarnings(&quot;unused&quot;)</div><div class="line">@DefaultLifeCycle(application = &quot;tinker.sample.android.app.SampleApplication&quot;,</div><div class="line">                  flags = ShareConstants.TINKER_ENABLE_ALL,</div><div class="line">                  loadVerifyFlag = false)</div><div class="line">public class SampleApplicationLike extends DefaultApplicationLike &#123;</div><div class="line">    private static final String TAG = &quot;Tinker.SampleApplicationLike&quot;;</div><div class="line"></div><div class="line">    public SampleApplicationLike(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag,</div><div class="line">                                 long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent,</div><div class="line">                                 Resources[] resources, ClassLoader[] classLoader, AssetManager[] assetManager) &#123;</div><div class="line">        super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent, resources, classLoader, assetManager);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)</div><div class="line">    @Override</div><div class="line">    public void onBaseContextAttached(Context base) &#123;</div><div class="line">        super.onBaseContextAttached(base);</div><div class="line">       </div><div class="line">        MultiDex.install(base);</div><div class="line"></div><div class="line">        SampleApplicationContext.application = getApplication();</div><div class="line">        SampleApplicationContext.context = getApplication();</div><div class="line"></div><div class="line">        //installTinker after load multiDex</div><div class="line">        //or you can put com.tencent.tinker.** to main dex</div><div class="line">        TinkerInstaller.install(this);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>1.4.4 加载补丁<br>将生成的补丁包，推送到指定目录，运行app时调用下面的代码进行加载。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + &quot;/patch_signed_7zip.apk&quot;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在实际开发过程中，我们是需要将补丁存到服务器，由服务器进行补丁分发，Tinker的开发团队已经提供，集成文档很详细，我就不做搬运工了。<a href="http://www.tinkerpatch.com/Docs/SDK" target="_blank" rel="external">Tinker Server SDK集成文档</a></p>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hotfix/" rel="tag"># hotfix</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/20/Android设备获取唯一标识/" rel="next" title="Android 设备获取唯一标识">
+                <i class="fa fa-chevron-left"></i> Android 设备获取唯一标识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/06/Tinker集成优化/" rel="prev" title="Tinker集成优化">
+                Tinker集成优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Leo" />
+          <p class="site-author-name" itemprop="name">Leo</p>
+          <p class="site-description motion-element" itemprop="description">To the very best of times</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/LeoPoldCrossing" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/LeopoldCrossing" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-Gradle-接入"><span class="nav-number">1.</span> <span class="nav-text">1.1 Gradle 接入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Tinker-Gradle-配置"><span class="nav-number">2.</span> <span class="nav-text">1.2 Tinker Gradle 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-Patch-生成"><span class="nav-number">3.</span> <span class="nav-text">1.3 Patch 生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-Tinker-patch-加载"><span class="nav-number">4.</span> <span class="nav-text">1.4 Tinker patch 加载</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

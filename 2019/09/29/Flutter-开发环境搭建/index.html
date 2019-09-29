@@ -1,0 +1,842 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=sans-serif:300,300italic,400,400italic,700,700italic|sans-serif:300,300italic,400,400italic,700,700italic|sans-serif:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="title: Flutter 开发环境搭建date: 2019-09-29 10:47:53tags: 
+
+Fluttercategories:
+技术分享
+
+
+
+前言：因为笔者使用的是MAC，所以我这里只介绍MAC系统的开发环境搭建，Windows及Linux系统请移步 Flutter 开发环境搭建
+
+
+基于 Flutter 1.9.1 版本（下载） 
+系统要求
+操作系统： macOS（64-bi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leo's Blog">
+<meta property="og:url" content="http://yoursite.com/2019/09/29/Flutter-开发环境搭建/index.html">
+<meta property="og:site_name" content="Leo's Blog">
+<meta property="og:description" content="title: Flutter 开发环境搭建date: 2019-09-29 10:47:53tags: 
+
+Fluttercategories:
+技术分享
+
+
+
+前言：因为笔者使用的是MAC，所以我这里只介绍MAC系统的开发环境搭建，Windows及Linux系统请移步 Flutter 开发环境搭建
+
+
+基于 Flutter 1.9.1 版本（下载） 
+系统要求
+操作系统： macOS（64-bi">
+<meta property="og:image" content="https://flutter.dev/images/setup/xcode-account.png">
+<meta property="og:updated_time" content="2019-09-29T09:59:34.820Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leo's Blog">
+<meta name="twitter:description" content="title: Flutter 开发环境搭建date: 2019-09-29 10:47:53tags: 
+
+Fluttercategories:
+技术分享
+
+
+
+前言：因为笔者使用的是MAC，所以我这里只介绍MAC系统的开发环境搭建，Windows及Linux系统请移步 Flutter 开发环境搭建
+
+
+基于 Flutter 1.9.1 版本（下载） 
+系统要求
+操作系统： macOS（64-bi">
+<meta name="twitter:image" content="https://flutter.dev/images/setup/xcode-account.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/29/Flutter-开发环境搭建/"/>
+
+
+
+
+
+  <title>  | Leo's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Leo's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/29/Flutter-开发环境搭建/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Leo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Leo's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Leo's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-29T17:59:34+08:00">
+                2019-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>title: Flutter 开发环境搭建<br>date: 2019-09-29 10:47:53<br>tags: </p>
+<ul>
+<li>Flutter<br>categories:</li>
+<li>技术分享</li>
+</ul>
+<hr>
+<blockquote>
+<p>前言：因为笔者使用的是MAC，所以我这里只介绍MAC系统的开发环境搭建，Windows及Linux系统请移步 <a href="https://flutter.dev/docs/get-started/install" target="_blank" rel="external">Flutter 开发环境搭建</a></p>
+</blockquote>
+<hr>
+<p>基于 Flutter 1.9.1 版本（<a href="https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_v1.9.1+hotfix.2-stable.zip" target="_blank" rel="external">下载</a>） </p>
+<h1 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h1><ol>
+<li>操作系统： macOS（64-bit）</li>
+<li>剩余磁盘空间： 2.8GB</li>
+<li>命令行工具： </li>
+</ol>
+<ul>
+<li>bash</li>
+<li>curl</li>
+<li>git 2.x</li>
+<li>mkdir</li>
+<li>rm</li>
+<li>unzip</li>
+<li>which</li>
+</ul>
+<h1 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h1><h2 id="获取Flutter-SDK"><a href="#获取Flutter-SDK" class="headerlink" title="获取Flutter SDK"></a>获取Flutter SDK</h2><ul>
+<li><a href="https://flutter.dev/docs/development/tools/sdk/releases?tab=macos" target="_blank" rel="external">Mac Flutter下载</a></li>
+<li>解压文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/development</div><div class="line">unzip ~/Downloads/flutter_macos_v1.9.1+hotfix.2-stable.zip</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="环境变量配置-1"><a href="#环境变量配置-1" class="headerlink" title="环境变量配置"></a>环境变量配置</h2><ul>
+<li>设置环境变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ export PATH=&quot;$PATH:`pwd`/flutter/bin&quot;  // 仅配置当前终端变量</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># PATH_TO_FLUTTER_GIT_DIRECTORY  为Flutter SDK 存储目录</div><div class="line">$ export PATH=&quot;$PATH:[PATH_TO_FLUTTER_GIT_DIRECTORY]/flutter/bin&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>刷新环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ source $HOME/.bash_profile</div></pre></td></tr></table></figure>
+</li>
+<li><p>验证环境变量配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ echo $PATH</div><div class="line">$ which flutter</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="诊断开发环境-Flutter-Doctor"><a href="#诊断开发环境-Flutter-Doctor" class="headerlink" title="诊断开发环境 Flutter Doctor"></a>诊断开发环境 Flutter Doctor</h3><p>这时候它会将你未安装的依赖一一列出，每个电脑缺少的依赖都不尽相同，例如下面这样，然后按照错误提示逐条修复<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">wangyonggangdeMacBook-Pro:~ LeoPoldCrossing$ flutter doctor</div><div class="line">Doctor summary (to see all details, run flutter doctor -v):</div><div class="line">[✓] Flutter (Channel beta, v1.9.1+hotfix.2, on Mac OS X 10.14 18A391, locale</div><div class="line">    zh-Hans-CN)</div><div class="line">[!] Android toolchain - develop for Android devices (Android SDK version 28.0.3)</div><div class="line">    ! Some Android licenses not accepted.  To resolve this, run: flutter doctor</div><div class="line">      --android-licenses</div><div class="line">[!] Xcode - develop for iOS and macOS (Xcode 10.1)</div><div class="line">    ✗ CocoaPods installed but not initialized.</div><div class="line">        CocoaPods is used to retrieve the iOS and macOS platform side&apos;s plugin</div><div class="line">        code that responds to your plugin usage on the Dart side.</div><div class="line">        Without CocoaPods, plugins will not work on iOS or macOS.</div><div class="line">        For more info, see https://flutter.dev/platform-plugins</div><div class="line">      To initialize CocoaPods, run:</div><div class="line">        pod setup</div><div class="line">      once to finalize CocoaPods&apos; installation.</div><div class="line">[✓] Android Studio (version 3.4)</div><div class="line">[!] IntelliJ IDEA Ultimate Edition (version 2018.1.4)</div><div class="line">    ✗ Flutter plugin not installed; this adds Flutter specific functionality.</div><div class="line">    ✗ Dart plugin not installed; this adds Dart specific functionality.</div><div class="line">[!] IntelliJ IDEA Ultimate Edition (version 2016.3.1)</div><div class="line">    ✗ Flutter plugin not installed; this adds Flutter specific functionality.</div><div class="line">    ✗ Dart plugin not installed; this adds Dart specific functionality.</div><div class="line">    ✗ This install is older than the minimum recommended version of 2017.1.0.</div><div class="line">[✓] VS Code (version 1.38.1)</div><div class="line">[✓] Connected device (1 available)</div></pre></td></tr></table></figure></p>
+<h2 id="国内镜像"><a href="#国内镜像" class="headerlink" title="国内镜像"></a>国内镜像</h2><p>由于一些flutter命令需要联网获取数据，如果您是在国内访问，由于众所周知的原因，直接访问很可能不会成功。 下面的PUB_HOSTED_URL和FLUTTER_STORAGE_BASE_URL是google为国内开发者搭建的临时镜像。详情请参考 Using Flutter in China<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ export PUB_HOSTED_URL=https://pub.flutter-io.cn（https://mirrors.sjtug.sjtu.edu.cn/）</div><div class="line">$ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</div><div class="line"></div><div class="line">or </div><div class="line"></div><div class="line">$ export PUB_HOSTED_URL= https://dart-pub.mirrors.sjtug.sjtu.edu.cn/</div><div class="line">$ export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn/</div><div class="line"></div><div class="line">$ export PATH=&quot;$PWD/flutter/bin:$PATH&quot;</div><div class="line">$ cd ./flutter</div><div class="line">$ flutter doctor</div></pre></td></tr></table></figure></p>
+<h1 id="平台配置"><a href="#平台配置" class="headerlink" title="平台配置"></a>平台配置</h1><h2 id="IOS设置"><a href="#IOS设置" class="headerlink" title="IOS设置"></a>IOS设置</h2><h3 id="1-Xcode安装"><a href="#1-Xcode安装" class="headerlink" title="1. Xcode安装"></a>1. Xcode安装</h3><ul>
+<li><a href="https://developer.apple.com/xcode/" target="_blank" rel="external">Xcode</a> 或通过 AppStore 安装最新版XCode</li>
+<li><p>配置XCode命令使用最新安装的Xcode版本（如果使用其他版本，请替换路径）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer</div></pre></td></tr></table></figure>
+</li>
+<li><p>同意XCode条款，可通过以下命令操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sodo xcodebuild -license</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-IOS-模拟器设置"><a href="#2-IOS-模拟器设置" class="headerlink" title="2. IOS 模拟器设置"></a>2. IOS 模拟器设置</h3><ul>
+<li><p>打开模拟器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ open -a Simulator</div></pre></td></tr></table></figure>
+</li>
+<li><p>设备选择（64位，至少Iphone5s） Hardware - Device</p>
+</li>
+<li><p>运行Flutter APP </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ flutter create my_app</div><div class="line"></div><div class="line">$ cd my_app</div><div class="line"></div><div class="line">$ flutter run</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-真机运行"><a href="#3-真机运行" class="headerlink" title="3. 真机运行"></a>3. 真机运行</h3><ul>
+<li><p>安装并设置CocoaPods</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo gem install cocoapods</div><div class="line">$ pod setup</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加账号及信任设备 </p>
+<ul>
+<li>在Flutter项目根目录下运行 open ios/Runner.xcworkspace</li>
+<li>选择要运行项目的的设备</li>
+<li>左侧面板选择Runner工程</li>
+<li><p>选择Team </p>
+<ol>
+<li>Xcode 9 &amp; 10, General &gt; Signing &gt; Team.</li>
+<li>Xcode 11,  Signing &amp; Capabilities &gt; Team</li>
+</ol>
+</li>
+<li><p>第一次运行IOS项目需要账号<br><img src="https://flutter.dev/images/setup/xcode-account.png" alt="此处输入图片的描述"></p>
+</li>
+<li>信任开发者<br>通用 - 设备管理</li>
+</ul>
+</li>
+<li><p>Flutter Run 跑起来</p>
+</li>
+</ul>
+<h2 id="Android-配置"><a href="#Android-配置" class="headerlink" title="Android 配置"></a>Android 配置</h2><h3 id="1-安装AndroidStudio下载地址"><a href="#1-安装AndroidStudio下载地址" class="headerlink" title="1. 安装AndroidStudio下载地址"></a>1. 安装AndroidStudio<a href="https://developer.android.com/studio" target="_blank" rel="external">下载地址</a></h3><h3 id="2-Android真机设备"><a href="#2-Android真机设备" class="headerlink" title="2. Android真机设备"></a>2. Android真机设备</h3><ul>
+<li>系统版本要求<br>Android 4.1以上</li>
+<li>设置<ul>
+<li>打开开发调试模式</li>
+<li>运行flutter devices检测是否识别</li>
+</ul>
+</li>
+<li>Android模拟器<br>AndroidStudio - Tools - Android - AVD Manager - Create Virtual Device 选择一个模拟器创建<h2 id="编辑器配置"><a href="#编辑器配置" class="headerlink" title="编辑器配置"></a>编辑器配置</h2><h3 id="Android-Studio"><a href="#Android-Studio" class="headerlink" title="Android Studio"></a>Android Studio</h3></li>
+<li>安装Android Studio <a href="https://developer.android.com/studio" target="_blank" rel="external">下载地址</a> </li>
+<li>安装Flutter插件<br>Perferences - Plugin - 搜索Flutter - 安装</li>
+<li>安装Dart插件<br>Perferences - Plugin - 搜索Dart - 安装<h3 id="VS-Code"><a href="#VS-Code" class="headerlink" title="VS Code"></a>VS Code</h3></li>
+<li>安装VS Code <a href="https://code.visualstudio.com" target="_blank" rel="external">下载地址</a> </li>
+<li>安装Flutter插件<br>查看 - 命令面板 - 输入install  - 选择Extensions: Install Extensions - 输入Flutter </li>
+<li>安装Dart插件<br>查看 - 命令面板 - 输入install  - 选择Extensions: Install Extensions - Dart</li>
+<li>检查设置<br>查看 - 命令面板 - 输入Doctor - 选择Flutter: Run Flutter Doctor</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/24/Charles-使用/" rel="next" title="Charles">
+                <i class="fa fa-chevron-left"></i> Charles
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Leo" />
+          <p class="site-author-name" itemprop="name">Leo</p>
+          <p class="site-description motion-element" itemprop="description">To the very best of times</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/LeoPoldCrossing" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/LeopoldCrossing" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统要求"><span class="nav-number">1.</span> <span class="nav-text">系统要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境变量配置"><span class="nav-number">2.</span> <span class="nav-text">环境变量配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取Flutter-SDK"><span class="nav-number">2.1.</span> <span class="nav-text">获取Flutter SDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量配置-1"><span class="nav-number">2.2.</span> <span class="nav-text">环境变量配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#诊断开发环境-Flutter-Doctor"><span class="nav-number">2.2.1.</span> <span class="nav-text">诊断开发环境 Flutter Doctor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#国内镜像"><span class="nav-number">2.3.</span> <span class="nav-text">国内镜像</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#平台配置"><span class="nav-number">3.</span> <span class="nav-text">平台配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IOS设置"><span class="nav-number">3.1.</span> <span class="nav-text">IOS设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Xcode安装"><span class="nav-number">3.1.1.</span> <span class="nav-text">1. Xcode安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-IOS-模拟器设置"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. IOS 模拟器设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-真机运行"><span class="nav-number">3.1.3.</span> <span class="nav-text">3. 真机运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-配置"><span class="nav-number">3.2.</span> <span class="nav-text">Android 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装AndroidStudio下载地址"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. 安装AndroidStudio下载地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Android真机设备"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. Android真机设备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑器配置"><span class="nav-number">3.3.</span> <span class="nav-text">编辑器配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-Studio"><span class="nav-number">3.3.1.</span> <span class="nav-text">Android Studio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VS-Code"><span class="nav-number">3.3.2.</span> <span class="nav-text">VS Code</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
